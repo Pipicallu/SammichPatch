@@ -1,6 +1,28 @@
+/* fonts */
+
+@font-face {
+  font-family: MainFont;
+  src: url("/static/fonts/halva.otf") format('opentype')
+}
+
+body{
+
+    font-family: MainFont;
+}
+
+h1, h2, h3, h4 , h5, h6 {
+    font-family: MainFont;
+}
+.hero-row{
+    
+    background: #F3E8DE;
+    min-width: 400px;
+    height: 600px;
+}
+
 .sammich-undone-img{
-    background: url('/media/sammichUndone.png') no-repeat no-repeat center;
-    height: 300px;
+    background: url('/media/sammichUndone.png') no-repeat center;
+    padding: 150px;
     
 }
 
@@ -13,9 +35,10 @@
 .inner-frame{
     border: 3px solid #000;
     display: inline-block;
-    width: 300px;
     margin: 30px;
 }
+
+
 
 /* button stylings*/
 
@@ -44,3 +67,5 @@
 .text-black {
     color: #000 !important;
 }
+
+
