@@ -1,6 +1,27 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
 {% block content %}
-<h1 class="display-4 text-success">Sammich Patch</h1>
+<div class="container text-center">
+    <div class="row hero-row">
+
+        <div class=" col">
+            <h4>The perfect sandwich is waiting.</h4>
+            <div class="outer-frame">
+                <div class="inner-frame">
+                    <img src="" alt="">
+                    <button>make it now.</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
