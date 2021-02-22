@@ -1,4 +1,5 @@
-{% load static%}
+{% load static %}
+
 
 <!doctype html>
 <html lang="en">
@@ -46,7 +47,7 @@
             <div class="col-12 col-lg-3 my-auto py-1 py-lg-0 text-end">home</div>
             <div class="col-12 col-lg-1 my-auto py-1 py-lg-0 text-end">sandwiches</div>
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-                <a href="{% url 'home' %}" class="nav-link main-logo-link">Sammich patch</a>
+                <a href="{% url 'home' %}" class="nav-link main-logo-link"><img src="{% static 'logo/SammichPatchLogo.png' %}" width="120" height="120" alt=""></a>
             </div>
             <div class="col-12 col-lg-1 my-auto py-1 py-lg-0 text-start">about</div>
             <div class="col-12 col-lg-2 my-auto py-1 py-lg-0 text-start">

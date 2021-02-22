@@ -1,4 +1,46 @@
 .sammich-undone-img{
     background: url('/media/sammichUndone.png') no-repeat no-repeat center;
-   height: 400px;
+    height: 300px;
+    
+}
+
+.outer-frame{
+    border: 5px solid #000;
+    display: inline-block;
+   
+}
+
+.inner-frame{
+    border: 3px solid #000;
+    display: inline-block;
+    width: 300px;
+    margin: 30px;
+}
+
+/* button stylings*/
+
+.make-it-now-btn{
+    margin-bottom: 20px;
+}
+
+.btn-transparent {
+    background: transparent;
+    color: black;
+    border: 3px solid black;
+}
+
+.make-sammich-button:hover,
+.make-sammich-button:active,
+.make-sammich-button:focus,
+.btn-transparent:hover,
+.btn-tranparent:active,
+.btn-transparent:focus {
+    background: black;
+    color: white;
+}
+
+/*text styling*/
+
+.text-black {
+    color: #000 !important;
 }
