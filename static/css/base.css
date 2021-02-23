@@ -18,6 +18,7 @@ h1, h2, h3, h4 , h5, h6 {
     background: #F3E8DE;
     min-width: 400px;
     height: 600px;
+    margin-top: 11.25rem;
 }
 
 .sammich-undone-img{
@@ -38,6 +39,15 @@ h1, h2, h3, h4 , h5, h6 {
     margin: 30px;
 }
 
+
+/*Navbar*/
+.main-nav-item{
+    border-bottom: 2px solid #000;
+}
+
+.header-container{
+    max-width: ;
+}
 
 
 /* button stylings*/
