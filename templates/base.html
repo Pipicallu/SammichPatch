@@ -45,15 +45,15 @@
     <!--Page header-->
     <header class="container header-container fixed-top text-center">
         <div id="topnav" class="row  pt-lg-1 text-center d-flex">
-            <div class="col-12 col-lg-3 my-auto  py-1 p-lg-0 text-end main-nav-item "><p>home</p></div>
-            <div class="col-12 col-lg-2 my-auto  py-1 p-lg-0 text-end main-nav-item"><p>Sandwiches</p></div>
+            <div class="col-12 col-lg-3 my-auto  py-1 p-lg-0 text-end main-nav-item "><a href="#" class="nav-link"><p>home</p></a></div>
+            <div class="col-12 col-lg-2 my-auto  py-1 p-lg-0 text-end main-nav-item"><a href="#" class="nav-link"><p>Sandwiches</p></a></div>
             <div class="col-12 col-lg-2 my-auto  py-1 p-lg-0 ">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link"><img src="{% static 'logo/SammichPatchLogo.png' %}" width="120" height="120" alt=""></a>
             </div>
-            <div class="col-12 col-lg-1 my-auto py-1 p-lg-0 text-start main-nav-item"><p>about</p></div>
+            <div class="col-12 col-lg-1 my-auto py-1 p-lg-0 text-start main-nav-item"><a href="#" class="nav-link"><p>about</p></a></div>
             <div class="col-12 col-lg-2 my-auto py-1  p-lg-0 text-end  main-nav-item">
                 <div class="nav-item  dropdown">
-                    <a class="nav-link py-0 dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button"
+                    <a class="nav-link  dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <p class="list-inline-item "> Account </p>                      
                     </a>
@@ -73,7 +73,7 @@
             </div>
             <div class="col-12 col-lg-2 my-auto py-1 p-lg-0 text-end main-nav-item">
                 <li class="list-inline-item">
-                    <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link p-0"
+                    <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link "
                         href="">
                         <div class="text-center">
                              <img class="list-inline-item" src="{% static 'logo/shoppingbag.png' %}" width="30" height="30" alt="">
