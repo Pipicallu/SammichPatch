@@ -43,13 +43,26 @@ h1, h2, h3, h4 , h5, h6 {
 /*Navbar*/
 .main-nav-item{
     border-bottom: 2px solid #000;
+    font-size: 14px;
+
 }
 
 .header-container{
     max-width: ;
 }
 
+a { 
+    color: inherit;
+} 
 
+
+@media (max-width: 991px){
+    #topnav{
+        display: none !important;
+    }
+
+    
+}
 /* button stylings*/
 
 .make-it-now-btn{
