@@ -11,45 +11,65 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row mt-5">
+<div class="subtitle-row container">
+    <div class="row">
         <div class="col">
             <h3>Filling</h3>
             <hr>
         </div>
     </div>
-    <div class="row">
+    <div class="row  mt-3">
         <!--logic to get ingredient-->
         {% for ingredient in ingredients %}
         {% if ingredient.category.name == "filling" %}
-        <div class="col-4 mt-2 mb-2">
+        <div class="col-5 ingredient-card mt-2 mb-4">
             <div class="row">
-                <div class="col-6 d-inline">
-                    <h5 class="card-title">{{ingredient.name}}</h5>
-                    <p class="card-text">{{ingredient.description}}.</p>
-                    <a href="#" class="btn btn-primary">Add</a>
+                <div class="col p-0">
+                    {% if ingredient.image %}
+                    <a href="">
+                        <img class="card-img-top img-fluid" src="{{ ingredient.image_url }}" alt="{{ ingredient.name }}">
+                    </a>
+                    {% else %}
+                    <a href="">
+                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ ingredient.name }}">
+                    </a>
+                    {% endif %}
                 </div>
-                <div class="col-6 d-inline">
-                    <h5 class="card-title">Quantity</h5>
-                    <div>
-                        <p>x{{quantity}}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <!--logic to get dietary requirements-->
+                <div class="col d-inline">
+                    <h6 class="card-title">{{ingredient.name}}</h6>
+                    <!-- <p class="card-text">{{ingredient.description}}</p> -->
                     {% if ingredient.dietary_requirements.all %}
                     {% for dietary_requirements in ingredient.dietary_requirements.all %}
-                    <p class="d-inline">{{dietary_requirements.friendly_name}}</p>
+                    {% if dietary_requirements.friendly_name == "Beef" %}
+                    <img class=" img-fluid" src="{{ MEDIA_URL }}cow_emoji.png" alt="cow_emoji" width="20" height="20">
+                    {% elif dietary_requirements.friendly_name == "Halal/Kosher" %}
+                    <img class=" img-fluid" src="{{ MEDIA_URL }}halal_emoji.svg" alt="cow_emoji" width="20" height="20">
+                    <img class=" img-fluid" src="{{ MEDIA_URL }}kosher_emoji.svg" alt="cow_emoji" width="20" height="20">
+                    {% elif dietary_requirements.friendly_name == "Pork" %}
+                    <img class=" img-fluid" src="{{ MEDIA_URL }}pig_emoji.png" alt="cow_emoji" width="20" height="20">
+                    {% elif dietary_requirements.friendly_name == "Poultry" %}
+                    <img class=" img-fluid" src="{{ MEDIA_URL }}chicken_emoji.png" alt="cow_emoji" width="20" height="20">
+                    {% elif dietary_requirements.friendly_name == "Vegan" %}
+                    <img class=" img-fluid" src="{{ MEDIA_URL }}vegan.svg" alt="cow_emoji" width="20" height="20">
+                    {% elif dietary_requirements.friendly_name == "Fish" %}
+                    <img class=" img-fluid" src="{{ MEDIA_URL }}clown-fish.svg" alt="cow_emoji" width="20" height="20">
+                    {% endif %}
                     {% endfor %}
                     {% endif %}
+                </div>
+                <div class="col text-end d-inline">
+                    <p class="card-text">Quantity</p>
+                    <div>
+                        <p> x {{quantity}}</p>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="col-1 mt-2 mb-4">
+             <a href="#" class="btn btn-transparent make-it-now-btn rounded-0">Add</a>
+        </div>
         {% endif %}
         {% endfor %}
-
     </div>
 </div>
 {% endblock %}

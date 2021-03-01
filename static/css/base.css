@@ -103,3 +103,14 @@ a {
     padding: 18px;
 
 }
+
+/* ingredients page*/
+
+.subtitle-row{
+    margin-top: 16.25rem;
+}
+
+.ingredient-card{
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+}
