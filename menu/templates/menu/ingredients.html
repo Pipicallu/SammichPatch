@@ -21,20 +21,35 @@
     <div class="row">
         <!--logic to get ingredient-->
         {% for ingredient in ingredients %}
-        <div class="col-4">
         {% if ingredient.category.name == "filling" %}
-            <h5 class="card-title">{{ingredient.name}}</h5>
-            <p class="card-text">{{ingredient.description}}.</p>
-            <a href="#" class="btn btn-primary">Add</a>
-            <!--logic to get dietary requirements-->
-            {% if ingredient.dietary_requirements.all %}
-            {% for dietary_requirements in ingredient.dietary_requirements.all %}
-            <p>dietary requirements: {{dietary_requirements.friendly_name}}</p>
-            {% endfor %}
-            {%endif%}
-            {% endif %}
-            {% endfor %}
+        <div class="col-4 mt-2 mb-2">
+            <div class="row">
+                <div class="col-6 d-inline">
+                    <h5 class="card-title">{{ingredient.name}}</h5>
+                    <p class="card-text">{{ingredient.description}}.</p>
+                    <a href="#" class="btn btn-primary">Add</a>
+                </div>
+                <div class="col-6 d-inline">
+                    <h5 class="card-title">Quantity</h5>
+                    <div>
+                        <p>x{{quantity}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <!--logic to get dietary requirements-->
+                    {% if ingredient.dietary_requirements.all %}
+                    {% for dietary_requirements in ingredient.dietary_requirements.all %}
+                    <p class="d-inline">{{dietary_requirements.friendly_name}}</p>
+                    {% endfor %}
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
         </div>
+        {% endif %}
+        {% endfor %}
+
     </div>
 </div>
 {% endblock %}
