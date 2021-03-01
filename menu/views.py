@@ -10,4 +10,6 @@ def all_ingredients(request):
         'ingredients': ingredients,
     }
 
+   
+
     return render(request, 'menu/ingredients.html', context)

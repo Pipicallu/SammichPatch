@@ -12,9 +12,28 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
+    <div class="row mt-5">
         <div class="col">
-            {{ ingredients }}
+            <h3>Filling</h3>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <!--logic to get ingredient-->
+        {% for ingredient in ingredients %}
+        <div class="col-4">
+        {% if ingredient.category.name == "filling" %}
+            <h5 class="card-title">{{ingredient.name}}</h5>
+            <p class="card-text">{{ingredient.description}}.</p>
+            <a href="#" class="btn btn-primary">Add</a>
+            <!--logic to get dietary requirements-->
+            {% if ingredient.dietary_requirements.all %}
+            {% for dietary_requirements in ingredient.dietary_requirements.all %}
+            <p>dietary requirements: {{dietary_requirements.friendly_name}}</p>
+            {% endfor %}
+            {%endif%}
+            {% endif %}
+            {% endfor %}
         </div>
     </div>
 </div>
