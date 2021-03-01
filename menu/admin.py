@@ -43,4 +43,4 @@ class DietaryRequirementsAdmin(admin.ModelAdmin):
 admin.site.register(Ingredients, IngredientsAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(DietaryRequirements, DietaryRequirementsAdmin)
-admin.site.register(SidesAndDrinks, SidesAndDrinksAdmin )
+admin.site.register(SidesAndDrinks, SidesAndDrinksAdmin)
