@@ -27,11 +27,13 @@
                 <div class="col p-0">
                     {% if ingredient.image %}
                     <a href="">
-                        <img class="card-img-top img-fluid" src="{{ ingredient.image_url }}" alt="{{ ingredient.name }}">
+                        <img class="card-img-top img-fluid" src="{{ ingredient.image_url }}"
+                            alt="{{ ingredient.name }}">
                     </a>
                     {% else %}
                     <a href="">
-                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ ingredient.name }}">
+                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png"
+                            alt="{{ ingredient.name }}">
                     </a>
                     {% endif %}
                 </div>
@@ -41,14 +43,20 @@
                     {% if ingredient.dietary_requirements.all %}
                     {% for dietary_requirements in ingredient.dietary_requirements.all %}
                     {% if dietary_requirements.friendly_name == "Beef" %}
-                    <img class=" img-fluid" src="{{ MEDIA_URL }}cow_emoji.png" alt="cow_emoji" width="20" height="20">
+                    <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover"
+                        data-placement="bottom" data-content="{{dietary_requirements.description}}">
+                        <img class=" img-fluid" src="{{ MEDIA_URL }}cow_emoji.png" alt="cow_emoji" width="20"
+                            height="20">
+                    </button>
                     {% elif dietary_requirements.friendly_name == "Halal/Kosher" %}
                     <img class=" img-fluid" src="{{ MEDIA_URL }}halal_emoji.svg" alt="cow_emoji" width="20" height="20">
-                    <img class=" img-fluid" src="{{ MEDIA_URL }}kosher_emoji.svg" alt="cow_emoji" width="20" height="20">
+                    <img class=" img-fluid" src="{{ MEDIA_URL }}kosher_emoji.svg" alt="cow_emoji" width="20"
+                        height="20">
                     {% elif dietary_requirements.friendly_name == "Pork" %}
                     <img class=" img-fluid" src="{{ MEDIA_URL }}pig_emoji.png" alt="cow_emoji" width="20" height="20">
                     {% elif dietary_requirements.friendly_name == "Poultry" %}
-                    <img class=" img-fluid" src="{{ MEDIA_URL }}chicken_emoji.png" alt="cow_emoji" width="20" height="20">
+                    <img class=" img-fluid" src="{{ MEDIA_URL }}chicken_emoji.png" alt="cow_emoji" width="20"
+                        height="20">
                     {% elif dietary_requirements.friendly_name == "Vegan" %}
                     <img class=" img-fluid" src="{{ MEDIA_URL }}vegan.svg" alt="cow_emoji" width="20" height="20">
                     {% elif dietary_requirements.friendly_name == "Fish" %}
@@ -66,10 +74,19 @@
             </div>
         </div>
         <div class="col-1 mt-2 mb-4">
-             <a href="#" class="btn btn-transparent make-it-now-btn rounded-0">Add</a>
+            <a href="#" class="btn btn-transparent make-it-now-btn rounded-0">Add</a>
         </div>
         {% endif %}
         {% endfor %}
     </div>
 </div>
+{% endblock %}
+
+{% block postload_js %}
+{{ block.super }}
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
+</script>
 {% endblock %}
