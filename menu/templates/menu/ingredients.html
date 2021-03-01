@@ -43,24 +43,42 @@
                     {% if ingredient.dietary_requirements.all %}
                     {% for dietary_requirements in ingredient.dietary_requirements.all %}
                     {% if dietary_requirements.friendly_name == "Beef" %}
-                    <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover"
-                        data-placement="bottom" data-content="{{dietary_requirements.description}}">
+                    <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover"
+                        data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
                         <img class=" img-fluid" src="{{ MEDIA_URL }}cow_emoji.png" alt="cow_emoji" width="20"
                             height="20">
                     </button>
                     {% elif dietary_requirements.friendly_name == "Halal/Kosher" %}
-                    <img class=" img-fluid" src="{{ MEDIA_URL }}halal_emoji.svg" alt="cow_emoji" width="20" height="20">
-                    <img class=" img-fluid" src="{{ MEDIA_URL }}kosher_emoji.svg" alt="cow_emoji" width="20"
-                        height="20">
+                    <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover"
+                        data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
+                        <img class=" img-fluid" src="{{ MEDIA_URL }}halal_emoji.svg" alt="cow_emoji" width="20"
+                            height="20">
+                        <img class=" img-fluid" src="{{ MEDIA_URL }}kosher_emoji.svg" alt="cow_emoji" width="20"
+                            height="20">
+                    </button>
                     {% elif dietary_requirements.friendly_name == "Pork" %}
-                    <img class=" img-fluid" src="{{ MEDIA_URL }}pig_emoji.png" alt="cow_emoji" width="20" height="20">
+                    <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover"
+                        data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
+                        <img class=" img-fluid" src="{{ MEDIA_URL }}pig_emoji.png" alt="cow_emoji" width="20"
+                            height="20">
+                    </button>
                     {% elif dietary_requirements.friendly_name == "Poultry" %}
-                    <img class=" img-fluid" src="{{ MEDIA_URL }}chicken_emoji.png" alt="cow_emoji" width="20"
-                        height="20">
+                    <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover"
+                        data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
+                        <img class=" img-fluid" src="{{ MEDIA_URL }}chicken_emoji.png" alt="cow_emoji" width="20"
+                            height="20">
+                    </button>
                     {% elif dietary_requirements.friendly_name == "Vegan" %}
-                    <img class=" img-fluid" src="{{ MEDIA_URL }}vegan.svg" alt="cow_emoji" width="20" height="20">
+                    <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover"
+                        data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
+                        <img class=" img-fluid" src="{{ MEDIA_URL }}vegan.svg" alt="cow_emoji" width="20" height="20">
+                    </button>
                     {% elif dietary_requirements.friendly_name == "Fish" %}
-                    <img class=" img-fluid" src="{{ MEDIA_URL }}clown-fish.svg" alt="cow_emoji" width="20" height="20">
+                    <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover"
+                        data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
+                        <img class=" img-fluid" src="{{ MEDIA_URL }}clown-fish.svg" alt="cow_emoji" width="20"
+                            height="20">
+                    </button>
                     {% endif %}
                     {% endfor %}
                     {% endif %}
@@ -84,9 +102,10 @@
 
 {% block postload_js %}
 {{ block.super }}
-<script type="text/javascript">
-    $(function () {
-        $('[data-toggle="popover"]').popover()
+<script>
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl)
     })
 </script>
 {% endblock %}
