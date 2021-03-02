@@ -14,37 +14,56 @@
 <div class="subtitle-row container">
     <div class="row">
         <div class="col text-center">
-            <h3 class="font-bolder p-3 mt-4 mb-0"><i class="fas fa-crown gold-color"></i> Make your sandwich <i class="fas fa-crown gold-color"></i></h3>
+            <h3 class="font-bolder p-3 mt-4 mb-0"><i class="fas fa-crown gold-color"></i> Make your sandwich <i
+                    class="fas fa-crown gold-color"></i></h3>
         </div>
     </div>
     <!--bread-->
     <div class="row mt-3">
         <h4 class="subtitle-heading font-bolder mb-4 mt-2">
-            bread 
-        <img class=" img-fluid" src="{{ MEDIA_URL }}bread.svg"
-                            alt="bread" width="30" height="30">
+            bread
+            <img class="img-fluid" src="{{ MEDIA_URL }}bread.svg" alt="bread" width="30" height="30">
         </h4>
         <!--logic to get ingredient-->
         {% for ingredient in ingredients %}
         {% if ingredient.category.name == "bread" %}
-        <div class="col-5 ingredient-card mt-2 mb-4">
+        <div class="col-lg-5 ingredient-card mt-2 mb-4">
             <div class="row">
                 <div class="col p-0">
                     {% if ingredient.image %}
-                    <a href="">
+                    <button type="button" class="btn p-0" data-bs-toggle="modal"
+                        data-bs-target="#myModal{{forloop.counter0}}">
                         <img class="card-img-top img-fluid" src="{{ ingredient.image_url }}"
                             alt="{{ ingredient.name }}">
-                    </a>
+                    </button>
                     {% else %}
                     <a href="">
                         <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png"
                             alt="{{ ingredient.name }}">
                     </a>
                     {% endif %}
+                    <!--modal-->
+                    <div class="modal rounded-0 fade" id="myModal{{forloop.counter0}}" tabindex="-1" role="dialog"
+                        aria-labelledby="myModal" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">{{ingredient.name}}</h5>
+                                </div>
+                                <div class="modal-body">
+                                    {{ingredient.description}}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col d-inline">
                     <h6 class="card-title">{{ingredient.name}}</h6>
-                    
+
                     <!-- <p class="card-text">{{ingredient.description}}</p> -->
                     {% if ingredient.dietary_requirements.all %}
                     {% for dietary_requirements in ingredient.dietary_requirements.all %}
@@ -63,7 +82,7 @@
                     {% endif %}
                     {% endfor %}
                     {% endif %}
-                    
+
                 </div>
                 <div class="col text-end d-inline">
                     <p class="card-text">Quantity</p>
@@ -74,7 +93,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-1 mt-2 mb-4">
+        <div class="col-lg-1 mt-2 mb-4">
             <a href="#" class="btn btn-transparent make-it-now-btn rounded-0">Add</a>
         </div>
         {% endif %}
@@ -83,14 +102,13 @@
     <!--filling-->
     <div class="row mt-3">
         <h4 class="subtitle-heading font-bolder  mb-4 mt-2">
-            Filling 
-            <img class=" img-fluid" src="{{ MEDIA_URL }}filling.svg"
-                            alt="filling" width="30" height="30">
+            Filling
+            <img class=" img-fluid" src="{{ MEDIA_URL }}filling.svg" alt="filling" width="30" height="30">
         </h4>
         <!--logic to get ingredient-->
         {% for ingredient in ingredients %}
         {% if ingredient.category.name == "filling" %}
-        <div class="col-5 ingredient-card mt-2 mb-4">
+        <div class="col-lg-5 ingredient-card mt-2 mb-4">
             <div class="row">
                 <div class="col p-0">
                     {% if ingredient.image %}
@@ -107,7 +125,7 @@
                 </div>
                 <div class="col d-inline">
                     <h6 class="card-title">{{ingredient.name}}</h6>
-                    
+
                     <!-- <p class="card-text">{{ingredient.description}}</p> -->
                     {% if ingredient.dietary_requirements.all %}
                     {% for dietary_requirements in ingredient.dietary_requirements.all %}
@@ -151,7 +169,7 @@
                     {% endif %}
                     {% endfor %}
                     {% endif %}
-                    
+
                 </div>
                 <div class="col text-end d-inline">
                     <p class="card-text">Quantity</p>
@@ -162,7 +180,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-1 mt-2 mb-4">
+        <div class="col-lg-1 mt-2 mb-4">
             <a href="#" class="btn btn-transparent make-it-now-btn rounded-0">Add</a>
         </div>
         {% endif %}
@@ -171,14 +189,13 @@
     <!--cheese-->
     <div class="row mt-3">
         <h4 class="subtitle-heading font-bolder  mb-4 mt-2">
-            Cheese 
-            <img class=" img-fluid" src="{{ MEDIA_URL }}cheese.svg"
-                            alt="cheese" width="30" height="30">
+            Cheese
+            <img class=" img-fluid" src="{{ MEDIA_URL }}cheese.svg" alt="cheese" width="30" height="30">
         </h4>
         <!--logic to get ingredient-->
         {% for ingredient in ingredients %}
         {% if ingredient.category.name == "cheese" %}
-        <div class="col-5 ingredient-card mt-2 mb-4">
+        <div class="col-lg-5 ingredient-card mt-2 mb-4">
             <div class="row">
                 <div class="col p-0">
                     {% if ingredient.image %}
@@ -195,7 +212,7 @@
                 </div>
                 <div class="col d-inline">
                     <h6 class="card-title">{{ingredient.name}}</h6>
-                    
+
                     <!-- <p class="card-text">{{ingredient.description}}</p> -->
                     {% if ingredient.dietary_requirements.all %}
                     {% for dietary_requirements in ingredient.dietary_requirements.all %}
@@ -213,7 +230,7 @@
                     {% endif %}
                     {% endfor %}
                     {% endif %}
-                    
+
                 </div>
                 <div class="col text-end d-inline">
                     <p class="card-text">Quantity</p>
@@ -224,7 +241,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-1 mt-2 mb-4">
+        <div class="col-lg-1 mt-2 mb-4">
             <a href="#" class="btn btn-transparent make-it-now-btn rounded-0">Add</a>
         </div>
         {% endif %}
@@ -234,13 +251,12 @@
     <div class="row mt-3">
         <h4 class="subtitle-heading font-bolder  mb-4 mt-2">
             salad
-            <img class=" img-fluid" src="{{ MEDIA_URL }}salad.svg"
-                            alt="salad" width="30" height="30">    
+            <img class=" img-fluid" src="{{ MEDIA_URL }}salad.svg" alt="salad" width="30" height="30">
         </h4>
         <!--logic to get ingredient-->
         {% for ingredient in ingredients %}
         {% if ingredient.category.name == "salad" %}
-        <div class="col-5 ingredient-card mt-2 mb-4">
+        <div class="col-lg-5 ingredient-card mt-2 mb-4">
             <div class="row">
                 <div class="col p-0">
                     {% if ingredient.image %}
@@ -257,7 +273,7 @@
                 </div>
                 <div class="col d-inline">
                     <h6 class="card-title">{{ingredient.name}}</h6>
-                    
+
                     <!-- <p class="card-text">{{ingredient.description}}</p> -->
                     {% if ingredient.dietary_requirements.all %}
                     {% for dietary_requirements in ingredient.dietary_requirements.all %}
@@ -301,7 +317,7 @@
                     {% endif %}
                     {% endfor %}
                     {% endif %}
-                    
+
                 </div>
                 <div class="col text-end d-inline">
                     <p class="card-text">Quantity</p>
@@ -312,7 +328,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-1 mt-2 mb-4">
+        <div class="col-lg-1 mt-2 mb-4">
             <a href="#" class="btn btn-transparent make-it-now-btn rounded-0">Add</a>
         </div>
         {% endif %}
@@ -321,14 +337,13 @@
     <!--spread-->
     <div class="row mt-3">
         <h4 class="subtitle-heading font-bolder mb-4 mt-2">
-            spread 
-            <img class=" img-fluid" src="{{ MEDIA_URL }}sauce.svg"
-                            alt="sauce" width="30" height="30">
+            spread
+            <img class=" img-fluid" src="{{ MEDIA_URL }}sauce.svg" alt="sauce" width="30" height="30">
         </h4>
         <!--logic to get ingredient-->
         {% for ingredient in ingredients %}
         {% if ingredient.category.name == "spread" %}
-        <div class="col-5 ingredient-card mt-2 mb-4">
+        <div class="col-lg-5 ingredient-card mt-2 mb-4">
             <div class="row">
                 <div class="col p-0">
                     {% if ingredient.image %}
@@ -345,7 +360,7 @@
                 </div>
                 <div class="col d-inline">
                     <h6 class="card-title">{{ingredient.name}}</h6>
-                    
+
                     <!-- <p class="card-text">{{ingredient.description}}</p> -->
                     {% if ingredient.dietary_requirements.all %}
                     {% for dietary_requirements in ingredient.dietary_requirements.all %}
@@ -363,7 +378,7 @@
                     {% endif %}
                     {% endfor %}
                     {% endif %}
-                    
+
                 </div>
                 <div class="col text-end d-inline">
                     <p class="card-text">Quantity</p>
@@ -374,7 +389,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-1 mt-2 mb-4">
+        <div class="col-lg-1 mt-2 mb-4">
             <a href="#" class="btn btn-transparent make-it-now-btn rounded-0">Add</a>
         </div>
         {% endif %}
@@ -386,9 +401,16 @@
 {% block postload_js %}
 {{ block.super }}
 <script>
+    //popover
     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
     var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
         return new bootstrap.Popover(popoverTriggerEl)
     })
+
+    // modal
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus');
+    });
+
 </script>
 {% endblock %}
