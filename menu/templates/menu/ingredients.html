@@ -48,41 +48,16 @@
                     <!-- <p class="card-text">{{ingredient.description}}</p> -->
                     {% if ingredient.dietary_requirements.all %}
                     {% for dietary_requirements in ingredient.dietary_requirements.all %}
-                    {% if dietary_requirements.friendly_name == "Beef" %}
+                    {% if dietary_requirements.friendly_name == "Gluten" %}
                     <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
                         data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
-                        <img class=" img-fluid" src="{{ MEDIA_URL }}cow_emoji.png" alt="cow_emoji" width="20"
+                        <img class=" img-fluid" src="{{ MEDIA_URL }}gluten.svg" alt="wheat_emoji" width="20"
                             height="20">
                     </button>
-                    {% elif dietary_requirements.friendly_name == "Halal/Kosher" %}
+                    {% elif dietary_requirements.friendly_name == "Gluten Free" %}
                     <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
                         data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
-                        <img class=" img-fluid" src="{{ MEDIA_URL }}halal_emoji.svg" alt="cow_emoji" width="20"
-                            height="20">
-                        <img class=" img-fluid" src="{{ MEDIA_URL }}kosher_emoji.svg" alt="cow_emoji" width="20"
-                            height="20">
-                    </button>
-                    {% elif dietary_requirements.friendly_name == "Pork" %}
-                    <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
-                        data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
-                        <img class=" img-fluid" src="{{ MEDIA_URL }}pig_emoji.png" alt="cow_emoji" width="20"
-                            height="20">
-                    </button>
-                    {% elif dietary_requirements.friendly_name == "Poultry" %}
-                    <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
-                        data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
-                        <img class=" img-fluid" src="{{ MEDIA_URL }}chicken_emoji.png" alt="cow_emoji" width="20"
-                            height="20">
-                    </button>
-                    {% elif dietary_requirements.friendly_name == "Vegan" %}
-                    <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
-                        data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
-                        <img class=" img-fluid" src="{{ MEDIA_URL }}vegan.svg" alt="cow_emoji" width="20" height="20">
-                    </button>
-                    {% elif dietary_requirements.friendly_name == "Fish" %}
-                    <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
-                        data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
-                        <img class=" img-fluid" src="{{ MEDIA_URL }}clown-fish.svg" alt="cow_emoji" width="20"
+                        <img class=" img-fluid" src="{{ MEDIA_URL }}gluten_free.svg" alt="gluten_free" width="20"
                             height="20">
                     </button>
                     {% endif %}
@@ -224,42 +199,16 @@
                     <!-- <p class="card-text">{{ingredient.description}}</p> -->
                     {% if ingredient.dietary_requirements.all %}
                     {% for dietary_requirements in ingredient.dietary_requirements.all %}
-                    {% if dietary_requirements.friendly_name == "Beef" %}
+                    {% if dietary_requirements.friendly_name == "Dairy" %}
                     <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
                         data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
-                        <img class=" img-fluid" src="{{ MEDIA_URL }}cow_emoji.png" alt="cow_emoji" width="20"
-                            height="20">
-                    </button>
-                    {% elif dietary_requirements.friendly_name == "Halal/Kosher" %}
-                    <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
-                        data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
-                        <img class=" img-fluid" src="{{ MEDIA_URL }}halal_emoji.svg" alt="cow_emoji" width="20"
-                            height="20">
-                        <img class=" img-fluid" src="{{ MEDIA_URL }}kosher_emoji.svg" alt="cow_emoji" width="20"
-                            height="20">
-                    </button>
-                    {% elif dietary_requirements.friendly_name == "Pork" %}
-                    <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
-                        data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
-                        <img class=" img-fluid" src="{{ MEDIA_URL }}pig_emoji.png" alt="cow_emoji" width="20"
-                            height="20">
-                    </button>
-                    {% elif dietary_requirements.friendly_name == "Poultry" %}
-                    <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
-                        data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
-                        <img class=" img-fluid" src="{{ MEDIA_URL }}chicken_emoji.png" alt="cow_emoji" width="20"
+                        <img class=" img-fluid" src="{{ MEDIA_URL }}dairy_emoji.svg" alt="dairy_emoji" width="20"
                             height="20">
                     </button>
                     {% elif dietary_requirements.friendly_name == "Vegan" %}
                     <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
                         data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
                         <img class=" img-fluid" src="{{ MEDIA_URL }}vegan.svg" alt="cow_emoji" width="20" height="20">
-                    </button>
-                    {% elif dietary_requirements.friendly_name == "Fish" %}
-                    <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
-                        data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
-                        <img class=" img-fluid" src="{{ MEDIA_URL }}clown-fish.svg" alt="cow_emoji" width="20"
-                            height="20">
                     </button>
                     {% endif %}
                     {% endfor %}
@@ -400,42 +349,16 @@
                     <!-- <p class="card-text">{{ingredient.description}}</p> -->
                     {% if ingredient.dietary_requirements.all %}
                     {% for dietary_requirements in ingredient.dietary_requirements.all %}
-                    {% if dietary_requirements.friendly_name == "Beef" %}
+                    {% if dietary_requirements.friendly_name == "Dairy" %}
                     <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
                         data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
-                        <img class=" img-fluid" src="{{ MEDIA_URL }}cow_emoji.png" alt="cow_emoji" width="20"
-                            height="20">
-                    </button>
-                    {% elif dietary_requirements.friendly_name == "Halal/Kosher" %}
-                    <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
-                        data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
-                        <img class=" img-fluid" src="{{ MEDIA_URL }}halal_emoji.svg" alt="cow_emoji" width="20"
-                            height="20">
-                        <img class=" img-fluid" src="{{ MEDIA_URL }}kosher_emoji.svg" alt="cow_emoji" width="20"
-                            height="20">
-                    </button>
-                    {% elif dietary_requirements.friendly_name == "Pork" %}
-                    <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
-                        data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
-                        <img class=" img-fluid" src="{{ MEDIA_URL }}pig_emoji.png" alt="cow_emoji" width="20"
-                            height="20">
-                    </button>
-                    {% elif dietary_requirements.friendly_name == "Poultry" %}
-                    <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
-                        data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
-                        <img class=" img-fluid" src="{{ MEDIA_URL }}chicken_emoji.png" alt="cow_emoji" width="20"
+                        <img class=" img-fluid" src="{{ MEDIA_URL }}dairy_emoji.svg" alt="dairy_emoji" width="20"
                             height="20">
                     </button>
                     {% elif dietary_requirements.friendly_name == "Vegan" %}
                     <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
                         data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
                         <img class=" img-fluid" src="{{ MEDIA_URL }}vegan.svg" alt="cow_emoji" width="20" height="20">
-                    </button>
-                    {% elif dietary_requirements.friendly_name == "Fish" %}
-                    <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
-                        data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
-                        <img class=" img-fluid" src="{{ MEDIA_URL }}clown-fish.svg" alt="cow_emoji" width="20"
-                            height="20">
                     </button>
                     {% endif %}
                     {% endfor %}
