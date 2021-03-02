@@ -114,3 +114,23 @@ a {
     border-top: 2px solid #000;
     border-bottom: 2px solid #000;
 }
+
+.ingredient-price{
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+.font-bolder{
+    font-weight: bolder;
+}
+
+
+.subtitle-heading{
+    border-bottom: 2px solid #000;
+    border-top: 2px solid #000;
+    padding: 10px;
+}
+
+.gold-color{
+    color: #f3af38;
+}
