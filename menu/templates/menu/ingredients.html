@@ -112,16 +112,35 @@
             <div class="row">
                 <div class="col p-0">
                     {% if ingredient.image %}
-                    <a href="">
+                    <button type="button" class="btn p-0" data-bs-toggle="modal"
+                        data-bs-target="#myModal{{forloop.counter0}}">
                         <img class="card-img-top img-fluid" src="{{ ingredient.image_url }}"
                             alt="{{ ingredient.name }}">
-                    </a>
+                    </button>
                     {% else %}
                     <a href="">
                         <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png"
                             alt="{{ ingredient.name }}">
                     </a>
                     {% endif %}
+                    <!--modal-->
+                    <div class="modal rounded-0 fade" id="myModal{{forloop.counter0}}" tabindex="-1" role="dialog"
+                        aria-labelledby="myModal" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">{{ingredient.name}}</h5>
+                                </div>
+                                <div class="modal-body">
+                                    {{ingredient.description}}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col d-inline">
                     <h6 class="card-title">{{ingredient.name}}</h6>
@@ -199,16 +218,35 @@
             <div class="row">
                 <div class="col p-0">
                     {% if ingredient.image %}
-                    <a href="">
+                    <button type="button" class="btn p-0" data-bs-toggle="modal"
+                        data-bs-target="#myModal{{forloop.counter0}}">
                         <img class="card-img-top img-fluid" src="{{ ingredient.image_url }}"
                             alt="{{ ingredient.name }}">
-                    </a>
+                    </button>
                     {% else %}
                     <a href="">
                         <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png"
                             alt="{{ ingredient.name }}">
                     </a>
                     {% endif %}
+                    <!--modal-->
+                    <div class="modal rounded-0 fade" id="myModal{{forloop.counter0}}" tabindex="-1" role="dialog"
+                        aria-labelledby="myModal" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">{{ingredient.name}}</h5>
+                                </div>
+                                <div class="modal-body">
+                                    {{ingredient.description}}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col d-inline">
                     <h6 class="card-title">{{ingredient.name}}</h6>
@@ -260,16 +298,35 @@
             <div class="row">
                 <div class="col p-0">
                     {% if ingredient.image %}
-                    <a href="">
+                    <button type="button" class="btn p-0" data-bs-toggle="modal"
+                        data-bs-target="#myModal{{forloop.counter0}}">
                         <img class="card-img-top img-fluid" src="{{ ingredient.image_url }}"
                             alt="{{ ingredient.name }}">
-                    </a>
+                    </button>
                     {% else %}
                     <a href="">
                         <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png"
                             alt="{{ ingredient.name }}">
                     </a>
                     {% endif %}
+                    <!--modal-->
+                    <div class="modal rounded-0 fade" id="myModal{{forloop.counter0}}" tabindex="-1" role="dialog"
+                        aria-labelledby="myModal" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">{{ingredient.name}}</h5>
+                                </div>
+                                <div class="modal-body">
+                                    {{ingredient.description}}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col d-inline">
                     <h6 class="card-title">{{ingredient.name}}</h6>
@@ -347,16 +404,35 @@
             <div class="row">
                 <div class="col p-0">
                     {% if ingredient.image %}
-                    <a href="">
+                    <button type="button" class="btn p-0" data-bs-toggle="modal"
+                        data-bs-target="#myModal{{forloop.counter0}}">
                         <img class="card-img-top img-fluid" src="{{ ingredient.image_url }}"
                             alt="{{ ingredient.name }}">
-                    </a>
+                    </button>
                     {% else %}
                     <a href="">
                         <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png"
                             alt="{{ ingredient.name }}">
                     </a>
                     {% endif %}
+                    <!--modal-->
+                    <div class="modal rounded-0 fade" id="myModal{{forloop.counter0}}" tabindex="-1" role="dialog"
+                        aria-labelledby="myModal" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">{{ingredient.name}}</h5>
+                                </div>
+                                <div class="modal-body">
+                                    {{ingredient.description}}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col d-inline">
                     <h6 class="card-title">{{ingredient.name}}</h6>
