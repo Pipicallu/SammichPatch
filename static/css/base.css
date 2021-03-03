@@ -82,6 +82,11 @@ a {
     color: white;
 }
 
+.btn-filter:active{
+    background: black !important;
+    color: white !important;
+}
+
 /*text styling*/
 
 .text-black {
@@ -133,4 +138,23 @@ a {
 
 .gold-color{
     color: #f3af38;
+}
+
+.sort-button-cluster{
+    margin-left: 20px;
+    font-size: 12px;
+
+}
+
+.sort-button{
+    font-size: inherit;
+}
+
+/* from bulma */
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
 }

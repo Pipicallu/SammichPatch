@@ -23,6 +23,18 @@
         <h4 class="subtitle-heading font-bolder mb-4 mt-2">
             bread
             <img class="img-fluid" src="{{ MEDIA_URL }}bread.svg" alt="bread" width="30" height="30">
+            <span class="sort-button-cluster">
+                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'_free'}}" class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder"><img class="img-fluid icon"
+                        src="{{ MEDIA_URL }}gluten.svg" alt="wheat" width="15" height="15"> gluten</a>
+                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|slice:'7:'}}" class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder"><img class="img-fluid icon"
+                        src="{{ MEDIA_URL }}gluten_free.svg" alt="gluten free" width="15" height="15"> gluten
+                    free</a>
+                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','}}" class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">
+                    <img class="img-fluid icon"
+                        src="{{ MEDIA_URL }}gluten.svg" alt="gluten" width="15" height="15">
+                    <img class="img-fluid icon"
+                        src="{{ MEDIA_URL }}gluten_free.svg" alt="gluten free" width="15" height="15"> all</a>
+            </span>
         </h4>
         <!--logic to get ingredient-->
         {% for ingredient in ingredients %}
@@ -104,6 +116,21 @@
         <h4 class="subtitle-heading font-bolder  mb-4 mt-2">
             Filling
             <img class=" img-fluid" src="{{ MEDIA_URL }}filling.svg" alt="filling" width="30" height="30">
+            <span class="sort-button-cluster">
+                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'pork'}}" class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">
+                    <img class="img-fluid icon"
+                        src="{{ MEDIA_URL }}kosher_emoji.svg" alt="kosher" width="15" height="15">
+                    <img class="img-fluid icon"
+                        src="{{ MEDIA_URL }}halal_emoji.svg" alt="halal" width="15" height="15">halal/kosher</a>
+                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|slice:'25:29'}}" class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder"><img class="img-fluid icon"
+                        src="{{ MEDIA_URL }}cow_emoji.png" alt="beef" width="15" height="15"> beef
+                    </a>
+                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','}}" class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">
+                    <img class="img-fluid icon"
+                        src="{{ MEDIA_URL }}gluten.svg" alt="gluten" width="15" height="15">
+                    <img class="img-fluid icon"
+                        src="{{ MEDIA_URL }}gluten_free.svg" alt="gluten free" width="15" height="15"> all</a>
+            </span>
         </h4>
         <!--logic to get ingredient-->
         {% for ingredient in ingredients %}
@@ -129,7 +156,8 @@
                         <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel{{forloop.counter0}}">{{ingredient.name}}</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel{{forloop.counter0}}">
+                                        {{ingredient.name}}</h5>
                                 </div>
                                 <div class="modal-body">
                                     {{ingredient.description}}
@@ -235,7 +263,8 @@
                         <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel{{forloop.counter0}}">{{ingredient.name}}</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel{{forloop.counter0}}">
+                                        {{ingredient.name}}</h5>
                                 </div>
                                 <div class="modal-body">
                                     {{ingredient.description}}
@@ -315,7 +344,8 @@
                         <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel{{forloop.counter0}}">{{ingredient.name}}</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel{{forloop.counter0}}">
+                                        {{ingredient.name}}</h5>
                                 </div>
                                 <div class="modal-body">
                                     {{ingredient.description}}
@@ -421,7 +451,8 @@
                         <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel{{forloop.counter0}}">{{ingredient.name}}</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel{{forloop.counter0}}">
+                                        {{ingredient.name}}</h5>
                                 </div>
                                 <div class="modal-body">
                                     {{ingredient.description}}
