@@ -8,6 +8,7 @@ from .models import Ingredients, SidesAndDrinks, DietaryRequirements
 def all_ingredients(request):
     '''A view to show all the ingredients in the form'''
     ingredients = Ingredients.objects.all()
+    # to get list and sorted list
     dietary_req = DietaryRequirements.objects.values_list('name', flat=True).distinct()
     dietary_req = list(dietary_req)
     
