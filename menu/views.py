@@ -15,8 +15,16 @@ def all_ingredients(request):
     
     print(dietary_req)
     dietaryRequirements = None
+    sort = None
 
     if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == "beef":
+               ingredients = ingredients.order_by('dietary_requirements')
+               
+
         if 'dietary_requirements' in request.GET:
             dietaryRequirements = request.GET['dietary_requirements'].split(',')
             ingredients = ingredients.filter(dietary_requirements__name__in=dietaryRequirements)
@@ -26,6 +34,7 @@ def all_ingredients(request):
         'ingredients': ingredients,
         'current_dietaryRequirements': dietaryRequirements,
         'dietary_list': dietary_req,
+        
     }
 
     return render(request, 'menu/ingredients.html', context)
