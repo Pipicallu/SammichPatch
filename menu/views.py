@@ -24,8 +24,6 @@ def all_ingredients(request):
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
             sort = sortkey
-            if sort == 'vegetarian':
-                ingredients = ingredients.exclude(is_vegetarian=False)
             if 'direction' in request.GET:
                 direction = request.GET['direction']
                 if sort == 'price' and direction == 'asc':
