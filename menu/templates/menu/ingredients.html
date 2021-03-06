@@ -16,6 +16,10 @@
         <div class="col text-center">
             <h3 class="font-bolder p-3 mt-4 mb-0"><i class="fas fa-crown gold-color"></i> Make your sandwich <i
                     class="fas fa-crown gold-color"></i></h3>
+                    <a href="{% url 'ingredients' %}?sort=price&direction=asc"  class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">price <i class="fas fa-arrow-down"></i></a>
+                    <a href="{% url 'ingredients' %}?sort=price&direction=desc"  class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">price <i class="fas fa-arrow-up"></i></a>
+                    <a href="{% url 'ingredients' %}?sort=vegetarian"  class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">veggie</a>
+                    
         </div>
     </div>
     <!--bread-->
@@ -33,7 +37,7 @@
                         src="{{ MEDIA_URL }}gluten_free.svg" alt="gluten free" width="15" height="15"> <span
                         class="d-md-none d-lg-inline">gluten free</span>
                 </a>
-                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','}}"
+                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'halal/kosher'}}"
                     class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">
                     <img class="img-fluid icon" src="{{ MEDIA_URL }}gluten.svg" alt="gluten" width="15" height="15">
                     <img class="img-fluid icon" src="{{ MEDIA_URL }}gluten_free.svg" alt="gluten free" width="15"
@@ -127,7 +131,7 @@
                         height="15">
                     <img class="img-fluid icon" src="{{ MEDIA_URL }}halal_emoji.svg" alt="halal" width="15"
                         height="15"><span class="d-md-none d-lg-inline">halal/kosher</span></a>
-                <a href="{% url 'ingredients' %}?sort=beef"
+                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'pork'|cut:'vegan'|cut:'poultry'|cut:'halal/kosher'|cut:'fish'}}"
                     class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder"><img class="img-fluid icon"
                         src="{{ MEDIA_URL }}cow_emoji.png" alt="beef" width="15" height="15"> <span
                         class="d-md-none d-lg-inline">beef</span>
