@@ -8,18 +8,13 @@ from .models import Ingredients, SidesAndDrinks, DietaryRequirements
 def all_ingredients(request):
     '''A view to show all the ingredients in the form'''
     ingredients = Ingredients.objects.all()
-    diets = DietaryRequirements.objects.all()
-    print(diets)
     # to get list and sorted list
     dietary_req = DietaryRequirements.objects.values_list('name', flat=True).distinct()
     dietary_req = list(dietary_req)
-    
-    
-    print(ingredients)
     dietaryRequirements = None
     sort = None
     direction = None
-
+    veggie_menu = None
     if request.GET:
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
@@ -30,8 +25,8 @@ def all_ingredients(request):
                     ingredients = ingredients.order_by('price')
                 else:
                     ingredients = ingredients.order_by('-price')
-
-
+            if sort == 'vegetarian':
+                ingredients = ingredients.filter(is_vegetarian=True)
 
         if 'dietary_requirements' in request.GET:
             dietaryRequirements = request.GET['dietary_requirements'].split(',')
@@ -42,8 +37,7 @@ def all_ingredients(request):
         'ingredients': ingredients,
         'current_dietaryRequirements': dietaryRequirements,
         'dietary_list': dietary_req,
-        'diets': diets,
-        
+        'veggie_menu': veggie_menu,
     }
 
     return render(request, 'menu/ingredients.html', context)
