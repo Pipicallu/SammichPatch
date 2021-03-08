@@ -16,9 +16,14 @@
         <div class="col text-center">
             <h3 class="font-bolder p-3 mt-4 mb-0"><i class="fas fa-crown gold-color"></i> Make your sandwich <i
                     class="fas fa-crown gold-color"></i></h3>
-                    <a href="{% url 'ingredients' %}?sort=price&direction=asc"  class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">price <i class="fas fa-arrow-down"></i></a>
-                    <a href="{% url 'ingredients' %}?sort=price&direction=desc"  class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">price <i class="fas fa-arrow-up"></i></a>
-                    <a href="{% url 'ingredients' %}?sort=vegetarian"  class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">veggie menu</a>
+            <a href="{% url 'ingredients' %}?sort=price&direction=asc"
+                class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">price <i
+                    class="fas fa-arrow-down"></i></a>
+            <a href="{% url 'ingredients' %}?sort=price&direction=desc"
+                class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">price <i
+                    class="fas fa-arrow-up"></i></a>
+            <a href="{% url 'ingredients' %}?sort=vegetarian"
+                class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">veggie only</a>
         </div>
     </div>
     <!--bread-->
@@ -47,7 +52,7 @@
         {% for ingredient in ingredients %}
         {% if ingredient.category.name == "bread" %}
 
-        <div class="col-lg-5  ingredient-card mt-2 mb-4">
+        <div class="col-lg-5 ingredient-card mt-2 mb-4">
             <div class="row">
                 <div class="col p-0">
                     {% if ingredient.image %}
@@ -125,34 +130,35 @@
             Filling
             <img class=" img-fluid" src="{{ MEDIA_URL }}filling.svg" alt="filling" width="30" height="30">
             <span class="sort-button-cluster">
-                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'pork'|cut:'beef'|cut:'poultry'}}"
-                    class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">
+                <a id="fillings" onclick="focusPoint()"
+                    href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'pork'|cut:'beef'|cut:'poultry'}}"
+                    class="sort-button) focus-button btn btn-transparent rounded-0 btn-filter font-bolder">
                     <img class="img-fluid icon" src="{{ MEDIA_URL }}kosher_emoji.svg" alt="kosher" width="15"
                         height="15">
                     <img class="img-fluid icon" src="{{ MEDIA_URL }}halal_emoji.svg" alt="halal" width="15"
                         height="15"><span class="d-md-none d-lg-inline">halal/kosher</span></a>
                 <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'pork'|cut:'vegan'|cut:'poultry'|cut:'halal/kosher'|cut:'fish'}}"
-                    class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder"><img class="img-fluid icon"
-                        src="{{ MEDIA_URL }}cow_emoji.png" alt="beef" width="15" height="15"> <span
-                        class="d-md-none d-lg-inline">beef</span>
+                    class="sort-button focus-button btn btn-transparent rounded-0 btn-filter font-bolder"><img
+                        class="img-fluid icon" src="{{ MEDIA_URL }}cow_emoji.png" alt="beef" width="15" height="15">
+                    <span class="d-md-none d-lg-inline">beef</span>
                 </a>
                 <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'beef'|cut:'vegan'|cut:'poultry'|cut:'halal/kosher'|cut:'fish'}}"
-                    class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder"><img class="img-fluid icon"
-                        src="{{ MEDIA_URL }}pig_emoji.png" alt="beef" width="15" height="15"> <span
-                        class="d-md-none d-lg-inline">pork</span>
+                    class="sort-button focus-button btn btn-transparent rounded-0 btn-filter font-bolder"><img
+                        class="img-fluid icon" src="{{ MEDIA_URL }}pig_emoji.png" alt="beef" width="15" height="15">
+                    <span class="d-md-none d-lg-inline">pork</span>
                 </a>
                 <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'beef'|cut:'vegan'|cut:'pork'|cut:'halal/kosher'|cut:'fish'}}"
-                    class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder"><img class="img-fluid icon"
-                        src="{{ MEDIA_URL }}chicken_emoji.png" alt="beef" width="15" height="15"> <span
-                        class="d-md-none d-lg-inline">poultry</span>
+                    class="sort-button focus-button btn btn-transparent rounded-0 btn-filter font-bolder"><img
+                        class="img-fluid icon" src="{{ MEDIA_URL }}chicken_emoji.png" alt="beef" width="15" height="15">
+                    <span class="d-md-none d-lg-inline">poultry</span>
                 </a>
                 <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'beef'|cut:'poultry'|cut:'pork'|cut:'halal/kosher'|cut:'fish'}}"
-                    class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder"><img class="img-fluid icon"
-                        src="{{ MEDIA_URL }}vegan.svg" alt="beef" width="15" height="15"> <span
+                    class="sort-button focus-button btn btn-transparent rounded-0 btn-filter font-bolder"><img
+                        class="img-fluid icon" src="{{ MEDIA_URL }}vegan.svg" alt="beef" width="15" height="15"> <span
                         class="d-md-none d-lg-inline">vegan</span>
                 </a>
                 <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'halal/kosher'}}"
-                    class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">
+                    class="sort-button focus-button btn btn-transparent rounded-0 btn-filter font-bolder">
                     <img class="img-fluid icon" src="{{ MEDIA_URL }}sandwich.svg" alt="gluten" width="15" height="15">
                     <span class="d-md-none d-lg-inline">all</span></a>
             </span>
@@ -557,5 +563,12 @@
         $('#myInput').trigger('focus');
     });
 
+    //focus on button
+    focusPoint = function getFocus(){
+        current_URL = new URL(window.location);
+        document.getElementById('fillings').focus();
+        window.location.replace(current_URL);
+    }
+    
 </script>
 {% endblock %}

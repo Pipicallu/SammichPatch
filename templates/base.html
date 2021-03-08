@@ -120,7 +120,7 @@
             </nav>
         </div>
         <div id="delivery-banner" class="row text-center">
-            <div class="col text-black">
+            <div id="promotion-heading" class="col text-black">
                 <p class=" delivery-text">Free delivery on orders over £{{ free_shipping_threshold }}!</p>          
             </div>            
         </div>
@@ -141,6 +141,16 @@
 
     <!--End of body js-->
     {% block postload_js %}
+    <script>
+          // promotion heading dissapear on scroll 
+          window.addEventListener('scroll', () => {
+              promotionHeader = document.getElementById('promotion-heading');
+              promotionHeader.classList.toggle("d-none");
+          })
+    
+    </script>
+
+
     {% endblock %}
 
 </body>
