@@ -16,14 +16,15 @@
         <div class="col text-center">
             <h3 class="font-bolder p-3 mt-4 mb-0"><i class="fas fa-crown gold-color"></i> Make your sandwich <i
                     class="fas fa-crown gold-color"></i></h3>
-            <a href="{% url 'ingredients' %}?sort=price&direction=asc"
+            <a href="{% url 'ingredients' %}?sort=price&direction=asc&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
                 class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">price <i
                     class="fas fa-arrow-down"></i></a>
-            <a href="{% url 'ingredients' %}?sort=price&direction=desc"
+            <a href="{% url 'ingredients' %}?sort=price&direction=desc&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
                 class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">price <i
                     class="fas fa-arrow-up"></i></a>
-            <a href="{% url 'ingredients' %}?sort=vegetarian"
-                class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">veggie only</a>
+           
+            <a href="{% url 'ingredients' %}?is_vegetarian={{is_vegetarian | yesno:'False,True'}}"
+                class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">Show {{is_vegetarian| yesno:'Menu, Veggie Menu'}}</a>
         </div>
     </div>
     <!--bread-->
@@ -130,8 +131,8 @@
             Filling
             <img class=" img-fluid" src="{{ MEDIA_URL }}filling.svg" alt="filling" width="30" height="30">
             <span class="sort-button-cluster">
-                <a id="fillings" onclick="focusPoint()"
-                    href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'pork'|cut:'beef'|cut:'poultry'}}"
+                <a id="fillings"
+                    href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'pork'|cut:'beef'|cut:'poultry'}}&goto=fillings"
                     class="sort-button) focus-button btn btn-transparent rounded-0 btn-filter font-bolder">
                     <img class="img-fluid icon" src="{{ MEDIA_URL }}kosher_emoji.svg" alt="kosher" width="15"
                         height="15">
@@ -564,11 +565,14 @@
     });
 
     //focus on button
-    focusPoint = function getFocus(){
-        current_URL = new URL(window.location);
-        document.getElementById('fillings').focus();
-        window.location.replace(current_URL);
-    }
-    
+    $(document).ready(() =>{
+        const urlParams = new URLSearchParams(window.location.search);
+        const myParam = urlParams.get('goto');
+        const goto = document.getElementById(myParam);
+        if (goto) {
+            goto.scrollIntoView();
+        }
+    })
+
 </script>
 {% endblock %}

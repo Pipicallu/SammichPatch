@@ -9,12 +9,15 @@ def all_ingredients(request):
     '''A view to show all the ingredients in the form'''
     ingredients = Ingredients.objects.all()
     # to get list and sorted list
-    dietary_req = DietaryRequirements.objects.values_list('name', flat=True).distinct()
+    dietary_req = DietaryRequirements.objects.values_list(
+        'name', flat=True).distinct()
     dietary_req = list(dietary_req)
     dietaryRequirements = None
     sort = None
     direction = None
     veggie_menu = None
+    is_vegetarian = False
+
     if request.GET:
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
@@ -25,19 +28,27 @@ def all_ingredients(request):
                     ingredients = ingredients.order_by('price')
                 else:
                     ingredients = ingredients.order_by('-price')
-            if sort == 'vegetarian':
+
+        if 'is_vegetarian' in request.GET:
+            is_vegetarian = request.GET['is_vegetarian'] == 'True'
+            if is_vegetarian:
                 ingredients = ingredients.filter(is_vegetarian=True)
 
+
         if 'dietary_requirements' in request.GET:
-            dietaryRequirements = request.GET['dietary_requirements'].split(',')
-            ingredients = ingredients.filter(dietary_requirements__name__in=dietaryRequirements)
-            dietaryRequirements = DietaryRequirements.objects.filter(name__in=dietaryRequirements)
+            dietaryRequirements = request.GET['dietary_requirements'].split(
+                ',')
+            ingredients = ingredients.filter(
+                dietary_requirements__name__in=dietaryRequirements)
+            dietaryRequirements = DietaryRequirements.objects.filter(
+                name__in=dietaryRequirements)
 
     context = {
         'ingredients': ingredients,
         'current_dietaryRequirements': dietaryRequirements,
         'dietary_list': dietary_req,
         'veggie_menu': veggie_menu,
+        'is_vegetarian': is_vegetarian,
     }
 
     return render(request, 'menu/ingredients.html', context)
