@@ -7,7 +7,7 @@
 
 <li class="list-inline-item ">
     <a class="{% if grand_total %}text-primary font-weight-bold{% else %}text-black{% endif %} nav-link d-block d-lg-none p-0"
-        href="">
+        href="{% url 'shopping_bag' %}">
         <div class="text-center">
             <img class="" src="{% static 'logo/shoppingbag.png' %}" width="25" height="25" alt="">
             <p class="">

@@ -92,7 +92,7 @@
             <div class="col-12 col-lg-2 my-auto py-1 p-lg-0 text-end main-nav-item">
                 <li class="list-inline-item">
                     <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link "
-                        href="">
+                        href="{% url 'shopping_bag' %}">
                         <div class="text-center">
                             <img class="list-inline-item" src="{% static 'logo/shoppingbag.png' %}" width="25"
                                 height="25" alt="">
