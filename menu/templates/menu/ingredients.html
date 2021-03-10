@@ -138,27 +138,27 @@
                         height="15">
                     <img class="img-fluid icon" src="{{ MEDIA_URL }}halal_emoji.svg" alt="halal" width="15"
                         height="15"><span class="d-md-none d-lg-inline">halal/kosher</span></a>
-                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'pork'|cut:'vegan'|cut:'poultry'|cut:'halal/kosher'|cut:'fish'}}"
+                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'pork'|cut:'vegan'|cut:'poultry'|cut:'halal/kosher'|cut:'fish'}}&goto=fillings"
                     class="sort-button focus-button btn btn-transparent rounded-0 btn-filter font-bolder"><img
                         class="img-fluid icon" src="{{ MEDIA_URL }}cow_emoji.png" alt="beef" width="15" height="15">
                     <span class="d-md-none d-lg-inline">beef</span>
                 </a>
-                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'beef'|cut:'vegan'|cut:'poultry'|cut:'halal/kosher'|cut:'fish'}}"
+                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'beef'|cut:'vegan'|cut:'poultry'|cut:'halal/kosher'|cut:'fish'}}&goto=fillings"
                     class="sort-button focus-button btn btn-transparent rounded-0 btn-filter font-bolder"><img
                         class="img-fluid icon" src="{{ MEDIA_URL }}pig_emoji.png" alt="beef" width="15" height="15">
                     <span class="d-md-none d-lg-inline">pork</span>
                 </a>
-                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'beef'|cut:'vegan'|cut:'pork'|cut:'halal/kosher'|cut:'fish'}}"
+                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'beef'|cut:'vegan'|cut:'pork'|cut:'halal/kosher'|cut:'fish'}}&goto=fillings"
                     class="sort-button focus-button btn btn-transparent rounded-0 btn-filter font-bolder"><img
                         class="img-fluid icon" src="{{ MEDIA_URL }}chicken_emoji.png" alt="beef" width="15" height="15">
                     <span class="d-md-none d-lg-inline">poultry</span>
                 </a>
-                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'beef'|cut:'poultry'|cut:'pork'|cut:'halal/kosher'|cut:'fish'}}"
+                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'beef'|cut:'poultry'|cut:'pork'|cut:'halal/kosher'|cut:'fish'}}&goto=fillings"
                     class="sort-button focus-button btn btn-transparent rounded-0 btn-filter font-bolder"><img
                         class="img-fluid icon" src="{{ MEDIA_URL }}vegan.svg" alt="beef" width="15" height="15"> <span
                         class="d-md-none d-lg-inline">vegan</span>
                 </a>
-                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'halal/kosher'}}"
+                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'halal/kosher'}}&goto=fillings"
                     class="sort-button focus-button btn btn-transparent rounded-0 btn-filter font-bolder">
                     <img class="img-fluid icon" src="{{ MEDIA_URL }}sandwich.svg" alt="gluten" width="15" height="15">
                     <span class="d-md-none d-lg-inline">all</span></a>
