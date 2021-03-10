@@ -22,9 +22,10 @@
             <a href="{% url 'ingredients' %}?sort=price&direction=desc&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
                 class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">price <i
                     class="fas fa-arrow-up"></i></a>
-           
+
             <a href="{% url 'ingredients' %}?is_vegetarian={{is_vegetarian | yesno:'False,True'}}"
-                class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">Show {{is_vegetarian| yesno:'Menu, Veggie Menu'}}</a>
+                class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">Show
+                {{is_vegetarian| yesno:'Menu, Veggie Menu'}}</a>
         </div>
     </div>
     <!--bread-->
@@ -120,7 +121,13 @@
             </div>
         </div>
         <div class="col-lg-1 mt-2 mb-4">
-            <a href="#" class="btn btn-transparent make-it-now-btn rounded-0">Add</a>
+            <form class="form" action="{% url 'add_to_bag' ingredient.id %}" method="POST">
+                {% csrf_token %}
+                <input class="form-control" type="hidden" name="ingredient_to_add" value="1" min="1" max="99" data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
+                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">add</button>
+                <button class="btn btn-transparent make-it-now-btn rounded-0">Del</button>
+                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+            </form> 
         </div>
         {% endif %}
         {% endfor %}
@@ -565,7 +572,7 @@
     });
 
     //focus on button
-    $(document).ready(() =>{
+    $(document).ready(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const myParam = urlParams.get('goto');
         const goto = document.getElementById(myParam);
