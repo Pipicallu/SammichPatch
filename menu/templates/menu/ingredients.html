@@ -53,7 +53,6 @@
         <!--logic to get ingredient-->
         {% for ingredient in ingredients %}
         {% if ingredient.category.name == "bread" %}
-
         <div class="col-lg-5 ingredient-card mt-2 mb-4">
             <div class="row">
                 <div class="col p-0">
@@ -90,7 +89,6 @@
                 </div>
                 <div class="col d-inline">
                     <h6 class="card-title">{{ingredient.name}}</h6>
-
                     <!-- <p class="card-text">{{ingredient.description}}</p> -->
                     {% if ingredient.dietary_requirements.all %}
                     {% for dietary_requirements in ingredient.dietary_requirements.all %}
@@ -114,18 +112,31 @@
                 <div class="col text-end d-inline">
                     <p class="card-text">Quantity</p>
                     <div>
-                        <p> x {{quantity}}</p>
+                        {% if ingredient.id|stringformat:"i" in request.session.bag.keys%}
+                        <p class="font-bolder"> x 1 </p>
+                        {% else %}
+                        <p></p>
+                        {% endif %}
                     </div>
                     <p class="ingredient-price">£{{ingredient.price}}</p>
                 </div>
             </div>
         </div>
+        <!--form-->
         <div class="col-lg-1 mt-2 mb-4">
             <form class="form" action="{% url 'add_to_bag' ingredient.id %}" method="POST">
                 {% csrf_token %}
-                <input class="form-control" type="hidden" name="ingredient_to_add" value="1" min="1" max="99" data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
-                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">add</button>
-                <button class="btn btn-transparent make-it-now-btn rounded-0">Del</button>
+                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99" data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
+                {% if not request.session.bag %}
+                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0">add</button>
+                {% else %}
+                {% if request.session.bread_added %}
+                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0" disabled >add</button>
+                {% else %}
+                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0" >add</button>
+                {% endif %}
+                {% endif %}
+                <button class="btn btn-transparent make-it-now-btn rounded-0">del</button>
                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
             </form> 
         </div>
@@ -260,14 +271,32 @@
                 <div class="col text-end d-inline">
                     <p class="card-text">Quantity</p>
                     <div>
-                        <p> x {{quantity}}</p>
+                        {% if ingredient.id|stringformat:"i" in request.session.bag.keys%}
+                        <p class="font-bolder"> x 1 </p>
+                        {% else %}
+                        <p></p>
+                        {% endif %}
                     </div>
                     <p class="ingredient-price">£{{ingredient.price}}</p>
                 </div>
             </div>
         </div>
         <div class="col-lg-1 mt-2 mb-4">
-            <a href="#" class="btn btn-transparent make-it-now-btn rounded-0">Add</a>
+            <form class="form" action="{% url 'add_to_bag' ingredient.id %}" method="POST">
+                {% csrf_token %}
+                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99" data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
+                {% if not request.session.bag %}
+                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0">add</button>
+                {% else %}
+                {% if request.session.filling_added %}
+                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0" disabled >add</button>
+                {% else %}
+                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0" >add</button>
+                {% endif %}
+                {% endif %}
+                <button class="btn btn-transparent make-it-now-btn rounded-0">del</button>
+                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+            </form> 
         </div>
         {% endif %}
         {% endfor %}
@@ -354,14 +383,32 @@
                 <div class="col text-end d-inline">
                     <p class="card-text">Quantity</p>
                     <div>
-                        <p> x {{quantity}}</p>
+                        {% if ingredient.id|stringformat:"i" in request.session.bag.keys%}
+                        <p class="font-bolder"> x 1 </p>
+                        {% else %}
+                        <p></p>
+                        {% endif %}
                     </div>
                     <p class="ingredient-price">£{{ingredient.price}}</p>
                 </div>
             </div>
         </div>
         <div class="col-lg-1 mt-2 mb-4">
-            <a href="#" class="btn btn-transparent make-it-now-btn rounded-0">Add</a>
+            <form class="form" action="{% url 'add_to_bag' ingredient.id %}" method="POST">
+                {% csrf_token %}
+                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99" data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
+                {% if not request.session.bag %}
+                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0">add</button>
+                {% else %}
+                {% if request.session.cheese_added %}
+                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0" disabled >add</button>
+                {% else %}
+                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0" >add</button>
+                {% endif %}
+                {% endif %}
+                <button class="btn btn-transparent make-it-now-btn rounded-0">del</button>
+                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+            </form> 
         </div>
         {% endif %}
         {% endfor %}
@@ -461,14 +508,28 @@
                 <div class="col text-end d-inline">
                     <p class="card-text">Quantity</p>
                     <div>
-                        <p> x {{quantity}}</p>
+                        {% if ingredient.id|stringformat:"i" in request.session.bag.keys%}
+                        <p class="font-bolder"> x 1 </p>
+                        {% else %}
+                        <p></p>
+                        {% endif %}
                     </div>
                     <p class="ingredient-price">£{{ingredient.price}}</p>
                 </div>
             </div>
         </div>
         <div class="col-lg-1 mt-2 mb-4">
-            <a href="#" class="btn btn-transparent make-it-now-btn rounded-0">Add</a>
+           <form class="form" action="{% url 'add_to_bag' ingredient.id %}" method="POST">
+                {% csrf_token %}
+                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99" data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
+                 {% if ingredient.id|stringformat:"i" in request.session.bag.keys%}
+                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0" disabled>add</button>
+                {% else %}
+                 <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0">add</button>
+                {% endif %}
+                <button class="btn btn-transparent make-it-now-btn rounded-0">del</button>
+                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+            </form> 
         </div>
         {% endif %}
         {% endfor %}
@@ -549,7 +610,21 @@
             </div>
         </div>
         <div class="col-lg-1 mt-2 mb-4">
-            <a href="#" class="btn btn-transparent make-it-now-btn rounded-0">Add</a>
+            <form class="form" action="{% url 'add_to_bag' ingredient.id %}" method="POST">
+                {% csrf_token %}
+                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99" data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
+                {% if not request.session.bag %}
+                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0">add</button>
+                {% else %}
+                {% if request.session.spread_added %}
+                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0" disabled >add</button>
+                {% else %}
+                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0" >add</button>
+                {% endif %}
+                {% endif %}
+                <button class="btn btn-transparent make-it-now-btn rounded-0">del</button>
+                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+            </form> 
         </div>
         {% endif %}
         {% endfor %}
@@ -580,6 +655,12 @@
             goto.scrollIntoView();
         }
     })
+
+    //disable add button
+
+    addDisabler = function disable_add(){
+        document.getElementById('add_ingred_button').classList.add('disabled');
+    }
 
 </script>
 {% endblock %}

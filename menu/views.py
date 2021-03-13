@@ -52,3 +52,6 @@ def all_ingredients(request):
     }
 
     return render(request, 'menu/ingredients.html', context)
+
+
+
