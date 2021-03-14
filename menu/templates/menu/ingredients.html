@@ -59,7 +59,7 @@
                     {% if ingredient.image %}
                     <button type="button" class="btn p-0" data-bs-toggle="modal"
                         data-bs-target="#myModal{{forloop.counter0}}">
-                        <img class="card-img-top img-fluid" src="{{ ingredient.image_url }}"
+                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}{{ingredient.image}}"
                             alt="{{ ingredient.name }}">
                     </button>
                     {% else %}
@@ -191,7 +191,7 @@
                     {% if ingredient.image %}
                     <button type="button" class="btn p-0" data-bs-toggle="modal"
                         data-bs-target="#myModal{{forloop.counter0}}">
-                        <img class="card-img-top img-fluid" src="{{ ingredient.image_url }}"
+                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}{{ingredient.image}}"
                             alt="{{ ingredient.name }}">
                     </button>
                     {% else %}
@@ -329,7 +329,7 @@
                     {% if ingredient.image %}
                     <button type="button" class="btn p-0" data-bs-toggle="modal"
                         data-bs-target="#myModal{{forloop.counter0}}">
-                        <img class="card-img-top img-fluid" src="{{ ingredient.image_url }}"
+                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}{{ingredient.image}}"
                             alt="{{ ingredient.name }}">
                     </button>
                     {% else %}
@@ -428,7 +428,7 @@
                     {% if ingredient.image %}
                     <button type="button" class="btn p-0" data-bs-toggle="modal"
                         data-bs-target="#myModal{{forloop.counter0}}">
-                        <img class="card-img-top img-fluid" src="{{ ingredient.image_url }}"
+                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}{{ingredient.image}}"
                             alt="{{ ingredient.name }}">
                     </button>
                     {% else %}
@@ -549,7 +549,7 @@
                     {% if ingredient.image %}
                     <button type="button" class="btn p-0" data-bs-toggle="modal"
                         data-bs-target="#myModal{{forloop.counter0}}">
-                        <img class="card-img-top img-fluid" src="{{ ingredient.image_url }}"
+                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}{{ingredient.image}}"
                             alt="{{ ingredient.name }}">
                     </button>
                     {% else %}

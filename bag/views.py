@@ -26,8 +26,6 @@ def add_to_bag(request, item_id):
         request.session['filling_added'] = True
     if item.category.name == 'cheese':
         request.session['cheese_added'] = True
-    if item.category.name == 'salad':
-        request.session['salad_added'] = True
     if item.category.name == 'spread':
         request.session['spread_added'] = True
 
