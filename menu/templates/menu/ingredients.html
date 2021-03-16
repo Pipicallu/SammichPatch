@@ -127,7 +127,7 @@
             <form class="form" action="{% url 'add_to_bag' ingredient.id %}" method="POST">
                 {% csrf_token %}
                 <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99" data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
-                {% if not request.session.bag %}
+                {% if not request.session.sandwich %}
                 <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0">add</button>
                 {% else %}
                 {% if request.session.bread_added %}
@@ -136,7 +136,7 @@
                 <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0" >add</button>
                 {% endif %}
                 {% endif %}
-                <button class="btn btn-transparent make-it-now-btn rounded-0">del</button>
+                <button class="btn btn-transparent make-it-now-btn rounded-0">{{request.session.bag.keys}}</button>
                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
             </form> 
         </div>
@@ -285,7 +285,7 @@
             <form class="form" action="{% url 'add_to_bag' ingredient.id %}" method="POST">
                 {% csrf_token %}
                 <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99" data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
-                {% if not request.session.bag %}
+                {% if not request.session.sandwich %}
                 <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0">add</button>
                 {% else %}
                 {% if request.session.filling_added %}
@@ -397,7 +397,7 @@
             <form class="form" action="{% url 'add_to_bag' ingredient.id %}" method="POST">
                 {% csrf_token %}
                 <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99" data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
-                {% if not request.session.bag %}
+                {% if not request.session.sandwich %}
                 <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0">add</button>
                 {% else %}
                 {% if request.session.cheese_added %}
@@ -613,7 +613,7 @@
             <form class="form" action="{% url 'add_to_bag' ingredient.id %}" method="POST">
                 {% csrf_token %}
                 <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99" data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
-                {% if not request.session.bag %}
+                {% if not request.session.sandwich %}
                 <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0">add</button>
                 {% else %}
                 {% if request.session.spread_added %}

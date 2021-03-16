@@ -16,9 +16,12 @@ def add_to_bag(request, item_id):
     item = Ingredients.objects.get(pk=item_id)
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
+    sandwich = request.session.get('sandwich', {})
+    sandwich[item_id] = quantity
+    request.session['sandwich'] = sandwich
     bag = request.session.get('bag', {})
-    bag[item_id] = quantity
     request.session['bag'] = bag
+    print(sandwich)
 
     if item.category.name == 'bread':
         request.session['bread_added'] = True
@@ -28,5 +31,20 @@ def add_to_bag(request, item_id):
         request.session['cheese_added'] = True
     if item.category.name == 'spread':
         request.session['spread_added'] = True
+
+    
+    if len(request.session['sandwich']) >= 5:
+        bag["item1"] = sandwich
+        del request.session['bread_added']
+        del request.session['filling_added']
+        del request.session['cheese_added']
+        del request.session['spread_added']
+        del request.session['sandwich']
+
+    
+   
+        
+    
+
 
     return redirect(redirect_url)
