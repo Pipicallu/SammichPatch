@@ -9,7 +9,7 @@ def shopping_bag(request):
 
 
 def add_to_bag(request, item_id):
-    '''add an ingredient to the bag'''
+    '''add an sandwich to the bag'''
     if not request.POST:
         return HttpResponse(status=405)
 
@@ -40,7 +40,6 @@ def add_to_bag(request, item_id):
         del request.session['cheese_added']
         del request.session['spread_added']
         del request.session['sandwich']
-        
 
 
     return redirect(redirect_url)
