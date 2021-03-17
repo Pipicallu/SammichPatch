@@ -21,7 +21,6 @@ def add_to_bag(request, item_id):
     request.session['sandwich'] = sandwich
     bag = request.session.get('bag', {})
     request.session['bag'] = bag
-    print(sandwich)
 
     if item.category.name == 'bread':
         request.session['bread_added'] = True
@@ -32,7 +31,7 @@ def add_to_bag(request, item_id):
     if item.category.name == 'spread':
         request.session['spread_added'] = True
 
-    if len(request.session['sandwich']) >= 5 and request.session['spread_added']:
+    if len(request.session.items()) == 6:
         itemNo = len(request.session['bag'])
         bag[f'item_{str(itemNo)}'] = sandwich
         del request.session['bread_added']
@@ -40,6 +39,5 @@ def add_to_bag(request, item_id):
         del request.session['cheese_added']
         del request.session['spread_added']
         del request.session['sandwich']
-
 
     return redirect(redirect_url)

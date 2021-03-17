@@ -136,7 +136,7 @@
                 <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0" >add</button>
                 {% endif %}
                 {% endif %}
-                <button class="btn btn-transparent make-it-now-btn rounded-0">{{request.session.bag.keys}}</button>
+                <button class="btn btn-transparent make-it-now-btn rounded-0">del</button>
                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
             </form> 
         </div>
@@ -271,7 +271,7 @@
                 <div class="col text-end d-inline">
                     <p class="card-text">Quantity</p>
                     <div>
-                        {% if ingredient.id|stringformat:"i" in request.session.bag.keys%}
+                        {% if ingredient.id|stringformat:"i" in request.session.sandwich.keys%}
                         <p class="font-bolder"> x 1 </p>
                         {% else %}
                         <p></p>
@@ -383,7 +383,7 @@
                 <div class="col text-end d-inline">
                     <p class="card-text">Quantity</p>
                     <div>
-                        {% if ingredient.id|stringformat:"i" in request.session.bag.keys%}
+                        {% if ingredient.id|stringformat:"i" in request.session.sandwich.keys%}
                         <p class="font-bolder"> x 1 </p>
                         {% else %}
                         <p></p>
@@ -508,7 +508,7 @@
                 <div class="col text-end d-inline">
                     <p class="card-text">Quantity</p>
                     <div>
-                        {% if ingredient.id|stringformat:"i" in request.session.bag.keys%}
+                        {% if ingredient.id|stringformat:"i" in request.session.sandwich.keys%}
                         <p class="font-bolder"> x 1 </p>
                         {% else %}
                         <p></p>
@@ -522,7 +522,7 @@
            <form class="form" action="{% url 'add_to_bag' ingredient.id %}" method="POST">
                 {% csrf_token %}
                 <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99" data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
-                 {% if ingredient.id|stringformat:"i" in request.session.bag.keys%}
+                 {% if ingredient.id|stringformat:"i" in request.session.sandwich.keys%}
                 <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0" disabled>add</button>
                 {% else %}
                  <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0">add</button>
@@ -603,7 +603,11 @@
                 <div class="col text-end d-inline">
                     <p class="card-text">Quantity</p>
                     <div>
-                        <p> x {{quantity}}</p>
+                        {% if ingredient.id|stringformat:"i" in request.session.sandwich.keys%}
+                        <p class="font-bolder"> x 1 </p>
+                        {% else %}
+                        <p></p>
+                        {% endif %}
                     </div>
                     <p class="ingredient-price">£{{ingredient.price}}</p>
                 </div>
