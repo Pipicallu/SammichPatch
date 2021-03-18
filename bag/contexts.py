@@ -15,13 +15,14 @@ def bag_contents(request):
         for item_id, quantity in values.items():
             ingredient = get_object_or_404(Ingredients, pk=item_id)
             total += quantity * ingredient.price
+            print(ingredient.price)
             ingredient_count += quantity
             bag_items.append({
-            'item_id': item_id,
-            'quantity': quantity,
-            'ingredient': ingredient,
+                'item_name': item,
+                'item_id': item_id,
+                'quantity': quantity,
+                'ingredient': ingredient,
         })
-            
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = total + settings.STANDARD_DELIVERY_CHARGE

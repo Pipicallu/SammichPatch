@@ -12,9 +12,9 @@
             <img class="" src="{% static 'logo/shoppingbag.png' %}" width="25" height="25" alt="">
             <p class="">
                 {% if grand_total %}
-                ${{ grand_total|floatformat:2 }}
+                £{{ grand_total|floatformat:2 }}
                 {% else %}
-                $0.00
+                £0.00
                 {% endif %}
             </p>
         </div>
