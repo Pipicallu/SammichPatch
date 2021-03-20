@@ -21,7 +21,9 @@
             <div class="col">
                 {% if bag_items %}
                     <div class="table-responsive rounded">
-                        {{ bag_items }}
+                        {% for item in bag_items %}
+                            {{item}} <br>
+                        {% endfor %}
                     </div>
                 {% else %}
                     <p class="lead mb-5">Your bag is empty.</p>
