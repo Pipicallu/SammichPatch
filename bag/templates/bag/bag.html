@@ -21,9 +21,15 @@
             <div class="col">
                 {% if bag_items %}
                     <div class="table-responsive rounded">
+                    {% for entry in request.session.bag %}
+                        <h3>{{ entry }}</h3>
                         {% for item in bag_items %}
-                            {{item}} <br>
+                            {% if item.sandwich_id == entry %}
+                                {{item.ingredient.name}} {{item.ingredient.price}} 
+                                {{item.sandwich_subtotal}} <br> <br>
+                            {% endif %}
                         {% endfor %}
+                    {% endfor %}
                     </div>
                 {% else %}
                     <p class="lead mb-5">Your bag is empty.</p>

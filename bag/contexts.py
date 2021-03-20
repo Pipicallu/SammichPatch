@@ -28,7 +28,7 @@ def bag_contents(request):
           'sandwich_subtotal': total - previous_total,  
         })
         previous_total = total
-        print(previous_total)
+
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = settings.STANDARD_DELIVERY_CHARGE
