@@ -5,8 +5,9 @@ from menu.models import Ingredients
 
 
 def bag_contents(request):
-
+    previous_total = 0
     bag_items = []
+    listof_totals = []
     total = 0
     ingredient_count = 0
     bag = request.session.get('bag', {})
@@ -15,14 +16,23 @@ def bag_contents(request):
         for item_id, quantity in values.items():
             ingredient = get_object_or_404(Ingredients, pk=item_id)
             total += quantity * ingredient.price
-            print(ingredient.price)
             ingredient_count += quantity
             bag_items.append({
-                'item_name': item,
+                'sandwich_id': item,
                 'item_id': item_id,
                 'quantity': quantity,
                 'ingredient': ingredient,
             })
+        bag_items.append({
+          'sandwich_id': item,
+          'sandwich_subtotal': total - previous_total,  
+        })
+        previous_total = total
+        print(previous_total)
+
+    # for entries in bag_items:
+    #     for key, value in entries.items():
+
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = settings.STANDARD_DELIVERY_CHARGE
