@@ -22,10 +22,10 @@ def bag_contents(request):
                 'item_id': item_id,
                 'quantity': quantity,
                 'ingredient': ingredient,
-        })
+            })
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
-        delivery = total + settings.STANDARD_DELIVERY_CHARGE
+        delivery = settings.STANDARD_DELIVERY_CHARGE
         free_delivery_gap = settings.FREE_DELIVERY_THRESHOLD - total
     else:
         delivery = 0

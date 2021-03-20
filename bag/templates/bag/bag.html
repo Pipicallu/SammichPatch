@@ -20,7 +20,13 @@
         <div class="row">
             <div class="col">
                 {% if bag_items %}
-                    <div class="table-responsive rounded">{{ bag_items }}</div>
+                    <div class="table-responsive rounded">
+                        {{ bag_items}}
+                        {{ ingredient_count }}
+                        {{ total }}
+                        {{ grand_total }}
+
+                    </div>
                 {% else %}
                     <p class="lead mb-5">Your bag is empty.</p>
                     <a href="{% url 'ingredients'%}" class="btn btn-transparent rounded-0 btn-lg">

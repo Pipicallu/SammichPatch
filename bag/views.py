@@ -17,10 +17,7 @@ def add_to_bag(request, item_id):
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     sandwich = request.session.get('sandwich', {})
-    if item_id in list(sandwich.keys()):
-        sandwich[item_id] += quantity
-    else:
-        sandwich[item_id] = quantity
+    sandwich[item_id] = quantity
     request.session['sandwich'] = sandwich
     print(request.session['sandwich'])
     bag = request.session.get('bag', {})
