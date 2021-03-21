@@ -24,21 +24,19 @@
                 {% for entry in request.session.bag %}
                 <!--Image for sammich-->
                 <div class="subtitle-heading beige-background mb-3 rounded-0">
-                    
                     <img class="img-fluid sammich-tile-bg p-2  " src="{{ MEDIA_URL }}sandwich.svg" alt="{{entry}}"
                         width="100" height="100">
-                    
                     <!--ingredients in bag -->
-                    
-                        {% for item in bag_items %}
+                    {% for item in bag_items %}
                         {% if item.sandwich_id == entry %}
-                        {% if not item.sandwich_subtotal%}
-                        <span class="d-inline-flex p-3 text-small font-bolder">{{item.ingredient.name}} <br> £{{item.ingredient.price}}</span>
-                        {% else %}
-                        <p class="font-bolder d-flex justify-content-end">Price: £{{item.sandwich_subtotal}}</p>
+                            {% if not item.sandwich_subtotal%}
+                                <span class="d-inline-flex p-3 text-small font-bolder">{{item.ingredient.name}} <br>
+                                 £{{item.ingredient.price}}</span>
+                             {% else %}
+                                <p class="font-bolder d-flex justify-content-end">Price: £{{item.sandwich_subtotal}}</p>
+                            {% endif %}
                         {% endif %}
-                        {% endif %}
-                        {% endfor %}
+                    {% endfor %}
                 </div>
                 {% endfor %}
             </div>
