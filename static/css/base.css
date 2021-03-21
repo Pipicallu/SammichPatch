@@ -160,6 +160,24 @@ a {
     width: 1.5rem;
 }
 
+
+/* bag */
+
 .beige-background{
     background: #F3E8DE;
+}
+
+.sammich-tile-bg{
+    border: 3px solid black!important;
+    background: #75be3c;
+}
+
+.text-small{
+    font-size: 12px;
+}
+
+.subtotal-style-lg{
+    display: flex;
+    align-items: flex-end;
+    margin-left: 7rem;
 }
