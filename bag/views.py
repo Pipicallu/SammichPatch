@@ -42,3 +42,33 @@ def add_to_bag(request, item_id):
         del request.session['sandwich']
 
     return redirect(redirect_url)
+
+
+def remove_ingredient(request, item_id):
+    ''' remove item from a potential sandwich'''
+    if not request.POST:
+        return HttpResponse(status=405)
+    item = Ingredients.objects.get(pk=item_id)
+    redirect_url = request.POST.get('redirect_url')
+    sandwich = request.session.get('sandwich', {})
+    sandwich = request.session['sandwich']
+
+    if item_id in sandwich:
+        if item.category.name == 'bread':
+            del request.session['sandwich'][f'{item.id}']
+            del request.session['bread_added']
+        if item.category.name == 'filling':
+            del request.session['sandwich'][f'{item.id}']
+            del request.session['filling_added']
+        if item.category.name == 'cheese':
+            del request.session['sandwich'][f'{item.id}']
+            del request.session['cheese_added']
+        if item.category.name == 'spread':
+            del request.session['sandwich'][f'{item.id}']
+            del request.session['spread_added']
+        if item.category.name == 'salad':
+            del request.session['sandwich'][f'{item.id}']
+        
+
+
+    return redirect(redirect_url) 
