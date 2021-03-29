@@ -34,6 +34,7 @@
                         £{{item.ingredient.price}}</span>
                     {% else %}
                     <p class="font-bolder d-flex justify-content-end">Price: £{{item.sandwich_subtotal}}</p>
+                    <a class="remove-btn d-flex justify-content-end text-danger" id="{{item.sandwich_id}}"><small>Remove</small></a>
                     {% endif %}
                     {% endif %}
                     {% endfor %}
@@ -76,4 +77,23 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block postload_js %}
+{{ block.super }}
+<script type="text/javascript">
+    // Remove item and reload on click
+    $('.remove-btn').click(function(e) {
+        console.log('its happening')
+        var csrfToken = "{{ csrf_token }}";
+        var sandwichId = $(this).attr('id');
+        var url = `/bag/remove/${sandwichId}/`;
+        var data = {'csrfmiddlewaretoken': csrfToken};
+
+        $.post(url, data)
+         .done(function() {
+             location.reload();
+         });
+    })
+</script>
 {% endblock %}

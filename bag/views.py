@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from menu.models import Ingredients
 from django.http import HttpResponse
 
 
 def shopping_bag(request):
-    '''A view to return the index page'''
+    '''A view to show the shopping bag'''
     return render(request, 'bag/bag.html')
 
 
@@ -68,7 +68,16 @@ def remove_ingredient(request, item_id):
             del request.session['spread_added']
         if item.category.name == 'salad':
             del request.session['sandwich'][f'{item.id}']
-        
-
 
     return redirect(redirect_url) 
+
+
+def remove_sandwich(request, sandwich_id):
+    '''Removes sandwich from the bag'''
+    try:
+        bag = request.session.get('bag', {})
+        request.session['bag'] = bag
+        bag.pop(sandwich_id)
+        return HttpResponse(status=200)
+    except Exception as e:
+        return HttpResponse(status=500)

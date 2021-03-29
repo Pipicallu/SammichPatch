@@ -181,3 +181,14 @@ a {
     align-items: flex-end;
     margin-left: 7rem;
 }
+
+.remove-btn{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.remove-btn:hover{
+    text-decoration: none;
+    font-weight: bolder;
+}
