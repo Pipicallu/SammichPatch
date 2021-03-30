@@ -34,7 +34,10 @@ def add_to_bag(request, item_id):
 
     if len(request.session.items()) == 6:
         itemNo = len(request.session['bag'])
-        bag[f'item_{str(itemNo)}'] = sandwich
+        if f'item_{str(itemNo)}' not in request.session['bag']:
+            bag[f'item_{str(itemNo)}'] = sandwich
+        else:
+            bag[f'item_{str(itemNo)}_replacement'] = sandwich
         del request.session['bread_added']
         del request.session['filling_added']
         del request.session['cheese_added']
