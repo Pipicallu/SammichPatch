@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from menu.models import Ingredients
 from django.http import HttpResponse
+from django.contrib import messages
 
 
 def shopping_bag(request):
@@ -38,6 +39,7 @@ def add_to_bag(request, item_id):
             bag[f'item_{str(itemNo)}'] = sandwich
         else:
             bag[f'item_{str(itemNo)}_replacement'] = sandwich
+        messages.success(request, 'Sandwich successfully added to bag.')
         del request.session['bread_added']
         del request.session['filling_added']
         del request.session['cheese_added']
