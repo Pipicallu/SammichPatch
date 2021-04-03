@@ -146,17 +146,17 @@
     <!--End of body js-->
     {% block postload_js %}
     <script type="text/javascript">
-        //   // promotion heading dissapear on scroll 
-        //   window.addEventListener('scroll', () => {
-        //       var promotionHeader = document.getElementById('promotion-heading');
-        //       promotionHeader.classList.add("d-none");
-        //   })
-    
+          // promotion heading dissapear on scroll 
+          window.addEventListener('scroll', () => {
+              var promotionHeader = document.getElementById('promotion-heading');
+              promotionHeader.classList.add("d-none");
+          })
+        $(document).ready(function() {
+        $(".toast").toast('show');
+    });
     </script>
     
-     <script type="text/javascript">
-        $('.toast').toast('show');
-    </script>
+     
 
 
     {% endblock %}
