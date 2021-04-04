@@ -39,7 +39,7 @@ def add_to_bag(request, item_id):
             bag[f'item_{str(itemNo)}'] = sandwich
         else:
             bag[f'item_{str(itemNo)}_replacement'] = sandwich
-        messages.success(request, 'Sandwich successfully added to bag.')
+        messages.success(request, 'New sandwich successfully added to bag.')
         del request.session['bread_added']
         del request.session['filling_added']
         del request.session['cheese_added']
@@ -61,18 +61,23 @@ def remove_ingredient(request, item_id):
     if item_id in sandwich:
         if item.category.name == 'bread':
             del request.session['sandwich'][f'{item.id}']
+            messages.info(request, f'{item.name} has been removed from your sandwich.')
             del request.session['bread_added']
         if item.category.name == 'filling':
             del request.session['sandwich'][f'{item.id}']
+            messages.info(request, f'{item.name} has been removed from your sandwich.')
             del request.session['filling_added']
         if item.category.name == 'cheese':
             del request.session['sandwich'][f'{item.id}']
+            messages.info(request, f'{item.name} has been removed from your sandwich.')
             del request.session['cheese_added']
         if item.category.name == 'spread':
             del request.session['sandwich'][f'{item.id}']
+            messages.info(request, f'{item.name} has been removed from your sandwich.')
             del request.session['spread_added']
         if item.category.name == 'salad':
             del request.session['sandwich'][f'{item.id}']
+            messages.info(request, f'{item.name} has been removed from sandwich.')
 
     return redirect(redirect_url) 
 
@@ -82,7 +87,9 @@ def remove_sandwich(request, sandwich_id):
     try:
         bag = request.session.get('bag', {})
         request.session['bag'] = bag
+        messages.warning(request, 'You have deleted a sandwich from your bag.')
         bag.pop(sandwich_id)
         return HttpResponse(status=200)
     except Exception as e:
+        messages.error(request, f'error removing sandwich {e}')
         return HttpResponse(status=500)
