@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class=" subtitle-row container mb-2">
+    <div class="row">
+        <div class="col">
+            <h2 class="subtitle-heading mb-4">Checkout now</h2>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-lg-6">
+         <p class="subtitle-heading font-bolder">Order Summary</p>
+            {% if bag_items %}
+            <div class=" table-responsive rounded">
+                {% for entry in request.session.bag %}
+                <!--Image for sammich-->
+                <div class="subtitle-heading beige-background mb-3 rounded-0">
+                    <img class="img-fluid sammich-tile-bg p-2  " src="{{ MEDIA_URL }}sandwich.svg" alt="{{entry}}"
+                        width="100" height="100">
+                    <!--ingredients in bag -->
+                    {% for item in bag_items %}
+                    {% if item.sandwich_id == entry %}
+                    {% if not item.sandwich_subtotal%}
+                    <span class="d-inline-flex p-3 text-small font-bolder">{{item.ingredient.name}} + <br>
+                        £{{item.ingredient.price}}</span>
+                    {% else %}
+                    <p class="font-bolder d-flex justify-content-end">Price: £{{item.sandwich_subtotal}}</p>
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                {% endfor %}
+                {% endif %}
+                <div class="text-end">
+                    <h5 class="mt-4"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h5>
+                </div>
+                </div>
+        </div>
+        <div class="col-12 col-lg-6">
+        <p class="text-muted">You're so close! Just fill up the form below</p>
+        <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+            {% csrf_token %}
+             <fieldset class="rounded px-3 mb-5">
+                <legend class="fieldsfieldset-label small text-black px-2 w-auto font-bolder ">Details</legend>
+                {{ order_form.full_name | as_crispy_field }}
+                {{ order_form.email | as_crispy_field }}
+                {{ order_form.phone_number | as_crispy_field }}
+             </fieldset>
+             <fieldset class="rounded px-3 mb-5">
+                <legend class="fieldset-label small text-black px-2 w-auto font-bolder ">Delivery</legend>
+                    {{ order_form.street_address1 | as_crispy_field }}
+                    {{ order_form.street_address2 | as_crispy_field }}
+                    {{ order_form.town_or_city | as_crispy_field }}
+                    {{ order_form.county | as_crispy_field }}
+                    {{ order_form.country | as_crispy_field }}
+                    {{ order_form.postcode | as_crispy_field }}
+                    <div class="form-check form-check-inline float-right mr-0">
+                        {% if user.is_authenticated %}
+                            <label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label>
+                            <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked>
+                        {% else %}
+                            <label class="form-check-label" for="id-save-info">
+                                <small><a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or 
+                                <a class="text-info" href="{% url 'account_login' %}">login</a> to save this information</small>
+                            </label>
+                        {% endif %}
+					</div>
+             </fieldset>
+             <fieldset class="rounded px-3 mb-5">
+                <legend class="fieldset-label small text-black px-2 w-auto font-bolder">Payment</legend>
+                    <!-- A Stripe card element will go here -->
+                    <div class="mb-3" id="card-element"></div>
+
+                    <!-- Used to display form errors -->
+                    <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
+              </fieldset>
+              <div class="submit-button text-right mt-5 mb-2">                    
+                    <a href="{% url 'shopping_bag' %}" class="btn btn-transparent rounded-0 btn-md">
+                        <span class="icon">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <span class="font-bolder">Adjust Bag</span>
+                    </a>
+                    <button id="submit-button" class="btn btn-transparent rounded-0 btn-md ">
+                        <span class="font-bolder">Complete Order</span>
+                        <span class="icon">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </button>
+                    <p class="small text-danger my-0">
+                        <span class="icon">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </span>
+                        <span>Your card will be charged <strong>${{ grand_total|floatformat:2 }}</strong></span>
+                    </p>
+			  </div>
+        </form>
+        </div>
+        
+    </div>
+    <div class="row">
+        
+    </div>
+
+</div>
+{% endblock %}
+
+{% block postload_js %}
+{{ block.super }}
+<script type="text/javascript">
+    // Remove item and reload on click
+    $('.remove-btn').click(function(e) {
+        console.log('its happening')
+        var csrfToken = "{{ csrf_token }}";
+        var sandwichId = $(this).attr('id');
+        var url = `/bag/remove/${sandwichId}/`;
+        var data = {'csrfmiddlewaretoken': csrfToken};
+
+        $.post(url, data)
+         .done(function() {
+             location.reload();
+         });
+    })
+</script>
+{% endblock %}
