@@ -23,6 +23,7 @@ def add_to_bag(request, item_id):
     print(request.session['sandwich'])
     bag = request.session.get('bag', {})
     request.session['bag'] = bag
+    
 
     if item.category.name == 'bread':
         request.session['bread_added'] = True
@@ -33,7 +34,24 @@ def add_to_bag(request, item_id):
     if item.category.name == 'spread':
         request.session['spread_added'] = True
 
-    if len(request.session.items()) == 6:
+    save_info = request.session.get('save_info')
+    request.session['save_info'] = save_info
+    if not save_info or save_info == 'none':
+        print('found it')
+        if len(request.session.items()) == 7:
+            itemNo = len(request.session['bag'])
+            if f'item_{str(itemNo)}' not in request.session['bag']:
+                bag[f'item_{str(itemNo)}'] = sandwich
+            else:
+                bag[f'item_{str(itemNo)}_replacement'] = sandwich
+            messages.success(request, 'New sandwich successfully added to bag.')
+            del request.session['bread_added']
+            del request.session['filling_added']
+            del request.session['cheese_added']
+            del request.session['spread_added']
+            del request.session['sandwich']
+
+    elif len(request.session.items()) == 6:
         itemNo = len(request.session['bag'])
         if f'item_{str(itemNo)}' not in request.session['bag']:
             bag[f'item_{str(itemNo)}'] = sandwich

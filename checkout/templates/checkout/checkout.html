@@ -106,6 +106,8 @@
                         <span class="icon">
                             <i class="fas fa-exclamation-circle"></i>
                         </span>
+                        <p>Order Total: £{{ total | floatformat:2 }}</p>
+                        <p>Delivery cost: £{{ delivery | floatformat:2 }}</p>
                         <span>Your card will be charged <strong>£{{ grand_total|floatformat:2 }}</strong></span>
                     </p>
 			  </div>
