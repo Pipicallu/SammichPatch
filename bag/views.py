@@ -37,7 +37,6 @@ def add_to_bag(request, item_id):
     save_info = request.session.get('save_info')
     request.session['save_info'] = save_info
     if not save_info or save_info == 'none':
-        print('found it')
         if len(request.session.items()) == 7:
             itemNo = len(request.session['bag'])
             if f'item_{str(itemNo)}' not in request.session['bag']:

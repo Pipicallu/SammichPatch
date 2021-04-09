@@ -141,7 +141,7 @@
              <form class="form" action="{% url 'remove_ingredient' ingredient.id %}" method="POST">
                 {% csrf_token %}
                 <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99" data-item_id="{{ ingredient.id }}" id="id_remove_ingred_{{ ingredient.id }}">
-                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">{{request.session.items}}</button>
+                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">-</button>
                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
             </form>
         </div>
