@@ -49,13 +49,13 @@
     <header class="container bg-white header-container fixed-top text-center">
         <div id="topnav" class="row pt-lg-3 text-center d-flex">
             <div class="col-12 col-lg-3 my-auto  py-1 p-lg-0 text-end main-nav-item "><a href="{% url 'ingredients' %}" class="nav-link">
-                    <p>Sandwiches</p>
+                    <p class="font-bolder">Sandwiches</p>
                 </a></div>
             <div class="col-12 col-lg-2 my-auto py-1 p-lg-0 text-end main-nav-item">
                 <div class="nav-item  dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="drinksAndSides" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <p class="list-inline-item">Drinks & Sides</p>
+                        <p class="font-bolder list-inline-item">Drinks & Sides</p>
                     </a>
                     <ul class="dropdown-menu border-0 " aria-labelledby="drinksAndSides">
                         <li><a class="dropdown-item" href="#">Drinks</a></li>
@@ -69,13 +69,13 @@
                         width="120" height="120" alt=""></a>
             </div>
             <div class="col-12 col-lg-1 my-auto py-1 p-lg-0 text-start main-nav-item"><a href="#" class="nav-link">
-                    <p>about</p>
+                    <p class="font-bolder">about</p>
                 </a></div>
             <div class="col-12 col-lg-2 my-auto py-1  p-lg-0 text-end  main-nav-item">
                 <div class="nav-item  dropdown">
                     <a class="nav-link  dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <p class="list-inline-item "> Account </p>
+                        <p class="font-bolder list-inline-item "> Account </p>
                     </a>
                     <div class="dropdown-menu border-0" aria-labelledby="user-options">
                         {% if request.user.is_authenticated %}
