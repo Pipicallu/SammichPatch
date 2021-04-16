@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from .models import Ingredients, SidesAndDrinks, DietaryRequirements
+from .forms import IngredientsForm
 
 
 def all_ingredients(request):
@@ -53,10 +54,54 @@ def all_ingredients(request):
 
     return render(request, 'menu/ingredients.html', context)
 
-def add_product(request):
+
+def add_ingredient(request):
     """Add a product to the store"""
-    form = IngredientsForm()
-    template = 
+    if request.method == 'POST': 
+        form = IngredientsForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully added your new ingredient!')
+            return redirect(reverse('add_ingredient'))
+        else:
+            messages.error(request, 'Failed to add your new ingredient. Please ensure the form is valid.')
+    else:
+        form = IngredientsForm()
+    template = 'menu/add_ingredient.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
 
 
+def edit_ingredient(request, ingredient_id):
+    """ Edit a product in the store """
+    ingredient = get_object_or_404(Ingredients, pk=ingredient_id)
+    if request.method == 'POST':
+        form = IngredientsForm(request.POST, request.FILES, instance=ingredient)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated ingredient!')
+            return redirect(reverse('ingredients'))
+        else:
+            messages.error(request, 'Failed to update ingredient. Please ensure the form is valid.')
+    else:
+        form = IngredientsForm(instance=ingredient)
+        messages.info(request, f'You are editing {ingredient.name}')
 
+    template = 'menu/edit_ingredient.html'
+    context = {
+        'form': form,
+        'ingredient': ingredient,
+    }
+
+    return render(request, template, context)
+
+
+def delete_ingredient(request, ingredient_id):
+    """ Delete a product from the store """
+    ingredient = get_object_or_404(Ingredients, pk=ingredient_id)
+    ingredient.delete()
+    messages.success(request, f'Deleted ingredient: {ingredient.name}')
+    return redirect(reverse('ingredients'))

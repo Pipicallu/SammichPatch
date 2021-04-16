@@ -107,7 +107,12 @@
                     {% endif %}
                     {% endfor %}
                     {% endif %}
-
+                    {% if request.user.is_superuser %}
+                    <small class="ml-3">
+                        <a href="{% url 'edit_ingredient' ingredient.id %}">Edit</a> |
+                        <a class="text-danger" href="{% url 'delete_ingredient' ingredient.id %}">Delete</a>
+                    </small>
+                    {% endif %}
                 </div>
                 <div class="col text-end d-inline">
                     <p class="card-text">Quantity</p>
@@ -126,21 +131,23 @@
         <div class="col-lg-1 mt-2 mb-4">
             <form class="form" action="{% url 'add_to_bag' ingredient.id %}" method="POST">
                 {% csrf_token %}
-                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99" data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
+                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
+                    data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
                 {% if not request.session.sandwich %}
-                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
+                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
                 {% else %}
                 {% if request.session.bread_added %}
-                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0" disabled >+</button>
+                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0" disabled>+</button>
                 {% else %}
-                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0" >+</button>
+                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
                 {% endif %}
                 {% endif %}
                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
-            </form> 
-             <form class="form" action="{% url 'remove_ingredient' ingredient.id %}" method="POST">
+            </form>
+            <form class="form" action="{% url 'remove_ingredient' ingredient.id %}" method="POST">
                 {% csrf_token %}
-                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99" data-item_id="{{ ingredient.id }}" id="id_remove_ingred_{{ ingredient.id }}">
+                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
+                    data-item_id="{{ ingredient.id }}" id="id_remove_ingred_{{ ingredient.id }}">
                 <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">-</button>
                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
             </form>
@@ -271,7 +278,12 @@
                     {% endif %}
                     {% endfor %}
                     {% endif %}
-
+                    {% if request.user.is_superuser %}
+                    <small class="ml-3">
+                        <a href="{% url 'edit_ingredient' ingredient.id %}">Edit</a> |
+                        <a class="text-danger" href="{% url 'delete_ingredient' ingredient.id %}">Delete</a>
+                    </small>
+                    {% endif %}
                 </div>
                 <div class="col text-end d-inline">
                     <p class="card-text">Quantity</p>
@@ -289,21 +301,23 @@
         <div class="col-lg-1 mt-2 mb-4">
             <form class="form" action="{% url 'add_to_bag' ingredient.id %}" method="POST">
                 {% csrf_token %}
-                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99" data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
+                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
+                    data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
                 {% if not request.session.sandwich %}
-                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
+                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
                 {% else %}
                 {% if request.session.filling_added %}
-                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0" disabled >+</button>
+                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0" disabled>+</button>
                 {% else %}
-                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0" >+</button>
+                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
                 {% endif %}
                 {% endif %}
                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
-            </form> 
-             <form class="form" action="{% url 'remove_ingredient' ingredient.id %}" method="POST">
+            </form>
+            <form class="form" action="{% url 'remove_ingredient' ingredient.id %}" method="POST">
                 {% csrf_token %}
-                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99" data-item_id="{{ ingredient.id }}" id="id_remove_ingred_{{ ingredient.id }}">
+                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
+                    data-item_id="{{ ingredient.id }}" id="id_remove_ingred_{{ ingredient.id }}">
                 <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">-</button>
                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
             </form>
@@ -388,7 +402,12 @@
                     {% endif %}
                     {% endfor %}
                     {% endif %}
-
+                    {% if request.user.is_superuser %}
+                    <small class="ml-3">
+                        <a href="{% url 'edit_ingredient' ingredient.id %}">Edit</a> |
+                        <a class="text-danger" href="{% url 'delete_ingredient' ingredient.id %}">Delete</a>
+                    </small>
+                    {% endif %}
                 </div>
                 <div class="col text-end d-inline">
                     <p class="card-text">Quantity</p>
@@ -406,24 +425,26 @@
         <div class="col-lg-1 mt-2 mb-4">
             <form class="form" action="{% url 'add_to_bag' ingredient.id %}" method="POST">
                 {% csrf_token %}
-                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99" data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
+                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
+                    data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
                 {% if not request.session.sandwich %}
-                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
+                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
                 {% else %}
                 {% if request.session.cheese_added %}
-                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0" disabled >+</button>
+                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0" disabled>+</button>
                 {% else %}
-                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0" >+</button>
+                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
                 {% endif %}
                 {% endif %}
                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
             </form>
-             <form class="form" action="{% url 'remove_ingredient' ingredient.id %}" method="POST">
+            <form class="form" action="{% url 'remove_ingredient' ingredient.id %}" method="POST">
                 {% csrf_token %}
-                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99" data-item_id="{{ ingredient.id }}" id="id_remove_ingred_{{ ingredient.id }}">
+                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
+                    data-item_id="{{ ingredient.id }}" id="id_remove_ingred_{{ ingredient.id }}">
                 <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">-</button>
                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
-            </form> 
+            </form>
         </div>
         {% endif %}
         {% endfor %}
@@ -518,7 +539,12 @@
                     {% endif %}
                     {% endfor %}
                     {% endif %}
-
+                    {% if request.user.is_superuser %}
+                    <small class="ml-3">
+                        <a href="{% url 'edit_ingredient' ingredient.id %}">Edit</a> |
+                        <a class="text-danger" href="{% url 'delete_ingredient' ingredient.id %}">Delete</a>
+                    </small>
+                    {% endif %}
                 </div>
                 <div class="col text-end d-inline">
                     <p class="card-text">Quantity</p>
@@ -534,22 +560,24 @@
             </div>
         </div>
         <div class="col-lg-1 mt-2 mb-4">
-           <form class="form" action="{% url 'add_to_bag' ingredient.id %}" method="POST">
+            <form class="form" action="{% url 'add_to_bag' ingredient.id %}" method="POST">
                 {% csrf_token %}
-                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99" data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
-                 {% if ingredient.id|stringformat:"i" in request.session.sandwich.keys%}
-                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0" disabled>+</button>
+                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
+                    data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
+                {% if ingredient.id|stringformat:"i" in request.session.sandwich.keys%}
+                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0" disabled>+</button>
                 {% else %}
-                 <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
+                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
                 {% endif %}
                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
             </form>
-             <form class="form" action="{% url 'remove_ingredient' ingredient.id %}" method="POST">
+            <form class="form" action="{% url 'remove_ingredient' ingredient.id %}" method="POST">
                 {% csrf_token %}
-                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99" data-item_id="{{ ingredient.id }}" id="id_remove_ingred_{{ ingredient.id }}">
+                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
+                    data-item_id="{{ ingredient.id }}" id="id_remove_ingred_{{ ingredient.id }}">
                 <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">-</button>
                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
-            </form> 
+            </form>
         </div>
         {% endif %}
         {% endfor %}
@@ -618,7 +646,12 @@
                     {% endif %}
                     {% endfor %}
                     {% endif %}
-
+                    {% if request.user.is_superuser %}
+                    <small class="ml-3">
+                        <a href="{% url 'edit_ingredient' ingredient.id %}">Edit</a> |
+                        <a class="text-danger" href="{% url 'delete_ingredient' ingredient.id %}">Delete</a>
+                    </small>
+                    {% endif %}
                 </div>
                 <div class="col text-end d-inline">
                     <p class="card-text">Quantity</p>
@@ -636,24 +669,26 @@
         <div class="col-lg-1 mt-2 mb-4">
             <form class="form" action="{% url 'add_to_bag' ingredient.id %}" method="POST">
                 {% csrf_token %}
-                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99" data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
+                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
+                    data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
                 {% if not request.session.sandwich %}
-                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
+                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
                 {% else %}
                 {% if request.session.spread_added %}
-                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0" disabled >+</button>
+                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0" disabled>+</button>
                 {% else %}
-                <button  type="submit" class="btn btn-transparent make-it-now-btn rounded-0" >+</button>
+                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
                 {% endif %}
                 {% endif %}
                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
             </form>
-             <form class="form" action="{% url 'remove_ingredient' ingredient.id %}" method="POST">
+            <form class="form" action="{% url 'remove_ingredient' ingredient.id %}" method="POST">
                 {% csrf_token %}
-                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99" data-item_id="{{ ingredient.id }}" id="id_remove_ingred_{{ ingredient.id }}">
+                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
+                    data-item_id="{{ ingredient.id }}" id="id_remove_ingred_{{ ingredient.id }}">
                 <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">-</button>
                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
-            </form> 
+            </form>
         </div>
         {% endif %}
         {% endfor %}
@@ -687,7 +722,7 @@
 
     //disable add button
 
-    addDisabler = function disable_add(){
+    addDisabler = function disable_add() {
         document.getElementById('add_ingred_button').classList.add('disabled');
     }
 
