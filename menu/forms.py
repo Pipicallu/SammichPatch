@@ -1,12 +1,16 @@
 from django import forms
+from .widgets import CustomClearableFileInput
 from .models import Ingredients, Category
+
 
 class IngredientsForm(forms.ModelForm):
 
     class Meta:
         model = Ingredients
         fields = '__all__'
-    
+
+    image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput) 
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         categories = Category.objects.all()
@@ -15,4 +19,3 @@ class IngredientsForm(forms.ModelForm):
         self.fields['category'].choices = friendly_names
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'standard-border rounded-0'
-    
