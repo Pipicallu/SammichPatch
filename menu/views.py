@@ -55,9 +55,14 @@ def all_ingredients(request):
     return render(request, 'menu/ingredients.html', context)
 
 
+@login_required
 def add_ingredient(request):
     """Add a product to the store"""
-    if request.method == 'POST': 
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
         form = IngredientsForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
@@ -75,8 +80,13 @@ def add_ingredient(request):
     return render(request, template, context)
 
 
+@login_required
 def edit_ingredient(request, ingredient_id):
     """ Edit a product in the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
     ingredient = get_object_or_404(Ingredients, pk=ingredient_id)
     if request.method == 'POST':
         form = IngredientsForm(request.POST, request.FILES, instance=ingredient)
@@ -99,8 +109,13 @@ def edit_ingredient(request, ingredient_id):
     return render(request, template, context)
 
 
+@login_required
 def delete_ingredient(request, ingredient_id):
     """ Delete a product from the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+        
     ingredient = get_object_or_404(Ingredients, pk=ingredient_id)
     ingredient.delete()
     messages.success(request, f'Deleted ingredient: {ingredient.name}')
