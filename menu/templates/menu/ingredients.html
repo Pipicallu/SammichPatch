@@ -25,7 +25,7 @@
 
             <a href="{% url 'ingredients' %}?is_vegetarian={{is_vegetarian | yesno:'False,True'}}"
                 class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">Show
-                {{is_vegetarian| yesno:'Menu, Veggie Menu'}}</a>
+                {{is_vegetarian| yesno:'Full Menu, Veggie Menu'}}</a>
         </div>
     </div>
     <!--bread-->
@@ -59,12 +59,12 @@
                     {% if ingredient.image %}
                     <button type="button" class="btn p-0" data-bs-toggle="modal"
                         data-bs-target="#myModal{{forloop.counter0}}">
-                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}{{ingredient.image}}"
-                            alt="{{ ingredient.name }}">
+                        <img class=" img-fluid ingred-img" src="{{ MEDIA_URL }}{{ingredient.image}}"
+                            alt="{{ ingredient.name }}" >
                     </button>
                     {% else %}
                     <a href="">
-                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png"
+                        <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}noimage.png"
                             alt="{{ ingredient.name }}">
                     </a>
                     {% endif %}
@@ -118,7 +118,7 @@
                     <p class="card-text">Quantity</p>
                     <div>
                         {% if ingredient.id|stringformat:"i" in request.session.sandwich.keys%}
-                        <p class="font-bolder"> x 1 </p>
+                        <p class="font-bolder item-quantity"> x 1 </p>
                         {% else %}
                         <p></p>
                         {% endif %}
@@ -203,12 +203,12 @@
                     {% if ingredient.image %}
                     <button type="button" class="btn p-0" data-bs-toggle="modal"
                         data-bs-target="#myModal{{forloop.counter0}}">
-                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}{{ingredient.image}}"
+                        <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}{{ingredient.image}}"
                             alt="{{ ingredient.name }}">
                     </button>
                     {% else %}
                     <a href="">
-                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png"
+                        <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}noimage.png"
                             alt="{{ ingredient.name }}">
                     </a>
                     {% endif %}
@@ -353,12 +353,12 @@
                     {% if ingredient.image %}
                     <button type="button" class="btn p-0" data-bs-toggle="modal"
                         data-bs-target="#myModal{{forloop.counter0}}">
-                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}{{ingredient.image}}"
+                        <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}{{ingredient.image}}"
                             alt="{{ ingredient.name }}">
                     </button>
                     {% else %}
                     <a href="">
-                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png"
+                        <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}noimage.png"
                             alt="{{ ingredient.name }}">
                     </a>
                     {% endif %}
@@ -464,12 +464,12 @@
                     {% if ingredient.image %}
                     <button type="button" class="btn p-0" data-bs-toggle="modal"
                         data-bs-target="#myModal{{forloop.counter0}}">
-                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}{{ingredient.image}}"
+                        <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}{{ingredient.image}}"
                             alt="{{ ingredient.name }}">
                     </button>
                     {% else %}
                     <a href="">
-                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png"
+                        <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}noimage.png"
                             alt="{{ ingredient.name }}">
                     </a>
                     {% endif %}
@@ -597,12 +597,12 @@
                     {% if ingredient.image %}
                     <button type="button" class="btn p-0" data-bs-toggle="modal"
                         data-bs-target="#myModal{{forloop.counter0}}">
-                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}{{ingredient.image}}"
+                        <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}{{ingredient.image}}"
                             alt="{{ ingredient.name }}">
                     </button>
                     {% else %}
                     <a href="">
-                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png"
+                        <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}noimage.png"
                             alt="{{ ingredient.name }}">
                     </a>
                     {% endif %}

@@ -64,6 +64,7 @@ a {
 
 .make-it-now-btn{
     margin-bottom: 20px;
+    min-width: 40px;
 }
 
 .btn-transparent {
@@ -118,6 +119,7 @@ a {
 .ingredient-card{
     border-top: 2px solid #000;
     border-bottom: 2px solid #000;
+    height: fit-content;
 }
 
 .ingredient-price{
@@ -361,4 +363,18 @@ a {
     background-color: #dc3545;
     border-color: #dc3545;
     border-radius: 0;
+}
+
+
+/*ingred-img-class*/
+
+.ingred-img{
+    max-width: 150px;
+    height: auto;
+    max-height: 100px;
+}
+
+.item-quantity{
+    color: #f1061d;
+    font-size: 20px;
 }
