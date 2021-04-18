@@ -29,21 +29,21 @@
         </div>
     </div>
     <!--bread-->
-    <div class="row mt-3">
-        <h4 class="subtitle-heading  font-bolder mb-4 mt-2">
+    <div class="row mt-3 accordion-item" >
+        <h4 class="subtitle-heading accordion-button font-bolder mb-4 mt-2" data-bs-toggle="collapse" data-bs-target="#collapseBread" aria-expanded="true" aria-controls="collapseBread">
             bread
             <img class="img-fluid" src="{{ MEDIA_URL }}bread.svg" alt="bread" width="30" height="30">
             <span class="sort-button-cluster">
-                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'_free'}}"
+                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'_free'}}&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
                     class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder"><img class="img-fluid icon"
                         src="{{ MEDIA_URL }}gluten.svg" alt="wheat" width="15" height="15"> <span
                         class="d-md-none d-lg-inline">gluten</span></a>
-                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|slice:'7:'}}"
+                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|slice:'7:'}}&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
                     class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder"><img class="img-fluid icon"
                         src="{{ MEDIA_URL }}gluten_free.svg" alt="gluten free" width="15" height="15"> <span
                         class="d-md-none d-lg-inline">gluten free</span>
                 </a>
-                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'halal/kosher'}}"
+                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'halal/kosher'}}&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
                     class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">
                     <img class="img-fluid icon" src="{{ MEDIA_URL }}gluten.svg" alt="gluten" width="15" height="15">
                     <img class="img-fluid icon" src="{{ MEDIA_URL }}gluten_free.svg" alt="gluten free" width="15"
@@ -51,144 +51,151 @@
             </span>
         </h4>
         <!--logic to get ingredient-->
-        {% for ingredient in ingredients %}
-        {% if ingredient.category.name == "bread" %}
-        <div class="col-lg-5 ingredient-card mt-2 mb-4">
-            <div class="row">
-                <div class="col p-0">
-                    {% if ingredient.image %}
-                    <button type="button" class="btn p-0" data-bs-toggle="modal"
-                        data-bs-target="#myModal{{forloop.counter0}}">
-                        <img class=" img-fluid ingred-img" src="{{ MEDIA_URL }}{{ingredient.image}}"
-                            alt="{{ ingredient.name }}" >
-                    </button>
-                    {% else %}
-                    <a href="">
-                        <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}noimage.png"
-                            alt="{{ ingredient.name }}">
-                    </a>
-                    {% endif %}
-                    <!--modal-->
-                    <div class="modal rounded-0 fade" id="myModal{{forloop.counter0}}" tabindex="-1" role="dialog"
-                        aria-labelledby="myModal" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">{{ingredient.name}}</h5>
-                                </div>
-                                <div class="modal-body">
-                                    {{ingredient.description}}
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
+        <div class="container">
+            {% if not request.session.bread_added %}
+            <div id="collapseBread" class="accordion-collapse collapse show row">
+            {% else %}
+            <div id="collapseBread" class="accordion-collapse collapse  row">
+            {% endif %}
+                {% for ingredient in ingredients %}
+                {% if ingredient.category.name == "bread" %}
+                <div class="col-lg-5 ingredient-card mt-2 mb-4">
+                    <div class="row">
+                        <div class="col p-0">
+                            {% if ingredient.image %}
+                            <button type="button" class="btn p-0" data-bs-toggle="modal"
+                                data-bs-target="#myModal{{forloop.counter0}}">
+                                <img class=" img-fluid ingred-img" src="{{ MEDIA_URL }}{{ingredient.image}}"
+                                    alt="{{ ingredient.name }}">
+                            </button>
+                            {% else %}
+                            <a href="">
+                                <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}noimage.png"
+                                    alt="{{ ingredient.name }}">
+                            </a>
+                            {% endif %}
+                            <!--modal-->
+                            <div class="modal rounded-0 fade" id="myModal{{forloop.counter0}}" tabindex="-1"
+                                role="dialog" aria-labelledby="myModal" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">{{ingredient.name}}</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            {{ingredient.description}}
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="col d-inline">
+                            <h6 class="card-title">{{ingredient.name}}</h6>
+                            <!-- <p class="card-text">{{ingredient.description}}</p> -->
+                            {% if ingredient.dietary_requirements.all %}
+                            {% for dietary_requirements in ingredient.dietary_requirements.all %}
+                            {% if dietary_requirements.friendly_name == "Gluten" %}
+                            <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
+                                data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
+                                <img class=" img-fluid" src="{{ MEDIA_URL }}gluten.svg" alt="wheat_emoji" width="20"
+                                    height="20">
+                            </button>
+                            {% elif dietary_requirements.friendly_name == "Gluten Free" %}
+                            <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
+                                data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
+                                <img class=" img-fluid" src="{{ MEDIA_URL }}gluten_free.svg" alt="gluten_free"
+                                    width="20" height="20">
+                            </button>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                            {% if request.user.is_superuser %}
+                            <small class="ml-3">
+                                <a href="{% url 'edit_ingredient' ingredient.id %}">Edit</a> |
+                                <a class="text-danger" href="{% url 'delete_ingredient' ingredient.id %}">Delete</a>
+                            </small>
+                            {% endif %}
+                        </div>
+                        <div class="col text-end d-inline">
+                            <p class="card-text">Quantity</p>
+                            <div>
+                                {% if ingredient.id|stringformat:"i" in request.session.sandwich.keys%}
+                                <p class="font-bolder item-quantity"> x 1 </p>
+                                {% else %}
+                                <p></p>
+                                {% endif %}
+                            </div>
+                            <p class="ingredient-price">£{{ingredient.price}}</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col d-inline">
-                    <h6 class="card-title">{{ingredient.name}}</h6>
-                    <!-- <p class="card-text">{{ingredient.description}}</p> -->
-                    {% if ingredient.dietary_requirements.all %}
-                    {% for dietary_requirements in ingredient.dietary_requirements.all %}
-                    {% if dietary_requirements.friendly_name == "Gluten" %}
-                    <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
-                        data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
-                        <img class=" img-fluid" src="{{ MEDIA_URL }}gluten.svg" alt="wheat_emoji" width="20"
-                            height="20">
-                    </button>
-                    {% elif dietary_requirements.friendly_name == "Gluten Free" %}
-                    <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
-                        data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
-                        <img class=" img-fluid" src="{{ MEDIA_URL }}gluten_free.svg" alt="gluten_free" width="20"
-                            height="20">
-                    </button>
-                    {% endif %}
-                    {% endfor %}
-                    {% endif %}
-                    {% if request.user.is_superuser %}
-                    <small class="ml-3">
-                        <a href="{% url 'edit_ingredient' ingredient.id %}">Edit</a> |
-                        <a class="text-danger" href="{% url 'delete_ingredient' ingredient.id %}">Delete</a>
-                    </small>
-                    {% endif %}
-                </div>
-                <div class="col text-end d-inline">
-                    <p class="card-text">Quantity</p>
-                    <div>
-                        {% if ingredient.id|stringformat:"i" in request.session.sandwich.keys%}
-                        <p class="font-bolder item-quantity"> x 1 </p>
+                <!--form-->
+                <div class="col-lg-1 mt-2 mb-4">
+                    <form class="form" action="{% url 'add_to_bag' ingredient.id %}" method="POST">
+                        {% csrf_token %}
+                        <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
+                            data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
+                        {% if not request.session.sandwich %}
+                        <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
                         {% else %}
-                        <p></p>
+                        {% if request.session.bread_added %}
+                        <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0" disabled>+</button>
+                        {% else %}
+                        <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
                         {% endif %}
-                    </div>
-                    <p class="ingredient-price">£{{ingredient.price}}</p>
+                        {% endif %}
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    </form>
+                    <form class="form" action="{% url 'remove_ingredient' ingredient.id %}" method="POST">
+                        {% csrf_token %}
+                        <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
+                            data-item_id="{{ ingredient.id }}" id="id_remove_ingred_{{ ingredient.id }}">
+                        <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">-</button>
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    </form>
                 </div>
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
-        <!--form-->
-        <div class="col-lg-1 mt-2 mb-4">
-            <form class="form" action="{% url 'add_to_bag' ingredient.id %}" method="POST">
-                {% csrf_token %}
-                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
-                    data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
-                {% if not request.session.sandwich %}
-                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
-                {% else %}
-                {% if request.session.bread_added %}
-                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0" disabled>+</button>
-                {% else %}
-                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
-                {% endif %}
-                {% endif %}
-                <input type="hidden" name="redirect_url" value="{{ request.path }}">
-            </form>
-            <form class="form" action="{% url 'remove_ingredient' ingredient.id %}" method="POST">
-                {% csrf_token %}
-                <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
-                    data-item_id="{{ ingredient.id }}" id="id_remove_ingred_{{ ingredient.id }}">
-                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">-</button>
-                <input type="hidden" name="redirect_url" value="{{ request.path }}">
-            </form>
-        </div>
-        {% endif %}
-        {% endfor %}
     </div>
     <!--filling-->
     <div class="row mt-3">
-        <h4 class="subtitle-heading font-bolder  mb-4 mt-2">
+        <h4 id="fillings" class="subtitle-heading font-bolder  mb-4 mt-2">
             Filling
             <img class=" img-fluid" src="{{ MEDIA_URL }}filling.svg" alt="filling" width="30" height="30">
             <span class="sort-button-cluster">
-                <a id="fillings"
-                    href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'pork'|cut:'beef'|cut:'poultry'}}&goto=fillings"
+                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'pork'|cut:'beef'|cut:'poultry'}}&goto=fillings&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
                     class="sort-button) focus-button btn btn-transparent rounded-0 btn-filter font-bolder">
                     <img class="img-fluid icon" src="{{ MEDIA_URL }}kosher_emoji.svg" alt="kosher" width="15"
                         height="15">
                     <img class="img-fluid icon" src="{{ MEDIA_URL }}halal_emoji.svg" alt="halal" width="15"
                         height="15"><span class="d-md-none d-lg-inline">halal/kosher</span></a>
-                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'pork'|cut:'vegan'|cut:'poultry'|cut:'halal/kosher'|cut:'fish'}}&goto=fillings"
+                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'pork'|cut:'vegan'|cut:'poultry'|cut:'halal/kosher'|cut:'fish'}}&goto=fillings&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
                     class="sort-button focus-button btn btn-transparent rounded-0 btn-filter font-bolder"><img
                         class="img-fluid icon" src="{{ MEDIA_URL }}cow_emoji.png" alt="beef" width="15" height="15">
                     <span class="d-md-none d-lg-inline">beef</span>
                 </a>
-                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'beef'|cut:'vegan'|cut:'poultry'|cut:'halal/kosher'|cut:'fish'}}&goto=fillings"
+                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'beef'|cut:'vegan'|cut:'poultry'|cut:'halal/kosher'|cut:'fish'}}&goto=fillings&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
                     class="sort-button focus-button btn btn-transparent rounded-0 btn-filter font-bolder"><img
                         class="img-fluid icon" src="{{ MEDIA_URL }}pig_emoji.png" alt="beef" width="15" height="15">
                     <span class="d-md-none d-lg-inline">pork</span>
                 </a>
-                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'beef'|cut:'vegan'|cut:'pork'|cut:'halal/kosher'|cut:'fish'}}&goto=fillings"
+                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'beef'|cut:'vegan'|cut:'pork'|cut:'halal/kosher'|cut:'fish'}}&goto=fillings&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
                     class="sort-button focus-button btn btn-transparent rounded-0 btn-filter font-bolder"><img
                         class="img-fluid icon" src="{{ MEDIA_URL }}chicken_emoji.png" alt="beef" width="15" height="15">
                     <span class="d-md-none d-lg-inline">poultry</span>
                 </a>
-                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'beef'|cut:'poultry'|cut:'pork'|cut:'halal/kosher'|cut:'fish'}}&goto=fillings"
+                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'beef'|cut:'poultry'|cut:'pork'|cut:'halal/kosher'|cut:'fish'}}&goto=fillings&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
                     class="sort-button focus-button btn btn-transparent rounded-0 btn-filter font-bolder"><img
                         class="img-fluid icon" src="{{ MEDIA_URL }}vegan.svg" alt="beef" width="15" height="15"> <span
                         class="d-md-none d-lg-inline">vegan</span>
                 </a>
-                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'halal/kosher'}}&goto=fillings"
+                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'halal/kosher'}}&goto=fillings&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
                     class="sort-button focus-button btn btn-transparent rounded-0 btn-filter font-bolder">
                     <img class="img-fluid icon" src="{{ MEDIA_URL }}sandwich.svg" alt="gluten" width="15" height="15">
                     <span class="d-md-none d-lg-inline">all</span></a>
@@ -208,8 +215,7 @@
                     </button>
                     {% else %}
                     <a href="">
-                        <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}noimage.png"
-                            alt="{{ ingredient.name }}">
+                        <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ ingredient.name }}">
                     </a>
                     {% endif %}
                     <!--modal-->
@@ -326,18 +332,18 @@
         {% endfor %}
     </div>
     <!--cheese-->
-    <div class="row mt-3">
+    <div id="cheese" class="row mt-3">
         <h4 class="subtitle-heading font-bolder  mb-4 mt-2">
             Cheese
             <img class=" img-fluid" src="{{ MEDIA_URL }}cheese.svg" alt="cheese" width="30" height="30">
             <span class="sort-button-cluster">
-                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'dairy'}}"
+                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'dairy'}}&goto=cheese"
                     class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder"><img class="img-fluid icon"
                         src="{{ MEDIA_URL }}vegan.svg" alt="beef" width="15" height="15"> <span
                         class="d-md-none d-lg-inline">vegan</span>
 
                 </a>
-                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'halal/kosher'}}"
+                <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'halal/kosher'}}&goto=cheese"
                     class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">
                     <img class="img-fluid icon" src="{{ MEDIA_URL }}sandwich.svg" alt="gluten" width="15" height="15">
                     <span class="d-md-none d-lg-inline">all</span></a>
@@ -358,8 +364,7 @@
                     </button>
                     {% else %}
                     <a href="">
-                        <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}noimage.png"
-                            alt="{{ ingredient.name }}">
+                        <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ ingredient.name }}">
                     </a>
                     {% endif %}
                     <!--modal-->
@@ -413,7 +418,7 @@
                     <p class="card-text">Quantity</p>
                     <div>
                         {% if ingredient.id|stringformat:"i" in request.session.sandwich.keys%}
-                        <p class="font-bolder"> x 1 </p>
+                        <p class="item-quantity font-bolder"> x 1 </p>
                         {% else %}
                         <p></p>
                         {% endif %}
@@ -428,10 +433,14 @@
                 <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
                     data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
                 {% if not request.session.sandwich %}
-                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
+                <a href="{% url 'ingredients' %}?goto=cheese">
+                    <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
+                </a>
                 {% else %}
                 {% if request.session.cheese_added %}
-                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0" disabled>+</button>
+                <a href="{% url 'ingredients' %}?goto=cheese">
+                    <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0" disabled>+</button>
+                </a>
                 {% else %}
                 <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
                 {% endif %}
@@ -469,8 +478,7 @@
                     </button>
                     {% else %}
                     <a href="">
-                        <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}noimage.png"
-                            alt="{{ ingredient.name }}">
+                        <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ ingredient.name }}">
                     </a>
                     {% endif %}
                     <!--modal-->
@@ -602,8 +610,7 @@
                     </button>
                     {% else %}
                     <a href="">
-                        <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}noimage.png"
-                            alt="{{ ingredient.name }}">
+                        <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ ingredient.name }}">
                     </a>
                     {% endif %}
                     <!--modal-->
@@ -716,7 +723,7 @@
         const myParam = urlParams.get('goto');
         const goto = document.getElementById(myParam);
         if (goto) {
-            goto.scrollIntoView();
+            goto.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
         }
     })
 

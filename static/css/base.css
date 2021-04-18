@@ -133,8 +133,8 @@ a {
 
 
 .subtitle-heading{
-    border-bottom: 2px solid #000;
-    border-top: 2px solid #000;
+    border-bottom: 2px solid #000!important;
+    border-top: 2px solid #000!important;
     padding: 10px;
 }
 
@@ -161,6 +161,17 @@ a {
     width: 1.5rem;
 }
 
+/*ingredients accordion*/
+
+.accordion-button{
+    border: none;
+    font-size: x-large;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #000;
+    background-color: transparent;
+}
 
 /* bag */
 
