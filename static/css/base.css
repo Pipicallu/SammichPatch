@@ -359,8 +359,8 @@ a {
 .allauth-form-inner-content button:hover,
 .allauth-form-inner-content input[type='submit']:hover {	
 	color: #fff;
-    background-color: #222;
-    border-color: #222;
+    background-color: rgb(0, 0, 0);
+    border-color: #000000;
 }
 
 .allauth-form-inner-content a {

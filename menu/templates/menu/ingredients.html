@@ -307,7 +307,7 @@
                             <p class="card-text">Quantity</p>
                             <div>
                                 {% if ingredient.id|stringformat:"i" in request.session.sandwich.keys%}
-                                <p class="font-bolder"> x 1 </p>
+                                <p class="font-bolder item-quantity"> x 1 </p>
                                 {% else %}
                                 <p></p>
                                 {% endif %}
@@ -589,7 +589,7 @@
                                 <p class="card-text">Quantity</p>
                                 <div>
                                     {% if ingredient.id|stringformat:"i" in request.session.sandwich.keys%}
-                                    <p class="font-bolder"> x 1 </p>
+                                    <p class="font-bolder item-quantity"> x 1 </p>
                                     {% else %}
                                     <p></p>
                                     {% endif %}
@@ -708,7 +708,7 @@
                                     <p class="card-text">Quantity</p>
                                     <div>
                                         {% if ingredient.id|stringformat:"i" in request.session.sandwich.keys%}
-                                        <p class="font-bolder"> x 1 </p>
+                                        <p class="font-bolder item-quantity"> x 1 </p>
                                         {% else %}
                                         <p></p>
                                         {% endif %}

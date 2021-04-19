@@ -55,11 +55,36 @@ def all_ingredients(request):
     return render(request, 'menu/ingredients.html', context)
 
 
+def all_drinks_all_sides(request):
+    sort = None
+    direction = None
+    sides_and_drinks = SidesAndDrinks.objects.all()
+    template = 'menu/sidesanddrinks.html'
+
+    if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if sort == 'price' and direction == 'asc':
+                    sides_and_drinks = sides_and_drinks.order_by('price')
+                else:
+                    sides_and_drinks = sides_and_drinks.order_by('-price')
+
+    context = {
+        'sides_and_drinks' : sides_and_drinks,
+    }
+
+    return render(request, template, context)
+
+
+
 @login_required
 def add_ingredient(request):
     """Add a product to the store"""
     if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can do that.')
+        messages.error(request, 'Sorry, only the store owners can do that.')
         return redirect(reverse('home'))
 
     if request.method == 'POST':

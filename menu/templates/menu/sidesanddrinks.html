@@ -1,0 +1,217 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col">Sides and Drinks</div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container subtitle-row">
+    <div class="row">
+        <div class="col text-center">
+            <h3 class="font-bolder p-3 mt-4 mb-0"><i class="fas fa-crown gold-color"></i> Fries with that? <i
+                    class="fas fa-crown gold-color"></i></h3>
+            <a href="{% url 'drinks_and_sides' %}?sort=price&direction=asc"
+                class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">price <i
+                    class="fas fa-arrow-down"></i></a>
+            <a href="{% url 'drinks_and_sides' %}?sort=price&direction=desc"
+                class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">price <i
+                    class="fas fa-arrow-up"></i></a>
+        </div>
+    <!--drink-->
+    <div id="drink" class="row mt-3 accordion-item">
+        <h4 class="subtitle-heading font-bolder  mb-4 mt-2 accordion-button" data-bs-toggle="collapse"
+            data-bs-target="#collapseDrink" aria-expanded="true" aria-controls="collapseDrink">
+            Drinks
+        </h4>
+    </div>
+    <div id="collapseDrink" class="accordion-collapse collapse show row">
+        {% for item in sides_and_drinks %}
+        {% if item.category.name == "drink" %}
+        <div class="col-lg-5 ingredient-card mt-2 mb-4">
+            <div class="row">
+                <div class="col p-0">
+                    {% if item.image %}
+                    <button type="button" class="btn p-0" data-bs-toggle="modal"
+                        data-bs-target="#myModal{{forloop.counter0}}">
+                        <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}{{item.image}}" alt="{{ item.name }}">
+                    </button>
+                    {% else %}
+                    <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.name }}">
+                    {% endif %}
+                    <!--modal-->
+                    <div class="modal rounded-0 fade" id="myModal{{forloop.counter0}}" tabindex="-1" role="dialog"
+                        aria-labelledby="myModal" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel{{forloop.counter0}}">
+                                        {{item.name}}</h5>
+                                </div>
+                                <div class="modal-body">
+                                    {{item.description}}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-transparent"
+                                        data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col d-inline">
+                    <h6 class="card-title">{{item.name}}</h6>
+
+                    <!-- <p class="card-text">{{ingredient.description}}</p> -->
+                    {% if item.dietary_requirements.all %}
+                    {% for dietary_requirements in item.dietary_requirements.all %}
+                    {% if dietary_requirements.friendly_name == "Vegan" %}
+                    <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
+                        data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
+                        <img class=" img-fluid" src="{{ MEDIA_URL }}vegan.svg" alt="vegan_emoji" width="20" height="20">
+                    </button>
+                    {% elif dietary_requirements.friendly_name == "Dairy" %}
+                    <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
+                        data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
+                        <img class=" img-fluid" src="{{ MEDIA_URL }}dairy_emoji.svg" alt="dairy_emoji" width="20"
+                            height="20">
+                    </button>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+
+                </div>
+                <div class="col text-end d-inline">
+                    <p class="card-text">Quantity</p>
+                    <div>
+                        {% if item.id|stringformat:"i" in request.session.sandwich.keys%}
+                        <p class="font-bolder item-quantity"> x 1 </p>
+                        {% else %}
+                        <p></p>
+                        {% endif %}
+                    </div>
+                    <p class="ingredient-price">£{{item.price}}</p>
+                </div>
+            </div>
+        </div>
+        <!--form-->
+            <div class="col-lg-1 mt-2 mb-4">
+                <form class="form" action="{% url 'add_side_to_bag' item.id %}" method="POST">
+                    {% csrf_token %}
+                    <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
+                        data-item_id="{{ item.id }}" id="id_item_{{ item.id }}">
+                    <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">{{request.session.items}}</button>
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                </form>
+            </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+
+    <!--sides-->
+    <div id="side" class="row mt-3 accordion-item">
+        <h4 class="subtitle-heading font-bolder  mb-4 mt-2 accordion-button" data-bs-toggle="collapse"
+            data-bs-target="#collapseSide" aria-expanded="true" aria-controls="collapseSide">
+            Sides
+        </h4>
+    </div>
+    <div id="collapseSide" class="accordion-collapse collapse show row">
+        {% for item in sides_and_drinks %}
+        {% if item.category.name == "side" %}
+        <div class="col-lg-5 ingredient-card mt-2 mb-4">
+            <div class="row">
+                <div class="col p-0">
+                    {% if item.image %}
+                    <button type="button" class="btn p-0" data-bs-toggle="modal"
+                        data-bs-target="#myModal{{forloop.counter0}}">
+                        <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}{{item.image}}" alt="{{ item.name }}">
+                    </button>
+                    {% else %}
+                    <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.name }}">
+                    {% endif %}
+                    <!--modal-->
+                    <div class="modal rounded-0 fade" id="myModal{{forloop.counter0}}" tabindex="-1" role="dialog"
+                        aria-labelledby="myModal" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel{{forloop.counter0}}">
+                                        {{item.name}}</h5>
+                                </div>
+                                <div class="modal-body">
+                                    {{item.description}}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-transparent"
+                                        data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col d-inline">
+                    <h6 class="card-title">{{item.name}}</h6>
+
+                    <!-- <p class="card-text">{{ingredient.description}}</p> -->
+                    {% if item.dietary_requirements.all %}
+                    {% for dietary_requirements in item.dietary_requirements.all %}
+                    {% if dietary_requirements.friendly_name == "Vegan" %}
+                    <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
+                        data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
+                        <img class=" img-fluid" src="{{ MEDIA_URL }}vegan.svg" alt="vegan_emoji" width="20" height="20">
+                    </button>
+                    {% elif dietary_requirements.friendly_name == "Dairy" %}
+                    <button type="button" class="btn p-0" data-bs-container="body" data-bs-toggle="popover"
+                        data-bs-placement="bottom" data-bs-content="{{dietary_requirements.description}}">
+                        <img class=" img-fluid" src="{{ MEDIA_URL }}dairy_emoji.svg" alt="dairy_emoji" width="20"
+                            height="20">
+                    </button>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+
+                </div>
+                <div class="col text-end d-inline">
+                    <p class="card-text">Quantity</p>
+                    <div>
+                        {% if item.id|stringformat:"i" in request.session.sandwich.keys%}
+                        <p class="font-bolder item-quantity"> x 1 </p>
+                        {% else %}
+                        <p></p>
+                        {% endif %}
+                    </div>
+                    <p class="ingredient-price">£{{item.price}}</p>
+                </div>
+            </div>
+        </div>
+        <!--form-->
+            <div class="col-lg-1 mt-2 mb-4">
+                <form class="form" action="{% url 'add_side_to_bag' item.id %}" method="POST">
+                    {% csrf_token %}
+                    <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
+                        data-item_id="{{ item.id }}" id="id_item_{{ item.id }}">
+                    <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">{{request.session.items}}</button>
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                </form>
+            </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block postload_js %}
+{{ block.super }}
+<script>
+    //popover
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl)
+    })
+</script>
+{% endblock %}
