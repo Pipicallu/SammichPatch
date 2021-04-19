@@ -33,6 +33,8 @@ def add_to_bag(request, item_id):
         request.session['cheese_added'] = True
     if item.category.name == 'spread':
         request.session['spread_added'] = True
+    if item.category.name == 'salad':
+        messages.info(request, 'You can add as much salad as you like!')
 
     save_info = request.session.get('save_info')
     request.session['save_info'] = save_info
