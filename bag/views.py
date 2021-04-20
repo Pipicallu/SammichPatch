@@ -97,13 +97,17 @@ def add_side_to_bag(request, item_id):
 
     if len(request.session.items()) >= 1:
         itemNo = len(request.session['bag'])
-        if f'item_{str(itemNo)}' not in request.session['bag']:
-            bag[f'item_{str(itemNo)}'] = drink_side
-        else:
-            bag[f'item_{str(itemNo)}_replacement'] = drink_side
+        if item.category.name == 'drink':
+            if f'drink_{str(itemNo)}' not in request.session['bag']:
+                bag[f'drink_{str(itemNo)}'] = drink_side
+            else:
+                bag[f'drink_{str(itemNo)}_replacement'] = drink_side
+        elif item.category.name == 'side':
+            if f'side_{str(itemNo)}' not in request.session['bag']:
+                bag[f'side_{str(itemNo)}'] = drink_side
+            else:
+                bag[f'side_{str(itemNo)}_replacement'] = drink_side
         del request.session['drink_side']
-
-
 
     return redirect(redirect_url)
 
@@ -146,9 +150,9 @@ def remove_sandwich(request, sandwich_id):
     try:
         bag = request.session.get('bag', {})
         request.session['bag'] = bag
-        messages.warning(request, 'You have deleted a sandwich from your bag.')
+        messages.warning(request, 'You have deleted a item from your bag.')
         bag.pop(sandwich_id)
         return HttpResponse(status=200)
     except Exception as e:
-        messages.error(request, f'error removing sandwich {e}')
+        messages.error(request, f'error removing item {e}')
         return HttpResponse(status=500)

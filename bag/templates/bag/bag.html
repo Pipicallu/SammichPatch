@@ -21,20 +21,32 @@
         <div class="col">
             {% if bag_items %}
             <div class=" table-responsive rounded">
-                {% for entry in request.session.bag %}
                 <!--Image for sammich-->
                 <div class="subtitle-heading beige-background mb-3 rounded-0">
+                {% if 'item' in entry %}
                     <img class="img-fluid sammich-tile-bg p-2  " src="{{ MEDIA_URL }}sandwich.svg" alt="{{entry}}"
                         width="100" height="100">
+                {% elif 'drink' in entry %}
+                <img class="img-fluid sammich-tile-bg p-2  " src="{{ MEDIA_URL }}drink.svg" alt="{{entry}}"
+                        width="100" height="100">
+                {% else %}
+                <img class="img-fluid sammich-tile-bg p-2  " src="{{ MEDIA_URL }}fries.svg" alt="{{entry}}"
+                        width="100" height="100">
+                {% endif %}
                     <!--ingredients in bag -->
                     {% for item in bag_items %}
-                    {% if item.sandwich_id == entry %}
-                    {% if not item.sandwich_subtotal%}
+                    {% if item.unit_id == entry %}
+                    {% if not item.unit_subtotal%}
+                    {% if item.type == 'sandwich' %}
                     <span class="d-inline-flex p-3 text-small font-bolder">{{item.ingredient.name}} + <br>
                         £{{item.ingredient.price}}</span>
                     {% else %}
-                    <p class="font-bolder d-flex justify-content-end">Price: £{{item.sandwich_subtotal}}</p>
-                    <a class="remove-btn d-flex justify-content-end text-danger" id="{{item.sandwich_id}}"><small>Remove</small></a>
+                    <span class="d-inline-flex p-3 text-small font-bolder">{{item.drink_side.name}} + <br>
+                        £{{item.drink_side.price}}</span>
+                    {% endif %}
+                    {% else %}
+                    <p class="font-bolder d-flex justify-content-end">Price: £{{item.unit_subtotal}}</p>
+                    <a class="remove-btn d-flex justify-content-end text-danger" id="{{item.unit_id}}"><small>Remove</small></a>
                     {% endif %}
                     {% endif %}
                     {% endfor %}

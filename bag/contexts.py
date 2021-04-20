@@ -1,7 +1,7 @@
 from decimal import Decimal
 from django.conf import settings
 from django.shortcuts import get_object_or_404
-from menu.models import Ingredients
+from menu.models import Ingredients, SidesAndDrinks
 
 
 def bag_contents(request):
@@ -13,19 +13,34 @@ def bag_contents(request):
 
     for item, values in bag.items():
         for item_id, quantity in values.items():
-            ingredient = get_object_or_404(Ingredients, pk=item_id)
-            total += quantity * ingredient.price
-            ingredient_count += quantity
-            bag_items.append({
-                'sandwich_id': item,
-                'item_id': item_id,
-                'quantity': quantity,
-                'ingredient': ingredient,
-                'price': ingredient.price,
-            })
+            item_id_first_part = item.split("_")[0]
+            if item_id_first_part == "item":
+                ingredient = get_object_or_404(Ingredients, pk=item_id)
+                total += quantity * ingredient.price
+                ingredient_count += quantity
+                bag_items.append({
+                    'unit_id': item,
+                    'item_id': item_id,
+                    'type': 'sandwich',
+                    'quantity': quantity,
+                    'ingredient': ingredient,
+                    'price': ingredient.price,
+                })
+            else:
+                drink_side = get_object_or_404(SidesAndDrinks, pk=item_id)
+                total += quantity * drink_side.price
+                ingredient_count += quantity
+                bag_items.append({
+                    'unit_id': item,
+                    'item_id': item_id,
+                    'type': 'drink_side',
+                    'quantity': quantity,
+                    'drink_side': drink_side,
+                    'price': drink_side.price,
+                })
         bag_items.append({
-          'sandwich_id': item,
-          'sandwich_subtotal': total - previous_total,  
+          'unit_id': item,
+          'unit_subtotal': total - previous_total,  
         })
         previous_total = total
 
