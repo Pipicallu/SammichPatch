@@ -24,45 +24,56 @@
 
     <div class="row">
         <div class="col-12 col-lg-6">
-         <p class="subtitle-heading font-bolder">Order Summary</p>
+            <p class="subtitle-heading font-bolder">Order Summary</p>
             {% if bag_items %}
-            <div class=" table-responsive rounded">
-                {% for entry in request.session.bag %}
-                <!--Image for sammich-->
-                <div class="subtitle-heading beige-background mb-3 rounded-0">
-                    <img class="img-fluid sammich-tile-bg p-2  " src="{{ MEDIA_URL }}sandwich.svg" alt="{{entry}}"
-                        width="100" height="100">
-                    <!--ingredients in bag -->
-                    {% for item in bag_items %}
-                    {% if item.sandwich_id == entry %}
-                    {% if not item.sandwich_subtotal%}
-                    <span class="d-inline-flex p-3 text-small font-bolder">{{item.ingredient.name}} + <br>
-                        £{{item.ingredient.price}}</span>
-                    {% else %}
-                    <p class="font-bolder d-flex justify-content-end">Price: £{{item.sandwich_subtotal}}</p>
-                    {% endif %}
-                    {% endif %}
-                    {% endfor %}
-                </div>
-                {% endfor %}
+            {% for entry in request.session.bag %}
+            <!--Image for sammich-->
+            <div class="subtitle-heading beige-background mb-3 rounded-0">
+                {% if 'item' in entry %}
+                <img class="img-fluid sammich-tile-bg p-2  " src="{{ MEDIA_URL }}sandwich.svg" alt="{{entry}}"
+                    width="100" height="100">
+                {% elif 'drink' in entry %}
+                <img class="img-fluid sammich-tile-bg p-2  " src="{{ MEDIA_URL }}drink.svg" alt="{{entry}}" width="100"
+                    height="100">
+                {% else %}
+                <img class="img-fluid sammich-tile-bg p-2  " src="{{ MEDIA_URL }}fries.svg" alt="{{entry}}" width="100"
+                    height="100">
                 {% endif %}
-                <div class="text-end">
-                    <h5 class="mt-4"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h5>
-                </div>
-                </div>
+                <!--ingredients in bag -->
+                {% for item in bag_items %}
+                {% if item.unit_id == entry %}
+                {% if not item.unit_subtotal%}
+                {% if item.type == 'sandwich' %}
+                <span class="d-inline-flex p-3 text-small font-bolder">{{item.ingredient.name}} + <br>
+                    £{{item.ingredient.price}}</span>
+                {% else %}
+                <span class="d-inline-flex p-3 text-small font-bolder">{{item.drink_side.name}} + <br>
+                    £{{item.drink_side.price}}</span>
+                {% endif %}
+                {% else %}
+                <p class="font-bolder d-flex justify-content-end">Price: £{{item.unit_subtotal}}</p>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% endfor %}
+            {% endif %}
+            <div class="text-end">
+                <h5 class="mt-4"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h5>
+            </div>
         </div>
         <div class="col-12 col-lg-6">
-        <p class="text-muted">You're so close! Just fill up the form below</p>
-        <form action="{% url 'checkout' %}" method="POST" id="payment-form">
-            {% csrf_token %}
-             <fieldset class="rounded px-3 mb-5">
-                <legend class="fieldset-label small text-black px-2 w-auto font-bolder ">Details</legend>
-                {{ order_form.full_name | as_crispy_field }}
-                {{ order_form.email | as_crispy_field }}
-                {{ order_form.phone_number | as_crispy_field }}
-             </fieldset>
-             <fieldset class="rounded px-3 mb-5">
-                <legend class="fieldset-label small text-black px-2 w-auto font-bolder ">Delivery</legend>
+            <p class="text-muted">You're so close! Just fill up the form below</p>
+            <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+                {% csrf_token %}
+                <fieldset class="rounded px-3 mb-5">
+                    <legend class="fieldset-label small text-black px-2 w-auto font-bolder ">Details</legend>
+                    {{ order_form.full_name | as_crispy_field }}
+                    {{ order_form.email | as_crispy_field }}
+                    {{ order_form.phone_number | as_crispy_field }}
+                </fieldset>
+                <fieldset class="rounded px-3 mb-5">
+                    <legend class="fieldset-label small text-black px-2 w-auto font-bolder ">Delivery</legend>
                     {{ order_form.street_address1 | as_crispy_field }}
                     {{ order_form.street_address2 | as_crispy_field }}
                     {{ order_form.town_or_city | as_crispy_field }}
@@ -71,18 +82,21 @@
                     {{ order_form.postcode | as_crispy_field }}
                     <div class="form-check form-check-inline float-right mr-0">
                         {% if user.is_authenticated %}
-                            <label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label>
-                            <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked>
+                        <label class="form-check-label" for="id-save-info">Save this delivery information to my
+                            profile</label>
+                        <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info"
+                            checked>
                         {% else %}
-                            <label class="form-check-label" for="id-save-info">
-                                <small><a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or 
-                                <a class="text-info" href="{% url 'account_login' %}">login</a> to save this information</small>
-                            </label>
+                        <label class="form-check-label" for="id-save-info">
+                            <small><a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or
+                                <a class="text-info" href="{% url 'account_login' %}">login</a> to save this
+                                information</small>
+                        </label>
                         {% endif %}
-					</div>
-             </fieldset>
-             <fieldset class="rounded px-3 mb-5">
-                <legend class="fieldset-label small text-black px-2 w-auto font-bolder">Payment</legend>
+                    </div>
+                </fieldset>
+                <fieldset class="rounded px-3 mb-5">
+                    <legend class="fieldset-label small text-black px-2 w-auto font-bolder">Payment</legend>
                     <!-- A Stripe card element will go here -->
                     <div class="mb-3" id="card-element"></div>
 
@@ -90,8 +104,8 @@
                     <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
                     <!-- Pass the client secret to the view so we can get the payment intent id -->
                     <input type="hidden" value="{{ client_secret }}" name="client_secret">
-              </fieldset>
-              <div class="submit-button text-right mt-5 mb-2">                    
+                </fieldset>
+                <div class="submit-button text-right mt-5 mb-2">
                     <a href="{% url 'shopping_bag' %}" class="btn btn-transparent rounded-0 btn-md">
                         <span class="icon">
                             <i class="fas fa-chevron-left"></i>
@@ -108,14 +122,14 @@
                         <span class="icon">
                             <i class="fas fa-exclamation-circle"></i>
                         </span>
-                        <p>Order Total: £{{ total | floatformat:2 }}</p>
-                        <p>Delivery cost: £{{ delivery | floatformat:2 }}</p>
-                        <span>Your card will be charged <strong>£{{ grand_total|floatformat:2 }}</strong></span>
+                    <p>Order Total: £{{ total | floatformat:2 }}</p>
+                    <p>Delivery cost: £{{ delivery | floatformat:2 }}</p>
+                    <span>Your card will be charged <strong>£{{ grand_total|floatformat:2 }}</strong></span>
                     </p>
-			  </div>
-        </form>
+                </div>
+            </form>
         </div>
-        
+
     </div>
     <div id="loading-overlay">
         <h1 class="text-light logo-font loading-spinner">
@@ -130,7 +144,7 @@
 
 {% block postload_js %}
 {{ block.super }}
- {{ stripe_public_key|json_script:"id_stripe_public_key" }}
- {{ client_secret|json_script:"id_client_secret" }}
- <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
+{{ stripe_public_key|json_script:"id_stripe_public_key" }}
+{{ client_secret|json_script:"id_client_secret" }}
+<script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 {% endblock %}
