@@ -27,7 +27,9 @@
         <h4 class="subtitle-heading font-bolder  mb-4 mt-2 accordion-button" data-bs-toggle="collapse"
             data-bs-target="#collapseDrink" aria-expanded="true" aria-controls="collapseDrink">
             Drinks
+            <img class="img-fluid" src="{{ MEDIA_URL }}drink.svg" alt="bread" width="30" height="30">
         </h4>
+        
     </div>
     <div id="collapseDrink" class="accordion-collapse collapse show row">
         {% for item in sides_and_drinks %}
@@ -104,7 +106,7 @@
                     {% csrf_token %}
                     <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
                         data-item_id="{{ item.id }}" id="id_item_{{ item.id }}">
-                    <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">{{request.session.items}}</button>
+                    <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
                 </form>
             </div>
@@ -118,6 +120,7 @@
         <h4 class="subtitle-heading font-bolder  mb-4 mt-2 accordion-button" data-bs-toggle="collapse"
             data-bs-target="#collapseSide" aria-expanded="true" aria-controls="collapseSide">
             Sides
+            <img class="img-fluid" src="{{ MEDIA_URL }}fries.svg" alt="bread" width="30" height="30">
         </h4>
     </div>
     <div id="collapseSide" class="accordion-collapse collapse show row">
@@ -195,7 +198,7 @@
                     {% csrf_token %}
                     <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
                         data-item_id="{{ item.id }}" id="id_item_{{ item.id }}">
-                    <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">{{request.session.items}}</button>
+                    <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
                 </form>
             </div>

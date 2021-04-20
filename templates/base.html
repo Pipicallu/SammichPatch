@@ -53,14 +53,14 @@
                 </a></div>
             <div class="col-12 col-lg-2 my-auto py-1 p-lg-0 text-end main-nav-item">
                 <div class="nav-item  dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="drinksAndSides" role="button"
+                    <a class="nav-link dropdown-toggle" href="{% url 'drinks_and_sides' %}" id="drinksAndSides" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <p class="font-bolder list-inline-item">Drinks & Sides</p>
                     </a>
                     <ul class="dropdown-menu border-0 " aria-labelledby="drinksAndSides">
-                        <li><a class="dropdown-item" href="#">Drinks</a></li>
-                        <li><a class="dropdown-item" href="#">Sides</a></li>
-                        <li><a class="dropdown-item" href="#">Sauces</a></li>
+                        <li><a class="dropdown-item" href="{% url 'drinks_and_sides' %}">Drinks</a></li>
+                        <li><a class="dropdown-item" href="{% url 'drinks_and_sides' %}">Sides</a></li>
+                        <li><a class="dropdown-item" href="{% url 'drinks_and_sides' %}">all</a></li>
                     </ul>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                     <div class="dropdown-menu border-0" aria-labelledby="user-options">
                         {% if request.user.is_authenticated %}
                         {% if request.user.is_superuser %}
-                        <a href="{% url 'add_ingredient' %}" class="dropdown-item">Product Management</a>
+                        <a href="{% url 'add_ingredient' %}" class="dropdown-item">Add Ingredient</a>
                         {% endif %}
                         <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
                         <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
