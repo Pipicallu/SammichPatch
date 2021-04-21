@@ -7,7 +7,7 @@ from django.conf import settings
 from django_countries.fields import CountryField
 from profiles.models import UserProfile
 
-from menu.models import Ingredients
+from menu.models import Ingredients, SidesAndDrinks
 
 
 class Order(models.Model):
@@ -38,15 +38,18 @@ class Order(models.Model):
 
     def update_total(self):
         """
-        Update grand total each time a line item is added,
+        Update grand total each time a order item or side item is added,
         accounting for delivery costs.
         """
         self.order_total = self.orderitems.aggregate(Sum('order_item_total'))['order_item_total__sum'] or 0
+        self.order_total += self.orderSideitems.aggregate(Sum('order_side_item_total'))['order_side_item_total__sum'] or 0
+        print("side total: " + str(self.orderSideitems.aggregate(Sum('order_side_item_total'))['order_side_item_total__sum']))
         if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
             self.delivery_cost = settings.STANDARD_DELIVERY_CHARGE
         else:
             self.delivery_cost = 0
         self.grand_total = self.order_total + self.delivery_cost
+        print("Update total result: " + str(self.grand_total))
         self.save()
 
     def save(self, *args, **kwargs):
@@ -56,7 +59,7 @@ class Order(models.Model):
         if not self.order_number:
             self.order_number = self._generate_order_number()
         super().save(*args, **kwargs)
-    
+
     def __str__(self):
         return self.order_number
 
@@ -77,3 +80,21 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f'SKU {self.ingredient.name} on order {self.order.order_number}'
+
+
+class OrderSideItem(models.Model):
+    order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='orderSideitems')
+    drink_side = models.ForeignKey(SidesAndDrinks, null=False, blank=False, on_delete=models.CASCADE)
+    quantity = models.IntegerField(null=False, blank=False, default=0)
+    order_side_item_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+
+    def save(self, *args, **kwargs):
+        """
+        Override the original save method to set the lineitem total
+        and update the order total.
+        """
+        self.order_side_item_total = self.drink_side.price * self.quantity
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f'{self.drink_side.name} on order {self.order.order_number}'

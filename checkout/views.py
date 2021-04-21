@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpR
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
-from .models import Order, OrderItem
-from menu.models import Ingredients
+from .models import Order, OrderItem, OrderSideItem
+from menu.models import Ingredients, SidesAndDrinks
 
 from .forms import OrderForm
 from profiles.models import UserProfile
@@ -54,29 +54,50 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
             order.save()
-            for item, values in bag.items():
-                for item_id, item_data in values.items():
-                    try:
-                        ingredient = Ingredients.objects.get(id=item_id)
-                        if isinstance(item_data, int):
-                            order_item = OrderItem(
-                                order=order,
-                                ingredient=ingredient,
-                                quantity=item_data,
-                            )
-                            order_item.save()
-                    except Ingredients.DoesNotExist:
-                        messages.error(request, (
-                                "One of the products in your bag wasn't found in our database. "
-                                "Please call us for assistance!")
-                            )
-                        order.delete()
-                        return redirect(reverse('view_bag'))
+            for key in bag.keys():
+                print(key)
+                item_first_part = key.split("_")[0]
+                for k, v in bag[key].items():
+                    print(k)
+                    if item_first_part == "item":
+                        try:
+                            ingredient = Ingredients.objects.get(id=k)
+                            if isinstance(v, int):
+                                order_item = OrderItem(
+                                    order=order,
+                                    ingredient=ingredient,
+                                    quantity=v,
+                                )
+                                order_item.save()
+                        except Ingredients.DoesNotExist:
+                            messages.error(request, (
+                                    "One of the products in your bag wasn't found in our database. "
+                                    "Please call us for assistance!")
+                                )
+                            order.delete()
+                            return redirect(reverse('view_bag'))
+                    else:
+                        try:
+                            drink_side = SidesAndDrinks.objects.get(id=k)
+                            if isinstance(v, int):
+                                order_item = OrderSideItem(
+                                    order=order,
+                                    drink_side=drink_side,
+                                    quantity=v,
+                                )
+                                order_item.save()
+                        except SidesAndDrinks.DoesNotExist:
+                            messages.error(request, (
+                                    "One of the products in your bag wasn't found in our database. "
+                                    "Please call us for assistance!")
+                                )
+                            order.delete()
+                            return redirect(reverse('view_bag'))
                 request.session['save_info'] = 'save-info' in request.POST
-                return redirect(reverse('checkout_success', args=[order.order_number]))
-            else:
-                messages.error(request, 'There was an error with your form. \
-                    Please double check your information.')
+            return redirect(reverse('checkout_success', args=[order.order_number]))
+        else:
+            messages.error(request, 'There was an error with your form. \
+                Please double check your information.')
     else:
         bag = request.session.get('bag', {})
         if not bag:

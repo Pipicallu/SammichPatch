@@ -2,8 +2,8 @@ from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
-from .models import Order, OrderItem
-from menu.models import Ingredients
+from .models import Order, OrderItem, OrderSideItem
+from menu.models import Ingredients, SidesAndDrinks
 from profiles.models import UserProfile, User
 
 import json
