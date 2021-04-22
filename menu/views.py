@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from .models import Ingredients, SidesAndDrinks, DietaryRequirements, Category
-from .forms import IngredientsForm
+from .forms import IngredientsForm, SidesAndDrinksForm
 
 
 def all_ingredients(request):
@@ -105,6 +105,31 @@ def add_ingredient(request):
     template = 'menu/add_ingredient.html'
     context = {
         'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def add_side_drink(request):
+    """Add a side or drink to the store"""
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only the store owners can do that.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        side_drink_form = SidesAndDrinksForm(request.POST, request.FILES)
+        if side_drink_form.is_valid():
+            side_drink_form.save()
+            messages.success(request, 'Successfully added your new item!')
+            return redirect(reverse('add_side_drink'))
+        else:
+            messages.error(request, 'Failed to add your new item. Please ensure the form is valid.')
+    else:
+        side_drink_form = SidesAndDrinksForm()
+    template = 'menu/add_side_drink.html'
+    context = {
+        'form': side_drink_form,
     }
 
     return render(request, template, context)
