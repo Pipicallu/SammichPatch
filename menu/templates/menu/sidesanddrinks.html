@@ -86,6 +86,12 @@
                         {% endif %}
                         {% endfor %}
                         {% endif %}
+                        {% if request.user.is_superuser %}
+                        <small class="ml-3">
+                            <a href="{% url 'edit_side_drink' item.id %}">Edit</a> |
+                            <a class="text-danger" href="{% url 'delete_side_drink' item.id %}">Delete</a>
+                        </small>
+                        {% endif %}
 
                     </div>
                     <div class="col text-end d-inline">
@@ -178,6 +184,12 @@
                         </button>
                         {% endif %}
                         {% endfor %}
+                        {% endif %}
+                        {% if request.user.is_superuser %}
+                        <small class="ml-3">
+                            <a href="{% url 'edit_side_drink' item.id %}">Edit</a> |
+                            <a class="text-danger" href="{% url 'delete_side_drink' item.id %}">Delete</a>
+                        </small>
                         {% endif %}
 
                     </div>

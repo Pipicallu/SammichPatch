@@ -165,13 +165,55 @@ def edit_ingredient(request, ingredient_id):
 
 
 @login_required
+def edit_side_drink(request, side_drink_id):
+    """ Edit a product in the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    side_drink = get_object_or_404(SidesAndDrinks, pk=side_drink_id)
+    if request.method == 'POST':
+        form = SidesAndDrinksForm(request.POST, request.FILES, instance=side_drink)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated item!')
+            return redirect(reverse('drinks_and_sides'))
+        else:
+            messages.error(request, 'Failed to update item. Please ensure the form is valid.')
+    else:
+        form = SidesAndDrinksForm(instance=side_drink)
+        messages.info(request, f'You are editing {side_drink.name}')
+
+    template = 'menu/edit_side_drink.html'
+    context = {
+        'form': form,
+        'side_drink': side_drink,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
 def delete_ingredient(request, ingredient_id):
     """ Delete a product from the store """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
-        
+
     ingredient = get_object_or_404(Ingredients, pk=ingredient_id)
     ingredient.delete()
     messages.success(request, f'Deleted ingredient: {ingredient.name}')
     return redirect(reverse('ingredients'))
+
+
+@login_required
+def delete_side_drink(request, side_drink_id):
+    """ Delete a product from the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    drink_side = get_object_or_404(SidesAndDrinks, pk=side_drink_id)
+    drink_side.delete()
+    messages.success(request, f'Deleted item: {side_drink.name}')
+    return redirect(reverse('drinks_and_sides'))
