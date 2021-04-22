@@ -58,9 +58,9 @@
                         <p class="font-bolder list-inline-item">Drinks & Sides</p>
                     </a>
                     <ul class="dropdown-menu border-0 " aria-labelledby="drinksAndSides">
-                        <li><a class="dropdown-item" href="{% url 'drinks_and_sides' %}">Drinks</a></li>
-                        <li><a class="dropdown-item" href="{% url 'drinks_and_sides' %}">Sides</a></li>
-                        <li><a class="dropdown-item" href="{% url 'drinks_and_sides' %}">all</a></li>
+                        <li><a class="dropdown-item" href="{% url 'drinks_and_sides' %}?category=drink">Drinks</a></li>
+                        <li><a class="dropdown-item" href="{% url 'drinks_and_sides' %}?category=side">Sides</a></li>
+                        <li><a class="dropdown-item" href="{% url 'drinks_and_sides' %}?category=side,drink">all</a></li>
                     </ul>
                 </div>
             </div>

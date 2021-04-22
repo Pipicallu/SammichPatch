@@ -51,6 +51,8 @@ def add_to_bag(request, item_id):
             del request.session['cheese_added']
             del request.session['spread_added']
             del request.session['sandwich']
+            
+
 
     elif not save_info or save_info == 'none' or save_info:
         if len(request.session.items()) == 7:
@@ -65,6 +67,7 @@ def add_to_bag(request, item_id):
             del request.session['cheese_added']
             del request.session['spread_added']
             del request.session['sandwich']
+            
 
     elif len(request.session.items()) == 6:
         itemNo = len(request.session['bag'])
@@ -78,6 +81,7 @@ def add_to_bag(request, item_id):
         del request.session['cheese_added']
         del request.session['spread_added']
         del request.session['sandwich']
+        
 
     return redirect(redirect_url)
 

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from .models import Ingredients, SidesAndDrinks, DietaryRequirements
+from .models import Ingredients, SidesAndDrinks, DietaryRequirements, Category
 from .forms import IngredientsForm
 
 
@@ -58,10 +58,15 @@ def all_ingredients(request):
 def all_drinks_all_sides(request):
     sort = None
     direction = None
+    category = None
     sides_and_drinks = SidesAndDrinks.objects.all()
     template = 'menu/sidesanddrinks.html'
 
     if request.GET:
+        if 'category' in request.GET:
+            categories = request.GET['category'].split(',')
+            sides_and_drinks = sides_and_drinks.filter(category__name__in=categories)
+
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
             sort = sortkey
