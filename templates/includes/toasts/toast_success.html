@@ -28,11 +28,19 @@
                             {% endif %}
                         </div>
                         <div class="col-9">
-                            <p class="my-0"><strong>{{ item.ingredient.name }}</strong></p>
-                            {% if not item.unit_subtotal%}
-                            <p class="my-0 small text-muted">price: {{ item.ingredient.price }}</p>
+                            {% if item.ingredient.name %}
+                                <p class="my-0"><strong>{{ item.ingredient.name }}</strong></p>
                             {% else %}
-                            <p class="my-2 small text-muted">Sandwich Subtotal: {{ item.unit_subtotal }}</p>
+                                <p class="my-0"><strong>{{ item.drink_side.name }}</strong></p>
+                            {% endif %}
+                            {% if not item.unit_subtotal%}
+                                {% if item.ingredient.price %}
+                                    <p class="my-0 small text-muted">price: {{ item.ingredient.price }}</p>
+                                {% else %}
+                                    <p class="my-0 small text-muted">price: {{ item.drink_side.price }}</p>
+                                {% endif %}
+                            {% else %}
+                                <p class="my-2 small text-muted">Sandwich Subtotal: {{ item.unit_subtotal }}</p>
                             {% endif %}
                         </div>
                     </div>

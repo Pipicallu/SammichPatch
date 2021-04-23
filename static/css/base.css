@@ -38,6 +38,18 @@ h1, h2, h3, h4 , h5, h6 {
     margin: 30px;
 }
 
+.mission-bg{
+    background: #F3E8DE;
+}
+
+.mission-text{
+    word-wrap: break-word;
+    padding: 0 100px;
+}
+
+.how-to-purchase-row{
+    height: 450px;
+}
 
 /*Navbar*/
 .main-nav-item{
@@ -113,7 +125,7 @@ a {
 }
 
 .delivery-text{
-    border: 3px solid #000;
+    box-shadow: 1px 1px 7px #80808061;
     width: fit-content;
     margin: 24px auto;
     padding: 18px;
@@ -144,9 +156,8 @@ a {
 
 
 .subtitle-heading{
-    border-bottom: 2px solid #000!important;
-    border-top: 2px solid #000!important;
     padding: 10px;
+    box-shadow: 1px 1px 7px #80808061;
 }
 
 .category-styling{

@@ -15,22 +15,61 @@
     <div class="row hero-row ">
         <div class="col">
             <h4 class="tag-line font-bolder my-5">The perfect sandwich is waiting.</h4>
-            <div class="outer-frame">
+            <div class="outer-frame category-styling">
                 <div class="inner-frame">
                     <div class="sammich-undone-img img-fluid"></div>
-                    <a href="{% url 'ingredients' %}" class="btn btn-transparent make-it-now-btn font-bolder rounded-0">make it now.</a>
+                    <a data-aos="zoom-in" href="{% url 'ingredients' %}"
+                        class="btn btn-transparent make-it-now-btn font-bolder rounded-0">make it now.</a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row how-to-purchase-row">
-        <hr>
-        <div class="col-lg"></div>
-        <div class="col-lg"></div>
-        <div class="col-lg"></div>
-        <div class="col-lg"></div>
-        <div class="col-lg"></div>
-        <hr>
+    <div class="row how-to-purchase-row m-5">
+        <div id="how-to-order ">
+            <h4 class="tag-line font-bolder my-3">Ordering is as simple as:</h4>
+        </div>
+        <div class="col-lg">
+            <img data-aos="fade-up" src="{{MEDIA_URL}}bread.svg" class="mx-4 my-0" width="100" alt="bread">
+            <i class="fas fa-plus"></i>
+            <img data-aos="fade-up" data-aos-delay="500" src="{{MEDIA_URL}}filling.svg" class="mx-4 my-0" width="90"
+                alt="filling">
+            <i class="fas fa-plus"></i>
+            <img data-aos="fade-up" data-aos-delay="1000" src="{{MEDIA_URL}}cheese.svg" class="mx-4 my-0" width="90"
+                alt="cheese">
+            <i class="fas fa-plus"></i>
+            <img data-aos="fade-up" data-aos-delay="1500" src="{{MEDIA_URL}}salad.svg" class="mx-4 my-0" width="90"
+                alt="salad">
+            <i class="fas fa-plus"></i>
+            <img data-aos="fade-up" data-aos-delay="2000" src="{{MEDIA_URL}}drink.svg" class="mx-4 my-0" width="90"
+                alt="drink">
+            <i class="fas fa-plus"></i>
+            <img data-aos="fade-up" data-aos-delay="2500" src="{{MEDIA_URL}}fries.svg" class="mx-4 my-0" width="90"
+                alt="side">
+            <i class="fas fa-equals"></i>
+            <img data-aos="fade-up" data-aos-delay="3000" src="{{MEDIA_URL}}truck.svg" class="mx-4 my-0" width="90"
+                alt="side">
+        </div>
+    </div>
+    <div class="row">
+        <div class="mission-statement mission-bg col-7">
+            <div>
+                <h4 class="tag-line font-bolder my-5">We love Sandwiches.</h4>
+            </div>
+            <div class="font-bolder mission-text">
+                AND APPARENTLY SO DID THIS GUY...
+                <br>
+                <br>
+                LADIES AND GENTLEMEN, A WARM WELCOME TO NONE OTHER THAN JOHN MONTAGU, 4TH, ALSO KNOWN BY HIS TITLE, THE
+                EARL OF SANDWICH.
+                <br>
+                <br>
+                WE AT SAMMICH PATCH SALUTE YOU SIR! AND VOW TO UPHOLD YOUR MOST NOBLEST LEGACY. FOR NEVER SHALL THERE BE
+                A FOODSTUFF THAT CAN’T BE IMPROVED WHEN PLACED BETWIXT TWO PIECES OF EVENLY SLICED BREAD. GODSPEED.
+            </div>
+        </div>
+        <div class="p-0 col-5">
+            <img data-aos="fade-left" data-aos-delay="1000" class=" img-fluid" src="{{MEDIA_URL}}John_Montagu.jpg" alt="John_Montagu" >
+        </div>
     </div>
 </div>
 {% endblock %}
