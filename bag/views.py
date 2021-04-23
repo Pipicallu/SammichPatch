@@ -112,6 +112,7 @@ def add_side_to_bag(request, item_id):
             else:
                 bag[f'side_{str(itemNo)}_replacement'] = drink_side
         del request.session['drink_side']
+        messages.success(request, 'New item added to bag.')
 
     return redirect(redirect_url)
 

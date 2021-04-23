@@ -16,15 +16,15 @@
             <h3 class="font-bolder p-3 mt-4 mb-0"><i class="fas fa-crown gold-color"></i> Fries with that? <i
                     class="fas fa-crown gold-color"></i></h3>
             <a href="{% url 'drinks_and_sides' %}?sort=price&direction=asc"
-                class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">price <i
+                class="sort-button btn btn-transparent btn-filter font-bolder">price <i
                     class="fas fa-arrow-down"></i></a>
             <a href="{% url 'drinks_and_sides' %}?sort=price&direction=desc"
-                class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">price <i
+                class="sort-button btn btn-transparent btn-filter font-bolder">price <i
                     class="fas fa-arrow-up"></i></a>
         </div>
         <!--drink-->
         <div id="drink" class="row mt-3 accordion-item">
-            <h4 class="subtitle-heading font-bolder  mb-4 mt-2 accordion-button" data-bs-toggle="collapse"
+            <h4 class="category-styling font-bolder  mb-4 mt-2 accordion-button" data-bs-toggle="collapse"
                 data-bs-target="#collapseDrink" aria-expanded="true" aria-controls="collapseDrink">
                 Drinks
                 <img class="img-fluid" src="{{ MEDIA_URL }}drink.svg" alt="bread" width="30" height="30">
@@ -46,7 +46,7 @@
                         <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.name }}">
                         {% endif %}
                         <!--modal-->
-                        <div class="modal rounded-0 fade" id="myModal{{forloop.counter0}}" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="myModal{{forloop.counter0}}" tabindex="-1" role="dialog"
                             aria-labelledby="myModal" aria-hidden="true">
                             <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
@@ -113,7 +113,7 @@
                     {% csrf_token %}
                     <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
                         data-item_id="{{ item.id }}" id="id_item_{{ item.id }}">
-                    <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
+                    <button type="submit" class="btn btn-transparent make-it-now-btn"><i class="fas fa-plus"></i></button>
                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
                 </form>
             </div>
@@ -124,7 +124,7 @@
 
         <!--sides-->
         <div id="side" class="row mt-3 accordion-item">
-            <h4 class="subtitle-heading font-bolder  mb-4 mt-2 accordion-button" data-bs-toggle="collapse"
+            <h4 class="category-styling font-bolder  mb-4 mt-2 accordion-button" data-bs-toggle="collapse"
                 data-bs-target="#collapseSide" aria-expanded="true" aria-controls="collapseSide">
                 Sides
                 <img class="img-fluid" src="{{ MEDIA_URL }}fries.svg" alt="bread" width="30" height="30">
@@ -145,7 +145,7 @@
                         <img class="ingred-img img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.name }}">
                         {% endif %}
                         <!--modal-->
-                        <div class="modal rounded-0 fade" id="myModal{{forloop.counter0}}" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="myModal{{forloop.counter0}}" tabindex="-1" role="dialog"
                             aria-labelledby="myModal" aria-hidden="true">
                             <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
@@ -212,7 +212,7 @@
                     {% csrf_token %}
                     <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
                         data-item_id="{{ item.id }}" id="id_item_{{ item.id }}">
-                    <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
+                    <button type="submit" class="btn btn-transparent make-it-now-btn"><i class="fas fa-plus"></i></button>
                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
                 </form>
             </div>

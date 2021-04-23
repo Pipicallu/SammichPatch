@@ -46,6 +46,15 @@ h1, h2, h3, h4 , h5, h6 {
 
 }
 
+.dropdown-menu{
+    box-shadow: 1px 1px 7px #80808061;
+   
+}
+
+.dropdown-item{
+     font-weight: bold;
+}
+
 
 a { 
     color: inherit;
@@ -68,9 +77,10 @@ a {
 }
 
 .btn-transparent {
-    background: transparent;
-    color: black;
-    border: 3px solid black;
+   background: transparent;
+   color: black;
+   box-shadow: 2px 1px 7px #80808061;
+   border-radius: 1px;
 }
 
 .make-sammich-button:hover,
@@ -117,10 +127,11 @@ a {
 }
 
 .ingredient-card{
-    border-top: 2px solid #000;
-    border-bottom: 2px solid #000;
     height: fit-content;
+    background: #F3E8DE;
+    box-shadow: 1px 1px 7px #80808061;
 }
+
 
 .ingredient-price{
     font-weight: bolder;
@@ -137,6 +148,12 @@ a {
     border-top: 2px solid #000!important;
     padding: 10px;
 }
+
+.category-styling{
+    padding: 10px;
+    box-shadow: 1px 1px 7px #80808061;
+}
+
 
 .gold-color{
     color: #f3af38;
@@ -178,6 +195,11 @@ a {
     border-width: 0 1px;
 }
 
+.accordion-button.collapsed {
+    border-bottom-width: 0;
+    border: 3px solid #48ba4347;
+}
+
 /*modal*/
 
 .modal-content {
@@ -209,6 +231,16 @@ a {
 .sammich-tile-bg{
     border: 3px solid black!important;
     background: #75be3c;
+}
+
+.drink-tile-bg{
+    border: 3px solid black!important;
+    background: #46b6ad;
+}
+
+.side-tile-bg{
+    border: 3px solid black!important;
+    background: #f45429;
 }
 
 .text-small{

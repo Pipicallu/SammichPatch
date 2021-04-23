@@ -40,10 +40,9 @@ def bag_contents(request):
                 })
         bag_items.append({
           'unit_id': item,
-          'unit_subtotal': total - previous_total,  
+          'unit_subtotal': total - previous_total,
         })
         previous_total = total
-
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = settings.STANDARD_DELIVERY_CHARGE

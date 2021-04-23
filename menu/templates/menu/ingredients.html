@@ -17,35 +17,35 @@
             <h3 class="font-bolder p-3 mt-4 mb-0"><i class="fas fa-crown gold-color"></i> Make your sandwich <i
                     class="fas fa-crown gold-color"></i></h3>
             <a href="{% url 'ingredients' %}?sort=price&direction=asc&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
-                class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">price <i
+                class="sort-button btn btn-transparent  btn-filter font-bolder">price <i
                     class="fas fa-arrow-down"></i></a>
             <a href="{% url 'ingredients' %}?sort=price&direction=desc&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
-                class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">price <i
+                class="sort-button btn btn-transparent  btn-filter font-bolder">price <i
                     class="fas fa-arrow-up"></i></a>
 
             <a href="{% url 'ingredients' %}?is_vegetarian={{is_vegetarian | yesno:'False,True'}}"
-                class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">Show
+                class="sort-button btn btn-transparent  btn-filter font-bolder">Show
                 {{is_vegetarian| yesno:'Full Menu, Veggie Menu'}}</a>
         </div>
     </div>
     <!--bread-->
     <div class="row mt-3 accordion-item">
-        <h4 class="subtitle-heading accordion-button font-bolder mb-4 mt-2" data-bs-toggle="collapse"
+        <h4 class="category-styling accordion-button font-bolder mb-4 mt-2" data-bs-toggle="collapse"
             data-bs-target="#collapseBread" aria-expanded="true" aria-controls="collapseBread">
             bread
             <img class="img-fluid" src="{{ MEDIA_URL }}bread.svg" alt="bread" width="30" height="30">
             <span class="sort-button-cluster">
                 <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'_free'}}&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
-                    class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder"><img class="img-fluid icon"
+                    class="sort-button btn btn-transparent  btn-filter font-bolder"><img class="img-fluid icon"
                         src="{{ MEDIA_URL }}gluten.svg" alt="wheat" width="15" height="15"> <span
                         class="d-md-none d-lg-inline">gluten</span></a>
                 <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|slice:'7:'}}&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
-                    class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder"><img class="img-fluid icon"
+                    class="sort-button btn btn-transparent  btn-filter font-bolder"><img class="img-fluid icon"
                         src="{{ MEDIA_URL }}gluten_free.svg" alt="gluten free" width="15" height="15"> <span
                         class="d-md-none d-lg-inline">gluten free</span>
                 </a>
                 <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'halal/kosher'}}&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
-                    class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">
+                    class="sort-button btn btn-transparent  btn-filter font-bolder">
                     <img class="img-fluid icon" src="{{ MEDIA_URL }}gluten.svg" alt="gluten" width="15" height="15">
                     <img class="img-fluid icon" src="{{ MEDIA_URL }}gluten_free.svg" alt="gluten free" width="15"
                         height="15"> <span class="d-md-none d-lg-inline">all</span></a>
@@ -76,7 +76,7 @@
                         </a>
                         {% endif %}
                         <!--modal-->
-                        <div class="modal rounded-0 fade" id="myModal{{forloop.counter0}}" tabindex="-1" role="dialog"
+                        <div class="modal  fade" id="myModal{{forloop.counter0}}" tabindex="-1" role="dialog"
                             aria-labelledby="myModal" aria-hidden="true">
                             <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
@@ -141,12 +141,12 @@
                     <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
                         data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
                     {% if not request.session.sandwich %}
-                    <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
+                    <button type="submit" class="btn btn-transparent make-it-now-btn "><i class="fas fa-plus"></i></button>
                     {% else %}
                     {% if request.session.bread_added %}
-                    <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0" disabled>+</button>
+                    <button type="submit" class="btn btn-transparent make-it-now-btn " disabled><i class="fas fa-plus"></i></button>
                     {% else %}
-                    <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
+                    <button type="submit" class="btn btn-transparent make-it-now-btn "><i class="fas fa-plus"></i></button>
                     {% endif %}
                     {% endif %}
                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
@@ -155,7 +155,7 @@
                     {% csrf_token %}
                     <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
                         data-item_id="{{ ingredient.id }}" id="id_remove_ingred_{{ ingredient.id }}">
-                    <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">-</button>
+                    <button type="submit" class="btn btn-transparent make-it-now-btn "><i class="fas fa-minus"></i></button>
                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
                 </form>
             </div>
@@ -165,40 +165,40 @@
 
         <!--filling-->
         <div class="row mt-3 accordion-item">
-            <h4 id="fillings" class="subtitle-heading font-bolder  mb-4 mt-2 accordion-button" data-bs-toggle="collapse"
+            <h4 id="fillings" class="category-styling font-bolder  mb-4 mt-2 accordion-button" data-bs-toggle="collapse"
                 data-bs-target="#collapseFilling" aria-expanded="true" aria-controls="collapseFilling">
                 Filling
                 <img class=" img-fluid" src="{{ MEDIA_URL }}filling.svg" alt="filling" width="30" height="30">
                 <span class="sort-button-cluster">
                     <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'pork'|cut:'beef'|cut:'poultry'}}&goto=fillings&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
-                        class="sort-button) focus-button btn btn-transparent rounded-0 btn-filter font-bolder">
+                        class="sort-button) focus-button btn btn-transparent  btn-filter font-bolder">
                         <img class="img-fluid icon" src="{{ MEDIA_URL }}kosher_emoji.svg" alt="kosher" width="15"
                             height="15">
                         <img class="img-fluid icon" src="{{ MEDIA_URL }}halal_emoji.svg" alt="halal" width="15"
                             height="15"><span class="d-md-none d-lg-inline">halal/kosher</span></a>
                     <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'pork'|cut:'vegan'|cut:'poultry'|cut:'halal/kosher'|cut:'fish'}}&goto=fillings&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
-                        class="sort-button focus-button btn btn-transparent rounded-0 btn-filter font-bolder"><img
+                        class="sort-button focus-button btn btn-transparent  btn-filter font-bolder"><img
                             class="img-fluid icon" src="{{ MEDIA_URL }}cow_emoji.png" alt="beef" width="15" height="15">
                         <span class="d-md-none d-lg-inline">beef</span>
                     </a>
                     <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'beef'|cut:'vegan'|cut:'poultry'|cut:'halal/kosher'|cut:'fish'}}&goto=fillings&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
-                        class="sort-button focus-button btn btn-transparent rounded-0 btn-filter font-bolder"><img
+                        class="sort-button focus-button btn btn-transparent  btn-filter font-bolder"><img
                             class="img-fluid icon" src="{{ MEDIA_URL }}pig_emoji.png" alt="beef" width="15" height="15">
                         <span class="d-md-none d-lg-inline">pork</span>
                     </a>
                     <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'beef'|cut:'vegan'|cut:'pork'|cut:'halal/kosher'|cut:'fish'}}&goto=fillings&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
-                        class="sort-button focus-button btn btn-transparent rounded-0 btn-filter font-bolder"><img
+                        class="sort-button focus-button btn btn-transparent  btn-filter font-bolder"><img
                             class="img-fluid icon" src="{{ MEDIA_URL }}chicken_emoji.png" alt="beef" width="15"
                             height="15">
                         <span class="d-md-none d-lg-inline">poultry</span>
                     </a>
                     <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'beef'|cut:'poultry'|cut:'pork'|cut:'halal/kosher'|cut:'fish'}}&goto=fillings&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
-                        class="sort-button focus-button btn btn-transparent rounded-0 btn-filter font-bolder"><img
+                        class="sort-button focus-button btn btn-transparent  btn-filter font-bolder"><img
                             class="img-fluid icon" src="{{ MEDIA_URL }}vegan.svg" alt="beef" width="15" height="15">
                         <span class="d-md-none d-lg-inline">vegan</span>
                     </a>
                     <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'halal/kosher'}}&goto=fillings&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
-                        class="sort-button focus-button btn btn-transparent rounded-0 btn-filter font-bolder">
+                        class="sort-button focus-button btn btn-transparent  btn-filter font-bolder">
                         <img class="img-fluid icon" src="{{ MEDIA_URL }}sandwich.svg" alt="gluten" width="15"
                             height="15">
                         <span class="d-md-none d-lg-inline">all</span></a>
@@ -230,7 +230,7 @@
                             </a>
                             {% endif %}
                             <!--modal-->
-                            <div class="modal rounded-0 fade" id="myModal{{forloop.counter0}}" tabindex="-1"
+                            <div class="modal  fade" id="myModal{{forloop.counter0}}" tabindex="-1"
                                 role="dialog" aria-labelledby="myModal" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
@@ -322,12 +322,12 @@
                         <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
                             data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
                         {% if not request.session.sandwich %}
-                        <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
+                        <button type="submit" class="btn btn-transparent make-it-now-btn "><i class="fas fa-plus"></i></button>
                         {% else %}
                         {% if request.session.filling_added %}
-                        <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0" disabled>+</button>
+                        <button type="submit" class="btn btn-transparent make-it-now-btn " disabled><i class="fas fa-plus"></i></button>
                         {% else %}
-                        <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
+                        <button type="submit" class="btn btn-transparent make-it-now-btn "><i class="fas fa-plus"></i></button>
                         {% endif %}
                         {% endif %}
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
@@ -336,7 +336,7 @@
                         {% csrf_token %}
                         <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
                             data-item_id="{{ ingredient.id }}" id="id_remove_ingred_{{ ingredient.id }}">
-                        <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">-</button>
+                        <button type="submit" class="btn btn-transparent make-it-now-btn "><i class="fas fa-minus"></i></button>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </form>
                 </div>
@@ -347,19 +347,19 @@
             </div>
             <!--cheese-->
             <div id="cheese" class="row mt-3 accordion-item">
-                <h4 class="subtitle-heading font-bolder  mb-4 mt-2 accordion-button" data-bs-toggle="collapse"
+                <h4 class="category-styling font-bolder  mb-4 mt-2 accordion-button" data-bs-toggle="collapse"
                     data-bs-target="#collapseCheese" aria-expanded="true" aria-controls="collapseCheese">
                     Cheese
                     <img class=" img-fluid" src="{{ MEDIA_URL }}cheese.svg" alt="cheese" width="30" height="30">
                     <span class="sort-button-cluster">
                         <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'dairy'}}&goto=cheese"
-                            class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder"><img
+                            class="sort-button btn btn-transparent  btn-filter font-bolder"><img
                                 class="img-fluid icon" src="{{ MEDIA_URL }}vegan.svg" alt="beef" width="15" height="15">
                             <span class="d-md-none d-lg-inline">vegan</span>
 
                         </a>
                         <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'halal/kosher'}}&goto=cheese"
-                            class="sort-button btn btn-transparent rounded-0 btn-filter font-bolder">
+                            class="sort-button btn btn-transparent  btn-filter font-bolder">
                             <img class="img-fluid icon" src="{{ MEDIA_URL }}sandwich.svg" alt="gluten" width="15"
                                 height="15">
                             <span class="d-md-none d-lg-inline">all</span></a>
@@ -392,7 +392,7 @@
                                 </a>
                                 {% endif %}
                                 <!--modal-->
-                                <div class="modal rounded-0 fade" id="myModal{{forloop.counter0}}" tabindex="-1"
+                                <div class="modal  fade" id="myModal{{forloop.counter0}}" tabindex="-1"
                                     role="dialog" aria-labelledby="myModal" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
@@ -459,16 +459,16 @@
                                 data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
                             {% if not request.session.sandwich %}
                             <a href="{% url 'ingredients' %}?goto=cheese">
-                                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
+                                <button type="submit" class="btn btn-transparent make-it-now-btn "><i class="fas fa-plus"></i></button>
                             </a>
                             {% else %}
                             {% if request.session.cheese_added %}
                             <a href="{% url 'ingredients' %}?goto=cheese">
-                                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0"
-                                    disabled>+</button>
+                                <button type="submit" class="btn btn-transparent make-it-now-btn "
+                                    disabled><i class="fas fa-plus"></i></button>
                             </a>
                             {% else %}
-                            <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
+                            <button type="submit" class="btn btn-transparent make-it-now-btn "><i class="fas fa-plus"></i></button>
                             {% endif %}
                             {% endif %}
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
@@ -477,7 +477,7 @@
                             {% csrf_token %}
                             <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
                                 data-item_id="{{ ingredient.id }}" id="id_remove_ingred_{{ ingredient.id }}">
-                            <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">-</button>
+                            <button type="submit" class="btn btn-transparent make-it-now-btn "><i class="fas fa-minus"></i></button>
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
                         </form>
                     </div>
@@ -486,7 +486,7 @@
                 </div>
                 <!--salad-->
                 <div id="salad" class="row mt-3 accordion-item">
-                    <h4 class="subtitle-heading font-bolder  mb-4 mt-2 accordion-button" data-bs-toggle="collapse"
+                    <h4 class="category-styling font-bolder  mb-4 mt-2 accordion-button" data-bs-toggle="collapse"
                         data-bs-target="#collapseSalad" aria-expanded="true" aria-controls="collapseSalad">
                         salad
                         <img class=" img-fluid" src="{{ MEDIA_URL }}salad.svg" alt="salad" width="30" height="30">
@@ -512,7 +512,7 @@
                                 </a>
                                 {% endif %}
                                 <!--modal-->
-                                <div class="modal rounded-0 fade" id="myModal{{forloop.counter0}}" tabindex="-1"
+                                <div class="modal  fade" id="myModal{{forloop.counter0}}" tabindex="-1"
                                     role="dialog" aria-labelledby="myModal" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
@@ -604,10 +604,10 @@
                             <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
                                 data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
                             {% if ingredient.id|stringformat:"i" in request.session.sandwich.keys%}
-                            <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0"
-                                disabled>+</button>
+                            <button type="submit" class="btn btn-transparent make-it-now-btn "
+                                disabled><i class="fas fa-plus"></i></button>
                             {% else %}
-                            <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
+                            <button type="submit" class="btn btn-transparent make-it-now-btn "><i class="fas fa-plus"></i></button>
                             {% endif %}
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
                         </form>
@@ -615,7 +615,7 @@
                             {% csrf_token %}
                             <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
                                 data-item_id="{{ ingredient.id }}" id="id_remove_ingred_{{ ingredient.id }}">
-                            <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">-</button>
+                            <button type="submit" class="btn btn-transparent make-it-now-btn "><i class="fas fa-minus"></i></button>
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
                         </form>
                     </div>
@@ -624,7 +624,7 @@
                 </div>
                 <!--spread-->
                 <div class="row mt-3 accordion-item">
-                    <h4 class="subtitle-heading font-bolder mb-4 mt-2 accordion-button" data-bs-toggle="collapse"
+                    <h4 class="category-styling font-bolder mb-4 mt-2 accordion-button" data-bs-toggle="collapse"
                         data-bs-target="#collapseSpread" aria-expanded="true" aria-controls="collapseSpread">
                         spread
                         <img class=" img-fluid" src="{{ MEDIA_URL }}sauce.svg" alt="sauce" width="30" height="30">
@@ -654,7 +654,7 @@
                                     </a>
                                     {% endif %}
                                     <!--modal-->
-                                    <div class="modal rounded-0 fade" id="myModal{{forloop.counter0}}" tabindex="-1"
+                                    <div class="modal  fade" id="myModal{{forloop.counter0}}" tabindex="-1"
                                         role="dialog" aria-labelledby="myModal" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
@@ -723,13 +723,13 @@
                                 <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
                                     data-item_id="{{ ingredient.id }}" id="id_ingred_{{ ingredient.id }}">
                                 {% if not request.session.sandwich %}
-                                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
+                                <button type="submit" class="btn btn-transparent make-it-now-btn "><i class="fas fa-plus"></i></button>
                                 {% else %}
                                 {% if request.session.spread_added %}
-                                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0"
-                                    disabled>+</button>
+                                <button type="submit" class="btn btn-transparent make-it-now-btn "
+                                    disabled><i class="fas fa-plus"></i></button>
                                 {% else %}
-                                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">+</button>
+                                <button type="submit" class="btn btn-transparent make-it-now-btn "><i class="fas fa-plus"></i></button>
                                 {% endif %}
                                 {% endif %}
                                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
@@ -738,7 +738,7 @@
                                 {% csrf_token %}
                                 <input class="form-control" type="hidden" name="quantity" value="1" min="1" max="99"
                                     data-item_id="{{ ingredient.id }}" id="id_remove_ingred_{{ ingredient.id }}">
-                                <button type="submit" class="btn btn-transparent make-it-now-btn rounded-0">-</button>
+                                <button type="submit" class="btn btn-transparent make-it-now-btn "><i class="fas fa-minus"></i></button>
                                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
                             </form>
                         </div>

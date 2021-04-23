@@ -16,21 +16,23 @@
             <div class="bag-notification-wrapper">
                 {% with bag_items|last as last %}
                 {% for item in bag_items %}
-                {% if item.sandwich_id == last.sandwich_id %}
+                {% if item.unit_id == last.unit_id %}
                     <div class="row">
                         <div class="col-3 my-1">
                             {% if item.ingredient.image %}
                             <img class="w-100" src="{{ item.ingredient.image.url }}" alt="{{ item.ingredient.name }}">
+                            {% elif item.drink_side.image %}
+                            <img class="w-100" src="{{ item.drink_side.image.url }}" alt="{{ item.drink_side.name }}">
                             {% else %}
-                            <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                    
                             {% endif %}
                         </div>
                         <div class="col-9">
                             <p class="my-0"><strong>{{ item.ingredient.name }}</strong></p>
-                            {% if not item.sandwich_subtotal%}
+                            {% if not item.unit_subtotal%}
                             <p class="my-0 small text-muted">price: {{ item.ingredient.price }}</p>
                             {% else %}
-                             <p class="my-2 small text-muted">Sandwich Subtotal: {{ item.sandwich_subtotal }}</p>
+                            <p class="my-2 small text-muted">Sandwich Subtotal: {{ item.unit_subtotal }}</p>
                             {% endif %}
                         </div>
                     </div>
