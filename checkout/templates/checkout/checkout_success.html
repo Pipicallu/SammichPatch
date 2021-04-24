@@ -60,11 +60,23 @@
                         <div class="col-12 col-md-4">
                             <p class="small mb-0  font-bolder">
                                 {{ item.ingredient.name }}
-                                
                             </p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
                             <p class="small mb-0">£{{ item.ingredient.price }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                    {% for item in order.orderSideitems.all %}
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <p class="small mb-0  font-bolder">
+                                {{ item.drink_side.name }}
+                            </p>
+                        </div>
+                        <div class="col-12 col-md-8 text-md-right">
+                            <p class="small mb-0">£{{ item.drink_side.price }}</p>
                         </div>
                     </div>
                     {% endfor %}

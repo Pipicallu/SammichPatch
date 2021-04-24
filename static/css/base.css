@@ -45,6 +45,7 @@ h1, h2, h3, h4 , h5, h6 {
 .mission-text{
     word-wrap: break-word;
     padding: 0 100px;
+    padding-bottom: 60px;
 }
 
 .how-to-purchase-row{

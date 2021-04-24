@@ -37,39 +37,16 @@ def add_to_bag(request, item_id):
 
     save_info = request.session.get('save_info')
     request.session['save_info'] = save_info
+    bread_added = request.session.get('bread_added')
+    request.session['bread_added'] = bread_added
+    filling_added = request.session.get('filling_added')
+    request.session['filling_added'] = filling_added
+    cheese_added = request.session.get('cheese_added')
+    request.session['cheese_added'] = cheese_added
+    spread_added = request.session.get('spread_added')
+    request.session['spread_added'] = spread_added
 
-    if request.user.is_authenticated:
-        if len(request.session.items()) == 11:
-            itemNo = len(request.session['bag'])
-            if f'item_{str(itemNo)}' not in request.session['bag']:
-                bag[f'item_{str(itemNo)}'] = sandwich
-            else:
-                bag[f'item_{str(itemNo)}_replacement'] = sandwich
-            messages.success(request, 'New sandwich successfully added to bag.')
-            del request.session['bread_added']
-            del request.session['filling_added']
-            del request.session['cheese_added']
-            del request.session['spread_added']
-            del request.session['sandwich']
-            
-
-
-    elif not save_info or save_info == 'none' or save_info:
-        if len(request.session.items()) == 7:
-            itemNo = len(request.session['bag'])
-            if f'item_{str(itemNo)}' not in request.session['bag']:
-                bag[f'item_{str(itemNo)}'] = sandwich
-            else:
-                bag[f'item_{str(itemNo)}_replacement'] = sandwich
-            messages.success(request, 'New sandwich successfully added to bag.')
-            del request.session['bread_added']
-            del request.session['filling_added']
-            del request.session['cheese_added']
-            del request.session['spread_added']
-            del request.session['sandwich']
-            
-
-    elif len(request.session.items()) == 6:
+    if bread_added and filling_added and cheese_added and spread_added:
         itemNo = len(request.session['bag'])
         if f'item_{str(itemNo)}' not in request.session['bag']:
             bag[f'item_{str(itemNo)}'] = sandwich
@@ -81,7 +58,6 @@ def add_to_bag(request, item_id):
         del request.session['cheese_added']
         del request.session['spread_added']
         del request.session['sandwich']
-        
 
     return redirect(redirect_url)
 
