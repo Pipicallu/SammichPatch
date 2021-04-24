@@ -68,3 +68,10 @@ select:invalid,
 select option[value=""] {
     color: #aab7c4 !important;
 }
+
+/* checkout success */
+
+.order-confirmation-wrapper{
+    border: 7px double #def3e7;
+    box-shadow: 4px 8px 6px #cecece;
+}

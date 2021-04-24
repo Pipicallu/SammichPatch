@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container subtitle-row">
+<div class="container menu-border subtitle-row">
     <div class="row">
         <div class="col text-center">
             <h3 class="font-bolder p-3 mt-4 mb-0"><i class="fas fa-crown gold-color"></i> Fries with that? <i
@@ -95,14 +95,7 @@
 
                     </div>
                     <div class="col text-end d-inline">
-                        <p class="card-text">Quantity</p>
-                        <div>
-                            {% if item.id|stringformat:"i" in request.session.sandwich.keys%}
-                            <p class="font-bolder item-quantity"> x 1 </p>
-                            {% else %}
-                            <p></p>
-                            {% endif %}
-                        </div>
+                        <p class="card-text">price</p>
                         <p class="ingredient-price">£{{item.price}}</p>
                     </div>
                 </div>
@@ -194,14 +187,7 @@
 
                     </div>
                     <div class="col text-end d-inline">
-                        <p class="card-text">Quantity</p>
-                        <div>
-                            {% if item.id|stringformat:"i" in request.session.sandwich.keys%}
-                            <p class="font-bolder item-quantity"> x 1 </p>
-                            {% else %}
-                            <p></p>
-                            {% endif %}
-                        </div>
+                        <p class="card-text">price</p>
                         <p class="ingredient-price">£{{item.price}}</p>
                     </div>
                 </div>

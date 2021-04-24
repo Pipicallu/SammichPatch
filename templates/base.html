@@ -35,9 +35,9 @@
         integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <script src="https://kit.fontawesome.com/ac8551d6f8.js" crossorigin="anonymous"></script>
-        <!--Stripe-->
-        <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://kit.fontawesome.com/ac8551d6f8.js" crossorigin="anonymous"></script>
+    <!--Stripe-->
+    <script src="https://js.stripe.com/v3/"></script>
     {% endblock %}
 
     {% block extra_js %}
@@ -50,19 +50,21 @@
     <!--Page header-->
     <header class="container  header-container fixed-top text-center">
         <div id="topnav" class="row pt-lg-3 text-center d-flex">
-            <div class="col-12 col-lg-3 my-auto  py-1  text-end main-nav-item "><a href="{% url 'ingredients' %}" class="nav-link">
+            <div class="col-12 col-lg-3 my-auto  py-1  text-end main-nav-item "><a href="{% url 'ingredients' %}"
+                    class="nav-link">
                     <p class="font-bolder">Sandwiches</p>
                 </a></div>
             <div class="col-12 col-lg-2 my-auto py-1  text-end main-nav-item">
                 <div class="nav-item  dropdown">
-                    <a class="nav-link dropdown-toggle" href="{% url 'drinks_and_sides' %}" id="drinksAndSides" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="{% url 'drinks_and_sides' %}" id="drinksAndSides"
+                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <p class="font-bolder list-inline-item">Drinks & Sides</p>
                     </a>
-                    <ul class="dropdown-menu border-0 " aria-labelledby="drinksAndSides">
+                    <ul class="dropdown-menu " aria-labelledby="drinksAndSides">
                         <li><a class="dropdown-item" href="{% url 'drinks_and_sides' %}?category=drink">Drinks</a></li>
                         <li><a class="dropdown-item" href="{% url 'drinks_and_sides' %}?category=side">Sides</a></li>
-                        <li><a class="dropdown-item" href="{% url 'drinks_and_sides' %}?category=side,drink">all</a></li>
+                        <li><a class="dropdown-item" href="{% url 'drinks_and_sides' %}?category=side,drink">all</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -70,7 +72,7 @@
                 <a href="{% url 'home' %}" class=" main-logo-link"><img src="{% static 'logo/SammichPatchLogo.svg' %}"
                         width="120" height="120" alt=""></a>
             </div>
-            <div class="col-12 col-lg-1 my-auto py-1  text-start main-nav-item"><a href="#" class="nav-link">
+            <div class="col-12 col-lg-1 my-auto py-1  text-start main-nav-item"><a href="{% url 'about' %}" class="nav-link">
                     <p class="font-bolder">about</p>
                 </a></div>
             <div class="col-12 col-lg-2 my-auto py-1   text-end  main-nav-item">
@@ -79,7 +81,7 @@
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <p class="font-bolder list-inline-item "> Account </p>
                     </a>
-                    <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                    <div class="dropdown-menu" aria-labelledby="user-options">
                         {% if request.user.is_authenticated %}
                         {% if request.user.is_superuser %}
                         <a href="{% url 'add_ingredient' %}" class="dropdown-item">Add Ingredient</a>
@@ -114,7 +116,7 @@
             </div>
         </div>
 
-        <div class="row bg-white">
+        <div class="row">
             <nav class="navbar navbar-expand-lg d-lg-none navbar-light w-100">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobile_nav"
                     aria-controls="mobile_nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -126,27 +128,27 @@
         </div>
         <div id="delivery-banner" class="row text-center">
             <div id="promotion-heading" class="col text-black">
-                <p class=" delivery-text">Free delivery on orders over £{{ free_delivery_threshold }}!</p>          
-            </div>            
+                <p class=" delivery-text">Free delivery on orders over £{{ free_delivery_threshold }}!</p>
+            </div>
         </div>
     </header>
 
     <!--customer messages-->
     {% if messages %}
     <div class="message-container">
-         {% for message in messages %}
-                {% with message.level as level %}
-                    {% if level == 40 %}
-                        {% include 'includes/toasts/toast_error.html' %}
-                    {% elif level == 30 %}
-                        {% include 'includes/toasts/toast_warning.html' %}
-                    {% elif level == 25 %}
-                        {% include 'includes/toasts/toast_success.html' %}
-                    {% else %}
-                        {% include 'includes/toasts/toast_info.html' %}
-                    {% endif %}
-                {% endwith %}
-            {% endfor %}
+        {% for message in messages %}
+        {% with message.level as level %}
+        {% if level == 40 %}
+        {% include 'includes/toasts/toast_error.html' %}
+        {% elif level == 30 %}
+        {% include 'includes/toasts/toast_warning.html' %}
+        {% elif level == 25 %}
+        {% include 'includes/toasts/toast_success.html' %}
+        {% else %}
+        {% include 'includes/toasts/toast_info.html' %}
+        {% endif %}
+        {% endwith %}
+        {% endfor %}
     </div>
     {% endif %}
 
@@ -161,19 +163,19 @@
     <!--End of body js-->
     {% block postload_js %}
     <script type="text/javascript">
-          // promotion heading dissapear on scroll 
-          window.addEventListener('scroll', () => {
-              var promotionHeader = document.getElementById('promotion-heading');
-              promotionHeader.classList.add("d-none");
-          })
-        $(document).ready(function() {
-        $(".toast").toast('show');
-    });
+        // promotion heading dissapear on scroll 
+        window.addEventListener('scroll', () => {
+            var promotionHeader = document.getElementById('promotion-heading');
+            promotionHeader.classList.add("d-none");
+        })
+        $(document).ready(function () {
+            $(".toast").toast('show');
+        });
 
         AOS.init();
     </script>
-    
-    
+
+
 
 
     {% endblock %}

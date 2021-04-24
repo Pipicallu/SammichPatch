@@ -54,13 +54,23 @@ h1, h2, h3, h4 , h5, h6 {
 
 /*Navbar*/
 .main-nav-item{
-    border-bottom: 2px solid #000;
+    border-bottom: 8px double #def3e7;
     font-size: 14px;
 
 }
 
+.nav-link:hover{
+    color: #def3e7;
+}
+
+.list-inline-item:hover{
+    color: #def3e7;
+}
+
 .dropdown-menu{
     box-shadow: 1px 1px 7px #80808061;
+    border: 4px double #def3e7;
+    border-radius: 0;
    
 }
 
@@ -139,6 +149,14 @@ a {
     margin-top: 16.25rem;
 }
 
+.menu-border{
+    border: 12px double #def3e7;
+    padding: 30px;
+    box-shadow: 1px 0px 10px #cecece;
+}
+
+
+
 .ingredient-card{
     height: fit-content;
     background: #F3E8DE;
@@ -209,7 +227,7 @@ a {
 
 .accordion-button.collapsed {
     border-bottom-width: 0;
-    border: 3px solid #48ba4347;
+    border: 3px solid #def3e7;
 }
 
 /*modal*/
