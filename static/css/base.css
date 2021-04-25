@@ -525,3 +525,19 @@ a {
     font-weight: bold;
     text-align: justify;
 }
+
+/* footer */
+
+.footer-rule{
+    border-top:  8px double #def3e7;
+
+}
+
+.footer-links{
+    font-size: 14px;
+    padding: 0;
+}
+
+.footer-links a{
+    text-decoration: none;
+}
