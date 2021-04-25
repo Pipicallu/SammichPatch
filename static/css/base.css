@@ -99,6 +99,10 @@ a {
     min-width: 40px;
 }
 
+.form-button-styles{
+    text-align: end;
+}
+
 .btn-transparent {
    background: transparent;
    color: black;
