@@ -165,9 +165,16 @@
     <script type="text/javascript">
         // promotion heading dissapear on scroll 
         window.addEventListener('scroll', () => {
+            let lastKnownScrollPosition = 0;
             var promotionHeader = document.getElementById('promotion-heading');
-            promotionHeader.classList.add("d-none");
+            if (window.scrollY != 0){
+                promotionHeader.classList.add("d-none");
+            }else {
+                promotionHeader.classList.remove("d-none");
+            }
+            
         })
+
         $(document).ready(function () {
             $(".toast").toast('show');
         });
