@@ -1,2 +1,53 @@
 {% extends "base.html" %}
 {% load static %}
+
+{% block page_header %}
+<div class="container-fluid header-container">
+    <div class=" row">
+        <img src="{{MEDIA_URL}}foodtruck1.jpg" class="" alt="foodtruck">
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+    <div class="row">
+        <div class="col about-us-text font-bolder">
+            <div class="about-us-border">
+                <p data-aos="fade-up" data-aos-delay="500">
+                    "Ooook, so in hindsight opening a food truck in the middle of a pandemic, was maybe not the most
+                    business
+                    savvy idea, but hey! They say the most successful people do not see adversity as a stumbling block
+                    but
+                    as a stepping-stone to greatness! <br> <br>
+                    And that is precisely the attitude that turned our humble SammichPatch van into a mobile kitchen
+                    delivery
+                    force of hunger, now bringing the sandwiches you dream up and we make to your very door."
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+     <div class="row founder-bg">
+        <div data-aos="fade-right" data-aos-delay="500" class="founder-img text-end col-4">
+            <img src="{{MEDIA_URL}}owner.jpg" class="founder-img-border img-fluid" alt="owner">
+            <span class="text-end font-bolder">- Draymond Montgomorey Green</span>
+            <small class=" d-block text-muted font-bolder">founder.</small>
+        </div>
+        <div class="col-8 text-center">
+            <div class="social-text-div">
+            <h4 class="font-bolder">Your Quality. Our Priority.</h4> 
+            <p class="social-text">
+                Going online saved our business, we know that our customers continue to support us because we make ourselves not only available in
+                their community but also because of the quality of ingredients and love we put in to each of their creations. We maintain a constant
+                open communication through our chosen social media platforms. Please reach out to us.
+            </p>
+            <a href="https://facebook.com" target="_blank" ><img src="{{MEDIA_URL}}facebook.png" class="p-2" alt="facebook"></a>
+            <a href="https://instagram.com"target="_blank" ><img src="{{MEDIA_URL}}instagram.png" class="p-2" alt="facebook"></a>
+            <a href="https://twitter.com" target="_blank" ><img src="{{MEDIA_URL}}twitter.png"  class="p-2" alt="facebook"></a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
