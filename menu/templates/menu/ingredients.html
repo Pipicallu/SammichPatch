@@ -31,8 +31,13 @@
     </div>
     <!--bread-->
     <div class="row mt-3 accordion-item">
+        {% if not request.session.bread_added %}
         <h4 class="category-styling accordion-button font-bolder mb-4 mt-2" data-bs-toggle="collapse"
             data-bs-target="#collapseBread" aria-expanded="true" aria-controls="collapseBread">
+        {% else %}
+        <h4 class="category-styling accordion-button font-bolder mb-4 mt-2 collapsed" data-bs-toggle="collapse"
+            data-bs-target="#collapseBread" aria-expanded="true" aria-controls="collapseBread">
+        {% endif %}
             bread
             <img class="img-fluid" src="{{ MEDIA_URL }}bread.svg" alt="bread" width="30" height="30">
             <span class="sort-button-cluster">
@@ -166,8 +171,13 @@
 
         <!--filling-->
         <div class="row mt-3 accordion-item">
+            {% if not request.session.filling_added %}
             <h4 id="fillings" class="category-styling font-bolder  mb-4 mt-2 accordion-button" data-bs-toggle="collapse"
                 data-bs-target="#collapseFilling" aria-expanded="true" aria-controls="collapseFilling">
+            {% else %}
+            <h4 id="fillings" class="category-styling font-bolder  mb-4 mt-2 accordion-button collapsed" data-bs-toggle="collapse"
+                data-bs-target="#collapseFilling" aria-expanded="true" aria-controls="collapseFilling">
+            {% endif %}
                 Filling
                 <img class=" img-fluid" src="{{ MEDIA_URL }}filling.svg" alt="filling" width="30" height="30">
                 <span class="sort-button-cluster">
@@ -348,8 +358,13 @@
             </div>
             <!--cheese-->
             <div id="cheese" class="row mt-3 accordion-item">
+                {% if not request.session.cheese_added %}
                 <h4 class="category-styling font-bolder  mb-4 mt-2 accordion-button" data-bs-toggle="collapse"
                     data-bs-target="#collapseCheese" aria-expanded="true" aria-controls="collapseCheese">
+                {% else %}
+                <h4 class="category-styling font-bolder  mb-4 mt-2 accordion-button collapsed" data-bs-toggle="collapse"
+                    data-bs-target="#collapseCheese" aria-expanded="true" aria-controls="collapseCheese">
+                {% endif %}
                     Cheese
                     <img class=" img-fluid" src="{{ MEDIA_URL }}cheese.svg" alt="cheese" width="30" height="30">
                     <span class="sort-button-cluster">
@@ -625,8 +640,13 @@
                 </div>
                 <!--spread-->
                 <div class="row mt-3 accordion-item">
+                    {% if not request.session.spread_added %}
                     <h4 class="category-styling font-bolder mb-4 mt-2 accordion-button" data-bs-toggle="collapse"
                         data-bs-target="#collapseSpread" aria-expanded="true" aria-controls="collapseSpread">
+                    {% else %}
+                    <h4 class="category-styling font-bolder mb-4 mt-2 accordion-button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSpread" aria-expanded="true" aria-controls="collapseSpread">
+                    {% endif %}
                         spread
                         <img class=" img-fluid" src="{{ MEDIA_URL }}sauce.svg" alt="sauce" width="30" height="30">
                     </h4>
