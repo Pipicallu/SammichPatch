@@ -11,7 +11,7 @@
         <div class="text-center">
             <img class="" src="{% static 'logo/shoppingbag.png' %}" width="25" height="25" alt="">
             <p class="">
-                {% if grand_total %}
+                {% if grand_total > 3 %}
                 £{{ grand_total|floatformat:2 }}
                 {% else %}
                 £0.00
