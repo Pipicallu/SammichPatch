@@ -63,7 +63,7 @@
                     </p>
                     {% endif %}
                     <div class="mt-4">
-                    <a href="{% url 'ingredients' %}" class="btn btn-transparent rounded-0 btn-lg">
+                    <a href="{% url 'ingredients' %}" class="mb-2 btn btn-transparent rounded-0 btn-lg">
                         <span class="icon">
                             <i class="fas fa-chevron-left"></i>
                         </span>
@@ -72,7 +72,7 @@
                     <a href="{% url 'checkout' %}" class="btn btn-transparent rounded-0 btn-lg">
                         <span class="text-uppercase">Secure Checkout</span>
                         <span class="icon">
-                            <i class="fas fa-lock"></i>
+                            <img src="{{MEDIA_URL}}padlock.svg" alt="padlock" width="25">
                         </span>
                     </a>
                     </div>
