@@ -13,9 +13,9 @@ body{
 h1, h2, h3, h4 , h5, h6 {
     font-family: MainFont;
 }
+
 .hero-row{
     background: #F3E8DE;
-    min-width: 400px;
     height: 600px;
     margin-top: 16.25rem;
 }
@@ -38,18 +38,90 @@ h1, h2, h3, h4 , h5, h6 {
     margin: 30px;
 }
 
+@media (max-width: 500px){
+    .inner-frame {
+        border: 3px solid #000;
+        display: inline-block;
+        margin: 16px;
+    }
+}
+
+@media (max-width: 385px){
+    .inner-frame {
+        border: 3px solid #000;
+        display: inline-block;
+        margin: 10px;
+    }
+}
+
 .mission-bg{
     background: #F3E8DE;
 }
 
 .mission-text{
-    word-wrap: break-word;
+    
     padding: 0 100px;
     padding-bottom: 60px;
 }
 
+@media (max-width: 1399px){
+    .mission-text {
+        font-size: 15px;
+        padding: 0px 100px;
+        padding-bottom: 2px;
+    }
+
+}
+
+
+@media (max-width: 1199px){
+    .mission-text {
+        font-size: 12px;
+        padding: 0px 97px;
+        padding-bottom: 20px;
+    }
+}
+
+@media (max-width: 747px){
+    .mission-text {
+        font-size: 12px;
+        word-wrap: break-word;
+        padding: 0px 61px;
+        padding-bottom: 50px;
+    }
+}
+
 .how-to-purchase-row{
-    height: 450px;
+    height: 300px;
+}
+
+
+@media (max-width: 1395px){
+    .how-to-img{
+        width: 60px;
+        margin: 0 15px!important;
+    }
+}
+
+@media (max-width: 931px){
+    .how-to-img{
+        width: 50px;
+        margin: 15px 10px!important;
+    }
+}
+
+@media (max-width: 469px){
+    .how-to-img{
+        width: 40px;
+        margin: 15px 5px!important;
+    }
+}
+
+@media (max-width: 343px){
+    .how-to-img{
+        width: 30px;
+        margin: 15px 2px!important;
+    }
 }
 
 /*Navbar*/
@@ -84,7 +156,7 @@ a {
 } 
 
 
-@media (max-width: 991px){
+@media (max-width: 992px){
     #topnav{
         display: none !important;
     }
@@ -99,8 +171,25 @@ a {
     min-width: 40px;
 }
 
+@media (max-width: 991px){
+    .make-it-now-btn{
+        margin-bottom: 20px;
+        min-width: 40px;
+        margin-right: 11px;
+    }
+}
+
 .form-button-styles{
-    text-align: end;
+    text-align: start;
+}
+
+@media (max-width: 991px){
+    .form-button-styles{
+        text-align: end;
+        display: flex;
+        justify-content: flex-end;
+
+    }
 }
 
 .btn-transparent {
@@ -141,10 +230,8 @@ a {
 
 .delivery-text{
     box-shadow: 1px 1px 7px #80808061;
-    width: fit-content;
-    margin: 24px auto;
     padding: 18px;
-
+    margin-top: 20px;
 }
 
 /* ingredients page*/

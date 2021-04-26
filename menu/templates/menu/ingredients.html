@@ -32,10 +32,10 @@
     <!--bread-->
     <div class="row mt-3 accordion-item">
         {% if not request.session.bread_added %}
-        <h4 class="category-styling accordion-button font-bolder mb-4 mt-2" data-bs-toggle="collapse"
+        <h4 class="category-styling accordion-button d-block d-md-inline font-bolder mb-4 mt-2" data-bs-toggle="collapse"
             data-bs-target="#collapseBread" aria-expanded="true" aria-controls="collapseBread">
         {% else %}
-        <h4 class="category-styling accordion-button font-bolder mb-4 mt-2 collapsed" data-bs-toggle="collapse"
+        <h4 class="category-styling accordion-button d-block d-md-inline font-bolder mb-4 mt-2 collapsed" data-bs-toggle="collapse"
             data-bs-target="#collapseBread" aria-expanded="true" aria-controls="collapseBread">
         {% endif %}
             bread
@@ -44,17 +44,17 @@
                 <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'_free'}}&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
                     class="sort-button btn btn-transparent  btn-filter font-bolder"><img class="img-fluid icon"
                         src="{{ MEDIA_URL }}gluten.svg" alt="wheat" width="15" height="15"> <span
-                        class="d-md-none d-lg-inline">gluten</span></a>
+                        class="d-none d-lg-inline">gluten</span></a>
                 <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|slice:'7:'}}&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
                     class="sort-button btn btn-transparent  btn-filter font-bolder"><img class="img-fluid icon"
                         src="{{ MEDIA_URL }}gluten_free.svg" alt="gluten free" width="15" height="15"> <span
-                        class="d-md-none d-lg-inline">gluten free</span>
+                        class="d-none d-lg-inline">gluten free</span>
                 </a>
                 <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'halal/kosher'}}&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
                     class="sort-button btn btn-transparent  btn-filter font-bolder">
                     <img class="img-fluid icon" src="{{ MEDIA_URL }}gluten.svg" alt="gluten" width="15" height="15">
                     <img class="img-fluid icon" src="{{ MEDIA_URL }}gluten_free.svg" alt="gluten free" width="15"
-                        height="15"> <span class="d-md-none d-lg-inline">all</span></a>
+                        height="15"> <span class="d-none d-lg-inline">all</span></a>
             </span>
         </h4>
     </div>
@@ -172,10 +172,10 @@
         <!--filling-->
         <div class="row mt-3 accordion-item">
             {% if not request.session.filling_added %}
-            <h4 id="fillings" class="category-styling font-bolder  mb-4 mt-2 accordion-button" data-bs-toggle="collapse"
+            <h4 id="fillings" class="category-styling font-bolder d-block d-md-inline  mb-4 mt-2 accordion-button" data-bs-toggle="collapse"
                 data-bs-target="#collapseFilling" aria-expanded="true" aria-controls="collapseFilling">
             {% else %}
-            <h4 id="fillings" class="category-styling font-bolder  mb-4 mt-2 accordion-button collapsed" data-bs-toggle="collapse"
+            <h4 id="fillings" class="category-styling font-bolder  mb-4 mt-2 accordion-button collapsed  d-block d-md-inline " data-bs-toggle="collapse"
                 data-bs-target="#collapseFilling" aria-expanded="true" aria-controls="collapseFilling">
             {% endif %}
                 Filling
@@ -186,33 +186,33 @@
                         <img class="img-fluid icon" src="{{ MEDIA_URL }}kosher_emoji.svg" alt="kosher" width="15"
                             height="15">
                         <img class="img-fluid icon" src="{{ MEDIA_URL }}halal_emoji.svg" alt="halal" width="15"
-                            height="15"><span class="d-md-none d-lg-inline">halal/kosher</span></a>
+                            height="15"><span class="d-none d-lg-inline">halal/kosher</span></a>
                     <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'pork'|cut:'vegan'|cut:'poultry'|cut:'halal/kosher'|cut:'fish'}}&goto=fillings&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
                         class="sort-button focus-button btn btn-transparent  btn-filter font-bolder"><img
                             class="img-fluid icon" src="{{ MEDIA_URL }}cow_emoji.png" alt="beef" width="15" height="15">
-                        <span class="d-md-none d-lg-inline">beef</span>
+                        <span class="d-none d-lg-inline">beef</span>
                     </a>
                     <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'beef'|cut:'vegan'|cut:'poultry'|cut:'halal/kosher'|cut:'fish'}}&goto=fillings&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
                         class="sort-button focus-button btn btn-transparent  btn-filter font-bolder"><img
                             class="img-fluid icon" src="{{ MEDIA_URL }}pig_emoji.png" alt="beef" width="15" height="15">
-                        <span class="d-md-none d-lg-inline">pork</span>
+                        <span class="d-none d-lg-inline">pork</span>
                     </a>
                     <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'beef'|cut:'vegan'|cut:'pork'|cut:'halal/kosher'|cut:'fish'}}&goto=fillings&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
                         class="sort-button focus-button btn btn-transparent  btn-filter font-bolder"><img
                             class="img-fluid icon" src="{{ MEDIA_URL }}chicken_emoji.png" alt="beef" width="15"
                             height="15">
-                        <span class="d-md-none d-lg-inline">poultry</span>
+                        <span class="d-none d-lg-inline">poultry</span>
                     </a>
                     <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'beef'|cut:'poultry'|cut:'pork'|cut:'halal/kosher'|cut:'fish'}}&goto=fillings&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
                         class="sort-button focus-button btn btn-transparent  btn-filter font-bolder"><img
                             class="img-fluid icon" src="{{ MEDIA_URL }}vegan.svg" alt="beef" width="15" height="15">
-                        <span class="d-md-none d-lg-inline">vegan</span>
+                        <span class="d-none d-lg-inline">vegan</span>
                     </a>
                     <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'halal/kosher'}}&goto=fillings&is_vegetarian={{is_vegetarian | yesno:'True,False'}}"
                         class="sort-button focus-button btn btn-transparent  btn-filter font-bolder">
                         <img class="img-fluid icon" src="{{ MEDIA_URL }}sandwich.svg" alt="gluten" width="15"
                             height="15">
-                        <span class="d-md-none d-lg-inline">all</span></a>
+                        <span class="d-none d-lg-inline">all</span></a>
                 </span>
             </h4>
         </div>
@@ -359,10 +359,10 @@
             <!--cheese-->
             <div id="cheese" class="row mt-3 accordion-item">
                 {% if not request.session.cheese_added %}
-                <h4 class="category-styling font-bolder  mb-4 mt-2 accordion-button" data-bs-toggle="collapse"
+                <h4 class="category-styling font-bolder mb-4 mt-2 accordion-button" data-bs-toggle="collapse"
                     data-bs-target="#collapseCheese" aria-expanded="true" aria-controls="collapseCheese">
                 {% else %}
-                <h4 class="category-styling font-bolder  mb-4 mt-2 accordion-button collapsed" data-bs-toggle="collapse"
+                <h4 class="category-styling font-bolder mb-4 mt-2 accordion-button collapsed" data-bs-toggle="collapse"
                     data-bs-target="#collapseCheese" aria-expanded="true" aria-controls="collapseCheese">
                 {% endif %}
                     Cheese
@@ -371,14 +371,14 @@
                         <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'dairy'}}&goto=cheese"
                             class="sort-button btn btn-transparent  btn-filter font-bolder"><img
                                 class="img-fluid icon" src="{{ MEDIA_URL }}vegan.svg" alt="beef" width="15" height="15">
-                            <span class="d-md-none d-lg-inline">vegan</span>
+                            <span class="d-none d-lg-inline">vegan</span>
 
                         </a>
                         <a href="{% url 'ingredients' %}?dietary_requirements={{dietary_list|join:','|cut:'halal/kosher'}}&goto=cheese"
                             class="sort-button btn btn-transparent  btn-filter font-bolder">
                             <img class="img-fluid icon" src="{{ MEDIA_URL }}sandwich.svg" alt="gluten" width="15"
                                 height="15">
-                            <span class="d-md-none d-lg-inline">all</span></a>
+                            <span class="d-none d-lg-inline">all</span></a>
                     </span>
 
                 </h4>

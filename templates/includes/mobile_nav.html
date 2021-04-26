@@ -1,4 +1,6 @@
-<div class="collapse text-start  navbar-collapse" id="mobile_nav">
+{% load static %}
+
+<div class="collapse text-start navbar-collapse" id="mobile_nav">
     <ul class="navbar-nav text-black navbar-expand-lg">
         <li class="nav-item">
             <a class="nav-link " href="{% url 'ingredients' %}">Sandwiches</a>
@@ -35,6 +37,7 @@
                     <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
                     {% endif %}
                 </div>
+            </div>
         </li>
     </ul>
 </div>

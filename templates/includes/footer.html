@@ -1,8 +1,8 @@
 {% load static %}
 
-<div class="container mt-5">
-    <div class="row footer-rule text-center">
-        <div class="col ">
+<div class="container ">
+    <div class="row mt-5 footer-rule text-center">
+        <div class="col">
             <h4 class="my-4 font-bolder">contact us</h4>
             <div class="social-links">
                 <a href="https://facebook.com" target="_blank"><img src="{{MEDIA_URL}}facebook.png" class="p-2"
@@ -15,12 +15,12 @@
         </div>
     </div>
     <div class="row my-4 footer-links font-bolder d-flex align-items-center ">
-        <div class="col-3 text-end p-0"><a href="{% url 'ingredients' %}">Sandwiches</a></div>
-        <div class="col-2 text-end p-0"><a href="{% url 'drinks_and_sides' %}">Drinks/Sides</a></div>
-        <div class="col-2 text-center p-0"><a href="{% url 'home' %}" class=" main-logo-link"><img src="{% static 'logo/SammichPatchLogo.svg' %}"
+        <div class="col-3 d-none d-md-block text-end p-0"><a href="{% url 'ingredients' %}">Sandwiches</a></div>
+        <div class="col-2 d-none d-md-block text-end p-0"><a href="{% url 'drinks_and_sides' %}">Drinks/Sides</a></div>
+        <div class="col-sm-12 col-md-2 text-center p-0"><a href="{% url 'home' %}" class=" main-logo-link"><img src="{% static 'logo/SammichPatchLogo.svg' %}"
                     width="80" height="80" alt=""></a></div>
-        <div class="col-2 text-start p-0"><a href="{% url 'about' %}">about</a></div>
-        <div class="col-3 text-start p-0" ><a href="{% url 'home' %}">home</a></div>
+        <div class="col-2 d-none d-md-block text-start p-0"><a href="{% url 'about' %}">about</a></div>
+        <div class="col-3  d-none d-md-block text-start p-0" ><a href="{% url 'home' %}">home</a></div>
 
     </div>
 </div>

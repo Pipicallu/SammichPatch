@@ -17,7 +17,7 @@
             <h4 class="tag-line font-bolder my-5">The perfect sandwich is waiting.</h4>
             <div class="outer-frame category-styling">
                 <div class="inner-frame">
-                    <div class="sammich-undone-img img-fluid"></div>
+                    <img src="{{MEDIA_URL}}sammichUndone.png" class="img-fluid d-block p-3" alt="sammich">
                     <a data-aos="zoom-in" href="{% url 'ingredients' %}"
                         class="btn btn-transparent make-it-now-btn font-bolder rounded-0">make it now.</a>
                 </div>
@@ -25,37 +25,35 @@
         </div>
     </div>
     <div class="row how-to-purchase-row m-5">
-        <div id="how-to-order ">
-            <h4 class="tag-line font-bolder my-3">Ordering is as simple as:</h4>
-        </div>
-        <div class="col-lg">
-            <img data-aos="fade-up" src="{{MEDIA_URL}}bread.svg" class="mx-4 my-0" width="100" alt="bread">
+        <div class="col-lg mb-3">
+            <h4 class="tag-line font-bolder my-5">Ordering is as simple as:</h4>
+            <img data-aos="fade-up" src="{{MEDIA_URL}}bread.svg" class="mx-4 my-0 how-to-img" width="90" alt="bread">
             <i class="fas fa-plus"></i>
-            <img data-aos="fade-up" data-aos-delay="500" src="{{MEDIA_URL}}filling.svg" class="mx-4 my-0" width="90"
-                alt="filling">
+            <img data-aos="fade-up" data-aos-delay="500" src="{{MEDIA_URL}}filling.svg" class="mx-4 my-0 how-to-img"
+                width="90" alt="filling">
             <i class="fas fa-plus"></i>
-            <img data-aos="fade-up" data-aos-delay="1000" src="{{MEDIA_URL}}cheese.svg" class="mx-4 my-0" width="90"
-                alt="cheese">
+            <img data-aos="fade-up" data-aos-delay="1000" src="{{MEDIA_URL}}cheese.svg" class="mx-4 my-0 how-to-img"
+                width="90" alt="cheese">
             <i class="fas fa-plus"></i>
-            <img data-aos="fade-up" data-aos-delay="1500" src="{{MEDIA_URL}}salad.svg" class="mx-4 my-0" width="90"
-                alt="salad">
+            <img data-aos="fade-up" data-aos-delay="1500" src="{{MEDIA_URL}}salad.svg" class="mx-4 my-0 how-to-img"
+                width="90" alt="salad">
             <i class="fas fa-plus"></i>
-            <img data-aos="fade-up" data-aos-delay="2000" src="{{MEDIA_URL}}drink.svg" class="mx-4 my-0" width="90"
-                alt="drink">
+            <img data-aos="fade-up" data-aos-delay="2000" src="{{MEDIA_URL}}drink.svg" class="mx-4 my-0 how-to-img"
+                width="90" alt="drink">
             <i class="fas fa-plus"></i>
-            <img data-aos="fade-up" data-aos-delay="2500" src="{{MEDIA_URL}}fries.svg" class="mx-4 my-0" width="90"
-                alt="side">
+            <img data-aos="fade-up" data-aos-delay="2500" src="{{MEDIA_URL}}fries.svg" class="mx-4 my-0 how-to-img"
+                width="90" alt="side">
             <i class="fas fa-equals"></i>
-            <img data-aos="fade-up" data-aos-delay="3000" src="{{MEDIA_URL}}truck.svg" class="mx-4 my-0" width="90"
-                alt="side">
+            <img data-aos="fade-up" data-aos-delay="3000" src="{{MEDIA_URL}}truck.svg" class="mx-4 my-0 how-to-img"
+                width="90" alt="side">
         </div>
     </div>
     <div class="mb-5 row">
-        <div class="mission-statement mission-bg col-sm-12 col-md-7">
+        <div class="mission-statement mission-bg col-12 col-lg-7">
             <div>
                 <h4 class="tag-line font-bolder my-5">We love Sandwiches.</h4>
             </div>
-            <div data-aos="fade-up"  class="font-bolder mission-text">
+            <div data-aos="fade-up" class="font-bolder mission-text">
                 AND APPARENTLY SO DID THIS GUY...
                 <br>
                 <br>
@@ -67,8 +65,8 @@
                 A FOODSTUFF THAT CAN NOT BE IMPROVED WHEN PLACED BETWIXT TWO PIECES OF EVENLY SLICED BREAD. GODSPEED.
             </div>
         </div>
-        <div class="p-0 col-sm-12 col-md-5">
-            <img data-aos="fade-left"  class=" img-fluid" src="{{MEDIA_URL}}John_Montagu.jpg" alt="John_Montagu" >
+        <div class="p-0 col-12 col-lg-5">
+            <img data-aos="fade-down" class=" img-fluid" src="{{MEDIA_URL}}John_Montagu.jpg" alt="John_Montagu">
         </div>
     </div>
 </div>

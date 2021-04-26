@@ -48,13 +48,13 @@
 
 <body>
     <!--Page header-->
-    <header class="container  header-container fixed-top text-center">
+    <header class="container header-container fixed-top text-center">
         <div id="topnav" class="row pt-lg-3 text-center d-flex">
-            <div class="col-12 col-lg-3 my-auto  py-1  text-end main-nav-item "><a href="{% url 'ingredients' %}"
+            <div class="col-12 col-lg-3 my-auto py-1 text-end main-nav-item "><a href="{% url 'ingredients' %}"
                     class="nav-link">
                     <p class="font-bolder">Sandwiches</p>
                 </a></div>
-            <div class="col-12 col-lg-2 my-auto py-1  text-end main-nav-item">
+            <div class="col-12 col-lg-2 my-auto py-1 text-end main-nav-item">
                 <div class="nav-item  dropdown">
                     <a class="nav-link dropdown-toggle" href="{% url 'drinks_and_sides' %}" id="drinksAndSides"
                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -72,10 +72,12 @@
                 <a href="{% url 'home' %}" class=" main-logo-link"><img src="{% static 'logo/SammichPatchLogo.svg' %}"
                         width="120" height="120" alt=""></a>
             </div>
-            <div class="col-12 col-lg-1 my-auto py-1  text-start main-nav-item"><a href="{% url 'about' %}" class="nav-link">
+            <div class="col-12 col-lg-1 my-auto py-1  text-start main-nav-item"><a href="{% url 'about' %}"
+                    class="nav-link">
                     <p class="font-bolder">about</p>
-                </a></div>
-            <div class="col-12 col-lg-2 my-auto py-1   text-end  main-nav-item">
+                </a>
+            </div>
+            <div class="col-12 col-lg-2 my-auto py-1 text-end  main-nav-item">
                 <div class="nav-item  dropdown">
                     <a class="nav-link  dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -126,6 +128,7 @@
                 {% include 'includes/mobile_nav.html' %}
             </nav>
         </div>
+
         <div id="delivery-banner" class="row text-center">
             <div id="promotion-heading" class="col text-black">
                 <p class=" delivery-text">Free delivery on orders over £{{ free_delivery_threshold }}!</p>
@@ -164,19 +167,19 @@
     {% block footer %}
     {% include 'includes/footer.html' %}
     {% endblock %}
-    
+
     <!--End of body js-->
     {% block postload_js %}
     <script type="text/javascript">
         // promotion heading dissapear on scroll 
         window.addEventListener('scroll', () => {
             var promotionHeader = document.getElementById('promotion-heading');
-            if (window.scrollY != 0){
+            if (window.scrollY != 0) {
                 promotionHeader.classList.add("d-none");
-            }else {
+            } else {
                 promotionHeader.classList.remove("d-none");
             }
-            
+
         })
 
         $(document).ready(function () {
@@ -185,8 +188,6 @@
 
         AOS.init();
     </script>
-
-
 
 
     {% endblock %}
