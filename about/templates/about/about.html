@@ -3,8 +3,10 @@
 
 {% block page_header %}
 <div class="container-fluid header-container">
-    <div class=" row">
+    <div class=" img-row row">
+        <div class="col">
         <img src="{{MEDIA_URL}}foodtruck1.jpg" class="img-fluid" alt="foodtruck">
+        </div>
     </div>
 </div>
 {% endblock %}
@@ -30,22 +32,22 @@
 </div>
 <div class="container-fluid">
      <div class="row founder-bg">
-        <div data-aos="fade-right" data-aos-delay="500" class="founder-img text-end col-4">
+        <div data-aos="fade-right" data-aos-delay="500" class="founder-img text-end col-12 col-sm-4">
             <img src="{{MEDIA_URL}}owner.jpg" class="founder-img-border img-fluid" alt="owner">
             <span class="text-end font-bolder">- Draymond Montgomorey Green</span>
             <small class=" d-block text-muted font-bolder">founder.</small>
         </div>
-        <div class="col-8 text-center">
+        <div class="col-12 col-sm-8 text-center">
             <div class="social-text-div">
-            <h4 class="font-bolder">Your Quality. Our Priority.</h4> 
+            <h4 class="font-bolder social-text-header">Your Quality. Our Priority.</h4> 
             <p class="social-text">
                 Going online saved our business, we know that our customers continue to support us not only because we make ourselves available in
                 their community but also because of the quality of ingredients and love we put in to each of their creations. We maintain a constant
                 open communication through our chosen social media platforms. Please reach out to us.
             </p>
-            <a href="https://facebook.com" target="_blank" ><img src="{{MEDIA_URL}}facebook.png" class="p-2" alt="facebook"></a>
-            <a href="https://instagram.com"target="_blank" ><img src="{{MEDIA_URL}}instagram.png" class="p-2" alt="facebook"></a>
-            <a href="https://twitter.com" target="_blank" ><img src="{{MEDIA_URL}}twitter.png"  class="p-2" alt="facebook"></a>
+            <a href="https://facebook.com" target="_blank" ><img src="{{MEDIA_URL}}facebook.png" class="p-2 d-none d-md-inline" alt="facebook"></a>
+            <a href="https://instagram.com"target="_blank" ><img src="{{MEDIA_URL}}instagram.png" class="p-2 d-none d-md-inline" alt="facebook"></a>
+            <a href="https://twitter.com" target="_blank" ><img src="{{MEDIA_URL}}twitter.png"  class="p-2 d-none d-md-inline" alt="facebook"></a>
             </div>
         </div>
     </div>

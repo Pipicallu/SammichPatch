@@ -131,6 +131,19 @@ h1, h2, h3, h4 , h5, h6 {
 
 }
 
+.nav-item a{
+    font-weight: bold;
+    color: black!important;
+    
+
+}
+
+.dropdown-nav-menu{
+    background: white;
+    box-shadow: 1px 6px 12px #e1e1e1a6;
+    border: 8px double #def3e7;
+}
+
 .nav-link:hover{
     color: #def3e7;
 }
@@ -145,6 +158,8 @@ h1, h2, h3, h4 , h5, h6 {
     border-radius: 0;
    
 }
+
+
 
 .dropdown-item{
      font-weight: bold;
@@ -580,6 +595,50 @@ a {
     letter-spacing: 1.2px;
 }
 
+@media (max-width: 990px){
+    .about-us-text {
+        padding: 80px;
+        padding-bottom: 110px;
+        font-size: 15px;
+        line-height: 1.8;
+        letter-spacing: 1.2px;
+        margin-bottom: 33px;
+    }
+}
+
+@media (max-width: 770px){
+    .about-us-text{
+        padding: 20px;
+        padding-bottom: 110px;
+        font-size: 15px;
+        line-height: 1.5;
+        letter-spacing: 1.2px;
+        margin-bottom: 33px;
+    }
+}
+
+@media (max-width: 572px){
+    .about-us-text{
+        padding: 40px;
+        padding-bottom: 40px;
+        font-size: 15px;
+        line-height: 1.5;
+        letter-spacing: 1.2px;
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 376px){
+    .about-us-text{
+        padding: 40px;
+        padding-bottom: 40px;
+        font-size: 11px;
+        line-height: 1.5;
+        letter-spacing: 1.2px;
+        margin-bottom: 0;
+    }
+}
+
 .about-us-border{
     border: 9px double #def3e7;
     padding: 31px;
@@ -604,6 +663,13 @@ a {
     padding: 70px;
 }
 
+@media (max-width: 612px){
+    .social-text-div {
+        padding: 30px 56px;
+    }
+}
+
+
 .social-text{
     padding: 32px 106px;
     line-height: 1.8;
@@ -612,6 +678,73 @@ a {
     font-weight: bold;
     text-align: justify;
 }
+
+
+@media (max-width: 1018px){
+    .img-row {
+        margin-top: 16.25rem;
+    }
+}
+
+@media (max-width: 990px ){
+    .social-text {
+        padding: 31px 54px;
+        line-height: 1.8;
+        font-size: 12px;
+        letter-spacing: 1.2px;
+        font-weight: bold;
+        text-align: justify;
+    }
+}
+
+@media (max-width: 720px){
+    .social-text {
+        padding: 29px 32px;
+        line-height: 1.7;
+        font-size: 10px;
+        letter-spacing: 1px;
+        font-weight: bold;
+        text-align: justify;
+    }
+}
+
+@media (max-width: 622px){
+    .social-text {
+        padding: 15px 16px;
+        line-height: 1.5;
+        font-size: 14px;
+        letter-spacing: 1px;
+        font-weight: bold;
+        text-align: justify;
+        margin-left: 15px;
+    }
+}
+
+@media (max-width: 622px){
+    .social-text {
+        padding: 15px 16px;
+        line-height: 1.5;
+        font-size: 11px;
+        letter-spacing: 1px;
+        font-weight: bold;
+        text-align: center;
+        margin-left: 0;
+    }
+}
+@media (max-width: 620px){
+    .social-text-header{
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 580px){
+    .founder-img{
+        left: 0;
+        top: 0;
+    }
+}
+
+
 
 /* footer */
 
