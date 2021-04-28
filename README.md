@@ -462,6 +462,39 @@ You'll need to update your *.env* file with your new *database-url* details.
 
 - You can now check back on your previous deployment. click the "View app" button provided to see the website live and running.
 
+# Credit
+
+## Media
+
+- [AOS](https://github.com/michalsnik/aos) (Animate On Scroll) - for the animations on both the index.html and about.html pages.
+- [svgrepo](https://www.svgrepo.com/) - for all the Dietary Requirements emojis and other icons used.
+- [Unsplash](https://unsplash.com/) & [BBCGoodFood](https://www.bbcgoodfood.com/)- For the hero image on the about page as well as the images for the ingredients page.
+- [twinkl](https://www.twinkl.ae/) - For the hero image on the index page.
+- [cocacola](https://www.coca-colacompany.com/) - for the pictures on the drinks page.
+- [sprite](https://www.sprite.com/) - for the pictures on the drinks page.
+- [fanta](https://www.fanta.com/) - for the pictures on the drinks page.
+
+
+## Acknowledgments
+
+- The fine tutors Of Code institute, who had plenty of patience with me when I got stuck on various bugs in my project.
+
+- special thanks to my mentor Allen Thomas Varghese, who has always encouraged me, guided me and told me that my designs were fancy!
+
+- My friend and trusted mentor MrJerB who has been my friend throughout childhoond, adulthood and beyond. He is an incredible Software developer who has always taken time out of his day to explain and teach me how to seek out the right ways to learn.
+
+- Also special thanks to tutor Johann whose project, Burgersaurus rex gave me the inspiration to add dietary requirements to my site. 
+
+- Massive Thanks to Alexander who works at student care and without whom I would not have met my deadline.
+
+## Personal Reflections
+
+My previous projects taught me a lot about time management and I knew I needed to be extra vigilant this time with in order to meet a meager 6 week deadline. I wanted to work on getting a minimum viable project done, quite the undertaking when I found that even after the fullstack module I still felt pretty green when it came to coordinating between apps and navigating django. But if I've learned anything from code institute the best remedy for feeling overwhelmed is to make a plan, break down the problems and dive in piece by piece. A mentality that I feel served me well as I undoubtedly ran into the various challenges in building my very own first fullstack site, an endeavour that only a year ago seemed so beyond me. I am insanely proud to have made through and all I can do now is remain eager and carry on learning , as I feel as although I have come so far, I have barely scratched the surface. My love for the front-end in particular has certainely matured and I will not waste any time as I plan to familiarise myself with typescript, React and vuejs. On a more personal note the past five months have been an incredibly challenging time in my personal life and although my mental health suffered, this course was a major part of what helped me keep my focus throughout. I know that in future it will remain a constant reminder of what I can achieve when I really believe in myself and set my mind to something that I am passionate about. Here's to hopeful and gainful Employment! Thanks code institute. 
+
+# Disclaimer
+
+This site is intended for educational purposes only, and is not intended for use in any other capacity.
+
 
 
 
