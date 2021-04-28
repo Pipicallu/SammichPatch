@@ -95,7 +95,372 @@ You can find all my wireframes here including the original concepts that were ev
 ![wireframe2](/media/wireframe3.png)
 ![wireframe3](/media/wireframe2.png)
 
+# Features
 
+### Menu
+
+- The Sandwich Menu is split into 5 distinct categories offering the user a single choice of Bread, Filling, Cheese and Spread, With an unlimited amount of salad addons.
+
+- The sandwich menu also prohibits the user from being allowed to make orders that don't make sense by placing limits on certain categories, like a sanwich with two types of breads for example or with every single type of meat.
+Right now this feature limits the user to a single choice in the filling category but I would like to improve upon this feature in the future.
+
+- The sandwich menu also allows you to remove ingredients from your sandwich as you make it as each category functions as a collapsible menu that can be re-opened to edit
+an ingredient chosen by mistake.
+
+- When an Ingredient is removed an info Message appears on the site in the form of a toast.
+
+- The plus buttons are greyed out when an ingredient is added in cases where adding more of that ingredient will result in a nonsensical order. There must be order when it comes to sandwich making.
+
+- Users can press upon each ingredients picture to get more information about that specific ingredient.
+
+- Users can browse the full menu or filter the menu by category to see specific items
+
+- Users can view a list of allergens for each item and click on individual allergens for a pop-up which shows descriptions of selected allergen.
+
+- A success message is displayed to notify the user than an item has been added to the shopping cart
+Individual menu items fade up onto the screen as the user scrolls on the page
+
+
+### bag
+
+- A summary of the user's order is displayed where the item names, and sub-totals can be seen
+
+- Users may remove items from their order completely
+
+- A warning message is displayed whenever a change to the order is made
+
+- The user can navigate back to the menu or proceed to the Checkout from here.
+
+
+### Drinks and sides
+
+- The sides and drinks menu is very similar to the Sandwich menu it is split into two distinct categories wich can be accessed seperately from the navbar.
+
+- Both categories are collapsible to allow for easier manouverability within the menu.
+
+- At present This menu is somewhat simplified and allows for the removal of items only to take place within the bag.
+
+- As the main effort went in to creating the logic for building the user's sandwhich this part of the website came later as an addition,
+which is why going forward I would also like to implement the grouping of multiple products to be listed with their quantity rather as individual bag items
+however due to time constraints, I had to settle on adding them individually.
+
+- Full access to dietary requirements as well as item descriptions are displayed upon clicking the relative product.
+
+### Checkout
+
+- A summary of the user's order is displayed for inspection featuring item names, quantities and sub-totals for all order items
+The user needs to fill in the payment form in order to proceed with the payment
+
+- If they already have an account, the form will be populated with their information
+
+- The user will be offered an opportunity to Sign In or Sign Up before proceeding with the payment
+
+- A checkbox allows the form data to be saved to the user's account if they've already got one
+
+- A secure test payment can be made using Stripe's testing details
+The form will only be submitted once it has been validated
+
+- A loading screen obscures that checkout page while the payment is being processed, while the payment form's submit button is also deactivated to prevent submitting the payment twice by accident
+
+- A webhook is used to ensure that the order is processed even when the payment process gets interrupted
+
+- If the user is successful, the user is directed to the Checkout Success page where they can view a summary of their order
+
+- A confirmation email is also sent to the user upon successful completion of a payment
+The user will see a success message wit their order number displayed as an additional measure to ensure they get confirmation of an order being processed successfully
+
+### Profile
+- Once the user has signed up to the site, they can access their profile where they can change their default delivery information and see their order history
+Images
+
+
+## Features to be implemented.
+
+#### Sides and drinks
+- As stated before I would love to add more functionality like allowing for the webite to show drinks by quantity rather than individual items.
+
+- I would love to add dynamic remove buttons so that the user can remove an item from the page without editing it in their bag.
+
+#### menu
+- I would love to expand on the logic for the adding of ingredients. Give customers the option to order a selection of two fillings for example.
+
+#### Mobile Nav
+- I would love to add a bottom nav for mobile as its something I am yet to eperiment with! Due to time constraints I feel as though I havent been able to 
+experiment with mobile layouts as much as I'd like to as the majority of time spent on this project was getting the logic right.
+
+#### Profile 
+- I want to add a feature whereby customers can favourite certain orders and re-order them, to speed up delivery process.
+
+# Database
+By default, Django works with SQL databases. During development on my local machine I worked with the standard sqlite3 database installed with Django.
+Heroku provies a PostgreSQL database for deployment.
+
+#### User Model
+
+The standard Djando user model, `django.contrib.auth.models`, was used for this project.
+
+#### Menu App
+
+##### Category Model
+
+| Name | Key in db | Validation | Field Type |
+--- | --- | --- | ---
+Name | name | max_length=254 | CharField
+Friendly Name | friendly_name | max_length=254, blank=True, null=True | CharField
+
+
+##### DietaryRequirements Model
+
+| Name | Key in db | Validation | Field Type |
+--- | --- | --- | ---
+Name | name | max_length=254 | CharField
+Friendly Name | friendly_name | max_length=254, blank=True, null=True | CharField
+
+
+##### Ingredients Model
+
+| Name | Key in db | Validation | Field Type |
+--- | --- | --- | ---
+Category | category | null=True, blank=True, on_delete=models.SET_NULL | ForeignKey to Category model
+Name | name | max_length=254, blank=True, null=True | CharField
+Description | description |  | TextField
+Dietary Requiremnets | Dietary Requirements |  | ManyToManyfield
+Price | price | max_digits=4, decimal_places=2 | DecimalField
+Is Vegetarian | is_vegetarian | default=False | BooleanField
+Image Url | image_url | max_length=1024, null=True, blank=True |URLField
+Image | image | null=True, blank=True | ImageField
+
+##### SidesAndDrinks Model
+
+| Name | Key in db | Validation | Field Type |
+--- | --- | --- | ---
+Category | category | null=True, blank=True, on_delete=models.SET_NULL | ForeignKey to Category model
+Name | name | max_length=254, blank=True, null=True | CharField
+Description | description |  | TextField
+Dietary Requiremnets | Dietary Requirements |  | ManyToManyfield
+Price | price | max_digits=4, decimal_places=2 | DecimalField
+Is Vegetarian | is_vegetarian | default=False | BooleanField
+Image Url | image_url | max_length=1024, null=True, blank=True |URLField
+Image | image | null=True, blank=True | ImageField
+
+   
+#### Checkout App
+
+##### Order Model
+
+| Name | Key in db | Validation | Field Type |
+--- | --- | --- | ---
+Order Number | order_number | max_length=32, null=False, editable=False | CharField
+User Profile | user_profile | on_delete=models.SET_NULL, null=True, blank=True, related_name='orders' | ForeignKey to UserProfile
+Full Name | full_name | max_length=50, null=False, blank=False | CharField
+Email | email | max_length=254, null=False, blank=False | EmailField
+Phone Number | phone_number | max_length=20, null=False, blank=False | CharField
+Postcode | postcode | max_length=20, null=True, blank=False | CharField
+Town Or City | town_or_city | max_length=40, null=True, blank=False | CharField
+Street Address 1 | street_address1 | max_length=80, null=False, blank=False | CharField
+Street Address 2 | street_address2 | max_length=80, null=True, blank=True | CharField
+County| County | max_length=80, null=True, blank=True | CharField
+Date | date | auto_now_add=True | DateTimefield
+Delivery Cost | delivery_cost | max_digits=6, decimal_places=2, null=False, default=0 | DecimalField
+Order Total | order_total | max_digits=10, decimal_places=2, null=False, default=0 | DecimalField
+Original bag | original_bag | null=False, blank=False, default='' | TextField
+Stripe PID | stripe_pid | max_length=254, null=False, blank=False, default='' | CharField
+
+##### OrderItem Model
+
+| Name | Key in db | Validation | Field Type |
+--- | --- | --- | ---
+Order | order | Order, null=False, blank=False, on_delete=models.CASCADE, related_name='orderitems' | ForeignKey to Order
+Product | product | Product, null=False, blank=False, on_delete=models.CASCADE | ForeignKey to Product
+Quantity | quantity | null=False, blank=False, default=0 | IntegerField
+Order Item Total | order_item_total | max_digits=6, decimal_places=2, null=False, blank=False, editable=False | Decimalfield
+
+##### OrderSideItem Model
+
+| Name | Key in db | Validation | Field Type |
+--- | --- | --- | ---
+Order | order | Order, null=False, blank=False, on_delete=models.CASCADE, related_name='orderSideitems' | ForeignKey to Order
+Product | product | Product, null=False, blank=False, on_delete=models.CASCADE | ForeignKey to Product
+Quantity | quantity | null=False, blank=False, default=0 | IntegerField
+Order Side Item Total | order_side_item_total | max_digits=6, decimal_places=2, null=False, blank=False, editable=False | Decimalfield
+
+## Technologies Used
+
+### Languages
+
+- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+- [CSS](https://developer.mozilla.org/en-US/docs/Glossary/CSS)
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Glossary/JavaScript)
+- [Python](https://www.python.org/about/)
+
+### Frontend Frameworks
+- [Bootstrap](https://getbootstrap.com/)
+- [npm](https://www.npmjs.com/)
+- [AOS](https://michalsnik.github.io/aos/)
+- [JQUERY](https://jquery.com/)
+- [Amazon AWS S3](https://aws.amazon.com/)
+
+
+### Libraries, Frameworks
+
+- [Django](https://www.djangoproject.com/)
+- [Pillow](https://pillow.readthedocs.io/en/stable/)
+- [Gunicorn](https://gunicorn.org/)
+- [dj-database-url](https://pypi.org/project/dj-database-url/)
+- [boto3](https://pypi.org/project/boto3/)
+- [django-allauth](https://django-allauth.readthedocs.io/en/latest/installation.html)
+- [django-crispy-forms](https://django-crispy-forms.readthedocs.io/en/latest/)
+- [psycopg2-binary](https://pypi.org/project/psycopg2-binary/)
+- [django-storages](https://django-storages.readthedocs.io/en/latest/)
+- [Stripe](https://stripe.com/ie)
+- [PostgreSQL](https://www.postgresql.org/)
+
+
+### Tools
+
+- [Font Awesome](https://fontawesome.com/)
+- [Figma](https://www.figma.com/)
+- [Git](https://git-scm.com/about)
+- [GitHub](https://github.com/)
+- [Heroku](https://www.heroku.com/)
+
+Further details on all Python packages used on this project can be found in the requirements.txt file.
+Each of these is outlined below (click below to expand the dropdown), with the package version and a brief description.
+
+
+# Deployment
+
+## How to run this project locally
+
+To run this project on your own IDE follow the instructions below:
+
+Firstly in order to run this project locally on your own system, you will need the following installed:
+
+- [Python3](https://www.python.org/downloads) to run the application.
+- [PIP](https://pip.pypa.io/en/stable/installing) to install all app requirements.
+- [GIT](https://www.atlassian.com/git/tutorials/install-git) for cloning and version control.
+- [Microsoft Visual Studio Code](https://code.visualstudio.com) (or any suitable IDE) to develop your project.
+
+To allow you to access all functionality, ensure you have created free accounts with the following services:
+    - [Stripe](https://dashboard.stripe.com/register)
+    - [AWS](https://aws.amazon.com/) and [set up an S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html)
+
+Feel free to click on the links above to see the necessary documentation
+
+## Next Instructions
+
+- Clone this GitHub repository by either clicking the green "*Clone or download*" button above in order to download the project as a zip-file (remember to unzip it first), or by entering the following command into the Git CLI terminal:
+    - `git clone https://github.com/Pipicallu/SammichPatch`
+- Navigate to the correct file location after unpacking the files.
+    - `cd <path to folder>`
+- Next A virtual environment is recommended for the Python interpreter, Python has one built-in. Enter the command:
+    - `python -m .venv venv`
+- Activate your virtual environment as follows:
+    - `source venv/bin/activate`
+- Install all requirements from the [requirements.txt](/requirements.txt) file using this command:
+    - `pip3 -r requirements.txt`
+- In the IDE terminal, use the following command to launch the Django project:
+    - `python manage.py runserver` 
+    - The `python` part of this command assumes you are using windows, you may need to alter if you are using a seperate operating system.
+- The Django server should be running locally now on **http://127.0.0.1:8000**.
+ If it doesn't automatically open, you can copy/paste it into your browser of choice.
+- When you run the Django server for the first time, it should create a new *SQLite3* database file: **db.sqlite3**
+- Set up the required environment variables
+
+   - Setting up the required environment variables can be achieved in two ways.
+
+   - If you have chosen Visual Studio Code as your IDE, this must be done in the `settings.json` file in the .vscode directory or open it for editing in Visual Studio Code by navigating to `File`, `Preferences`, `Settings` and searching for the `settings.json` file. Enter the environment variables as follows:
+
+   ```json
+       "terminal.integrated.env.linux": {
+           "DEVELOPMENT": "True",
+           "SECRET_KEY": "<your key here>",
+           "STRIPE_PUBLIC_KEY": "<your key here>",
+           "STRIPE_SECRET_KEY": "<your key here>",
+           "STRIPE_WH_SECRET": "<your key here>",
+           "AWS_ACCESS_KEY_ID": "<your key here>",
+           "AWS_SECRET_ACCESS_KEY": "<your key here>",
+           "AWS_STORAGE_BUCKET_NAME": "<your bucket name here>",
+       }
+   ```
+- If this proves too complicated create a file called `env.py` in the root directory of your project and open it your IDE for editing
+    - In the `env.py` file, set your environment variables as shown below:
+
+        ```python
+        import os
+        os.environ["AWS_ACCESS_KEY_ID"] = "<your key here>"
+        os.environ["AWS_S3_REGION_NAME"] = "<your AWS S3 region name here>
+        os.environ["AWS_SECRET_ACCESS_KEY"] = "<your key here>"
+        os.environ["AWS_STORAGE_BUCKET_NAME"] = "<your AWS S3 bucket name here>"
+        os.environ["SECRET_KEY"] = "<your secret key here>"
+        os.environ["STRIPE_PUBLIC_KEY"] = "<your key here>"
+        os.environ["STRIPE_SECRET_KEY"] = "<your key here>"
+        os.environ["STRIPE_WH_SECRET"] = "<your key here>"
+        os.environ["DEVELOPMENT"] = "True"    ```
+
+
+- Next, you'll need to make migrations to create the database schema:
+    - `python manage.py makemigrations`
+    - `python manage.py migrate`
+- In order to access the Django *Admin Panel*, you must generate a superuser:
+    - `python manage.py createsuperuser`
+    - (assign an admin username, email, and secure password)
+
+- All of the model entries in the Ingredients/Categories/DietaryRequirements and SidesAndDrinks models are saved in the file db.json
+all that is required is for you to load the data to the database.
+
+`python3 manage.py loaddata categories.json`,
+
+`python3 manage.py loaddata DietaryRequirements.json`,
+
+`python3 manage.py loaddata ingredients.json`,
+
+`python3 manage.py loaddata sidesanddrinks.json`
+
+- Once the program is running, go to the local link provided and add `/admin` to see the data has loaded correctly.
+
+
+## Heroku Deployment
+
+- Create a **requirements.txt** file so Heroku can install the required dependencies to run the app:
+    - `sudo pip3 freeze --local > requirements.txt`
+- Create a `Procfile` with the terminal command
+    - `echo web: python app.py > Procfile`.
+- Sign up for a free Heroku account, 
+    - create your project app by clicking on the **New** button, followed by **Create new app** in the dropdown menu.
+    - click the **Deploy** tab, at which point you can **Connect GitHub** as the Deployment Method,
+ and select **Enable Automatic Deployment**.
+
+ - Perform a `git push` on github to also push the project to Heroku
+
+ - You may also want to check the **Activity** tab to see the progress of your app uploading.
+
+- In the heroku dashboard for the application, click on "Settings" > "Reveal Config Vars".
+    - Set the following config vars:
+
+| Key | Value |
+--- | ---
+AWS_ACCESS_KEY_ID | `<your secret key>`
+AWS_SECRET_ACCESS_KEY | `<your secret key>`
+AWS_STORAGE_BUCKET_NAME | `<your AWS S3 bucket name>`
+DATABASE_URL | `<your postgres database url>`
+EMAILJS_USER_ID | `<your secret key>`
+HOSTNAME | `<your heroku app hostname>`
+SECRET_KEY | `<your secret key>`
+STRIPE_CANCEL_URL | `<link to all-products page in your app>`
+STRIPE_PUBLISHABLE | `<your secret key>`
+STRIPE_SECRET | `<your secret key>`
+STRIPE_SUCCESS_URL | `<link to checkout/confirm page in your app>`
+
+- In the Heroku **Resources** tab, navigate to the *Add-Ons* section and search for **Heroku Postgres**. 
+Make sure to select the free Hobby level. 
+This will allow you to have a remote database instead of using the local sqlite3 database, and can be found in the Settings tab.
+You'll need to update your *.env* file with your new *database-url* details.
+
+- once done you can use the command below to load the information to the postgress db.
+    `./manage.py loaddata db.json`
+
+- You can now check back on your previous deployment. click the "View app" button provided to see the website live and running.
 
 
 
