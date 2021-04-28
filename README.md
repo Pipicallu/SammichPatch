@@ -1,45 +1,16 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# [SammichPatch](https://sammichpatch.herokuapp.com/)
 
-Welcome Pipicallu,
+Have you ever been sat at your desk, at home? or at the office? Perhaps you were simply day dreaming or maybe even brainstorming your next 
+big idea, when all of a sudden as if seemingly out of nowhere... THE CRAVING HITS! And as if by magic all your thoughts past, present and 
+future are instantly replaced with and insatiable hunger that until quenched will not release you from its buns (excuse the pun).
+In my case that craving was a sandwich. Not just any sandwich, but it had to be the perfect sandwich, with all the fixins, fillings
+and just the right selection of cheese. That's when I knew that the answer to my MS4 project wasn't in my head but as with most of 
+the important decisions I've undertaken in my short tenure as an adult, it was most definitely a gut feeling. 
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use.
-
-## Gitpod Reminders
-
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
-
-`python3 -m http.server`
-
-A blue button should appear to click: *Make Public*,
-
-Another blue button should appear to click: *Open Browser*.
-
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
-
-A blue button should appear to click: *Make Public*,
-
-Another blue button should appear to click: *Open Browser*.
-
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
-
-## Updates Since The Instructional Video
-
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
-
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
-
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
---------
-
-Happy coding!
+That was when the idea for SammichPatch was born. A web app that brings the experience of subway-esque sandwich making to the digital space
+allowing our users to brave the crave and create their own perfect lunchtime snack, everytime. Our SammichPatch menu allows you to choose from
+a diverse list of premium quality ingredients across a range of dietary requirements, offering something for everyone. Your creation can then be
+paired with a choice of drink and side, rounding it out to a full lunchtime experience. The site allows for secure checkout using stripe, as well
+as the ability for users to create accounts to save delivery information as well as view their past orders. Users may also edit their order and remove 
+items from their bag. The site owner is provided with the ability to add, update or remove products from the site, as well as viewing the full order
+customer order history, in the django admin.
