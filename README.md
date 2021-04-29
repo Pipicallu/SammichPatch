@@ -95,6 +95,12 @@ You can find all my wireframes here including the original concepts that were ev
 ![wireframe2](/media/wireframe3.png)
 ![wireframe3](/media/wireframe2.png)
 
+# Testing Credentials
+
+ In order to test the site functionality, the following admin credentials can be used to log in as a superuser:
+    - Username: Admin
+    - Password: Admin1234!
+
 # Features
 
 ### Menu
@@ -474,6 +480,10 @@ You'll need to update your **.env** file with your new **database-url** details.
     `./manage.py loaddata db.json`
 
 - You can now check back on your previous deployment. click the "View app" button provided to see the website live and running.
+
+# Testing
+
+Testing details can be found in the testing.md file [here](/testing.md)
 
 # Credit
 
