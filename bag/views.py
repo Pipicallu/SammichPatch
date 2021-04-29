@@ -64,7 +64,7 @@ def add_to_bag(request, item_id):
 
 def add_side_to_bag(request, item_id):
     if not request.POST:
-        return HttpResponse(status=405) 
+        return HttpResponse(status=405)
 
     item = SidesAndDrinks.objects.get(pk=item_id)
     quantity = int(request.POST.get('quantity'))
@@ -105,25 +105,30 @@ def remove_ingredient(request, item_id):
     if item_id in sandwich:
         if item.category.name == 'bread':
             del request.session['sandwich'][f'{item.id}']
-            messages.info(request, f'{item.name} has been removed from your sandwich.')
+            messages.info(
+                request, f'{item.name} has been removed from your sandwich.')
             del request.session['bread_added']
         if item.category.name == 'filling':
             del request.session['sandwich'][f'{item.id}']
-            messages.info(request, f'{item.name} has been removed from your sandwich.')
+            messages.info(
+                request, f'{item.name} has been removed from your sandwich.')
             del request.session['filling_added']
         if item.category.name == 'cheese':
             del request.session['sandwich'][f'{item.id}']
-            messages.info(request, f'{item.name} has been removed from your sandwich.')
+            messages.info(
+                request, f'{item.name} has been removed from your sandwich.')
             del request.session['cheese_added']
         if item.category.name == 'spread':
             del request.session['sandwich'][f'{item.id}']
-            messages.info(request, f'{item.name} has been removed from your sandwich.')
+            messages.info(
+                request, f'{item.name} has been removed from your sandwich.')
             del request.session['spread_added']
         if item.category.name == 'salad':
             del request.session['sandwich'][f'{item.id}']
-            messages.info(request, f'{item.name} has been removed from sandwich.')
+            messages.info(
+                request, f'{item.name} has been removed from sandwich.')
 
-    return redirect(redirect_url) 
+    return redirect(redirect_url)
 
 
 def remove_sandwich(request, sandwich_id):
