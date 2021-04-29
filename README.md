@@ -98,6 +98,7 @@ You can find all my wireframes here including the original concepts that were ev
 # Testing Credentials
 
  In order to test the site functionality, the following admin credentials can be used to log in as a superuser:
+ 
     - Username: Admin
     - Password: Admin1234!
 
