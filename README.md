@@ -349,21 +349,29 @@ Feel free to click on the links above to see the necessary documentation
 
 ## Next Instructions
 
-- Clone this GitHub repository by either clicking the green "*Clone or download*" button above in order to download the project as a zip-file (remember to unzip it first), or by entering the following command into the Git CLI terminal:
+- Clone this GitHub repository by either clicking the  "**Code**" button with the downward facing arrow to the left of it above in order to download the project as a zip-file (remember to unzip it first), or by entering the following command into the Git CLI terminal:
     - `git clone https://github.com/Pipicallu/SammichPatch`
+
 - Navigate to the correct file location after unpacking the files.
     - `cd <path to folder>`
+
 - Next A virtual environment is recommended for the Python interpreter, Python has one built-in. Enter the command:
     - `python -m .venv venv`
+
 - Activate your virtual environment as follows:
     - `source venv/bin/activate`
+
 - Install all requirements from the [requirements.txt](/requirements.txt) file using this command:
     - `pip3 -r requirements.txt`
+
 - In the IDE terminal, use the following command to launch the Django project:
     - `python manage.py runserver` 
+
     - The `python` part of this command assumes you are using windows, you may need to alter if you are using a seperate operating system.
+
 - The Django server should be running locally now on **http://127.0.0.1:8000**.
  If it doesn't automatically open, you can copy/paste it into your browser of choice.
+
 - When you run the Django server for the first time, it should create a new *SQLite3* database file: **db.sqlite3**
 - Set up the required environment variables
 
@@ -402,8 +410,10 @@ Feel free to click on the links above to see the necessary documentation
 - Next, you'll need to make migrations to create the database schema:
     - `python manage.py makemigrations`
     - `python manage.py migrate`
+
 - In order to access the Django *Admin Panel*, you must generate a superuser:
     - `python manage.py createsuperuser`
+
     - (assign an admin username, email, and secure password)
 
 - All of the model entries in the Ingredients/Categories/DietaryRequirements and SidesAndDrinks models are saved in the file db.json
@@ -423,9 +433,11 @@ all that is required is for you to load the data to the database.
 ## Heroku Deployment
 
 - Create a **requirements.txt** file so Heroku can install the required dependencies to run the app:
-    - `sudo pip3 freeze --local > requirements.txt`
+    - `pip3 freeze --local > requirements.txt`
+
 - Create a `Procfile` with the terminal command
     - `echo web: python app.py > Procfile`.
+
 - Sign up for a free Heroku account, 
     - create your project app by clicking on the **New** button, followed by **Create new app** in the dropdown menu.
     - click the **Deploy** tab, at which point you can **Connect GitHub** as the Deployment Method,
@@ -454,8 +466,9 @@ STRIPE_SUCCESS_URL | `<link to checkout/confirm page in your app>`
 
 - In the Heroku **Resources** tab, navigate to the *Add-Ons* section and search for **Heroku Postgres**. 
 Make sure to select the free Hobby level. 
+
 This will allow you to have a remote database instead of using the local sqlite3 database, and can be found in the Settings tab.
-You'll need to update your *.env* file with your new *database-url* details.
+You'll need to update your **.env** file with your new **database-url** details.
 
 - once done you can use the command below to load the information to the postgress db.
     `./manage.py loaddata db.json`
